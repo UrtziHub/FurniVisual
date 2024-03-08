@@ -1,3 +1,4 @@
+import Footer from '@/Components/Footer';
 import Header from '@/Components/Header';
 import ReactCompareImage from 'react-compare-image';
 import { Carousel } from 'react-responsive-carousel';
@@ -26,6 +27,7 @@ export default function Welcome(props) {
                     </div>
                 </Carousel>
             </section>
+            <Footer></Footer>
         </>
     );
 }
