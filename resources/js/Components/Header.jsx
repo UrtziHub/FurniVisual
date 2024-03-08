@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/react";
-import { IoHome, IoImage, IoInformationCircleSharp, IoSearch, IoCart  } from "react-icons/io5";
+import { IoHome, IoImage, IoInformationCircleSharp, IoSearch, IoCart, IoLogIn   } from "react-icons/io5";
 
 import NavLink from "./NavLink";
 
@@ -19,14 +19,20 @@ const navlinks = [
         text: "About us",
         href: "dashboard",
     },
+    {
+        icon: <IoLogIn  className="text-4xl" />,
+        text: "Login",
+        href: "dashboard",
+    },
 ];
 
 const Header = () => {
     return (
-        <header className="bg-gray-300 flex justify-around p-4">
-            <div><img src="/images/logo.png" alt="" className=""/></div>
-            <div>
-                <ul className="flex gap-4">
+        <header className="bg-gray-100 w-screen flex justify-around items-center p-5 border-b border-gray-200 fixed z-50 mb-64">
+
+            <div className="flex-1"><img src="/images/logo.png" alt="" className="w-60"/></div>
+            <div className=" flex flex-1 justify-center">
+                <ul className="flex gap-6">
                     {navlinks.map((link, index) => (
                         <li key={index}>
                             <NavLink
@@ -40,10 +46,10 @@ const Header = () => {
                     ))}
                 </ul> 
             </div>
-            <div>
+            <div className="flex-1 flex justify-end items-end">
                 <ul className="flex space-x-4">
-                <li><NavLink icon= {<IoSearch  className="text-4xl" />} text = {"search"}></NavLink></li>
-                <li><NavLink icon= {<IoCart className="text-4xl" />} text = {"cart"}></NavLink></li>
+                <li><NavLink icon= {<IoSearch  className="text-4xl" />}></NavLink></li>
+                <li><NavLink icon= {<IoCart className="text-4xl" />}></NavLink></li>
                 </ul>
             </div>
         </header>
