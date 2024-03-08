@@ -35,11 +35,16 @@ const navlinks = [
 const Header = () => {
     return (
         <>
-            <header className="bg-gray-100 w-screen flex justify-around items-center py-2 px-8 border-b border-gray-200 fixed top-0 z-50">
-                <div className="flex-1">
-                    <img src="/images/logo.png" alt="" className="w-60" />
+            <header className="bg-gray-100 w-screen flex justify-between items-center py-2 px-10 md:px-32 border-b border-gray-200 fixed top-0 z-50">
+                <div className="flex md:hidden text-4xl">
+                ≡
                 </div>
-                <div className=" flex flex-1 justify-center">
+                <div className="md:flex-1">
+                    <div className="w-64">
+                    <img src="/images/logo.png" alt="logo" className="" />
+                    </div>
+                </div>
+                <div className="md:flex flex-1 justify-center hidden">
                     <ul className="flex gap-6">
                         {navlinks.map((link, index) => (
                             <li key={index}>
@@ -53,7 +58,8 @@ const Header = () => {
                         ))}
                     </ul>
                 </div>
-                <div className="flex-1 flex justify-end items-end">
+                
+                <div className="flex-1 xl:flex justify-end items-end hidden">
                     <ul className="flex space-x-4">
                         <li>
                             <NavLink
@@ -69,7 +75,7 @@ const Header = () => {
                 </div>
             </header>
             {/* SEPARATION !!! */}
-            <div className="mt-24"></div>
+            <div className="mt-28"></div>
         </>
     );
 };

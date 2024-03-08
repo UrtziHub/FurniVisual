@@ -66,7 +66,7 @@ export default function Footer() {
                 </span>
             </div>
             <div>
-                <p className="text-neutral-500">© {curretYear}. Developed By Urtzi</p>
+                <p className="text-neutral-500">© {curretYear}. Developed By FurniVisual</p>
             </div>
         </div>
     );

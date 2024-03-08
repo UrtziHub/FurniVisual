@@ -7,7 +7,7 @@ export default function NavLink({ active = false, className = '', children, icon
             {...props}
         >
             {icon}
-            <p>{text}</p>
+            <p className='text-nowrap'>{text}</p>
         </Link>
     );
 }
