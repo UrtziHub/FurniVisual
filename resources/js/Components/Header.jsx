@@ -38,7 +38,7 @@ const Header = () => {
                             ></NavLink>
                         </li>
                     ))}
-                </ul>
+                </ul> 
             </div>
             <div>
                 <ul className="flex space-x-4">
