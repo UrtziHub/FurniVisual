@@ -71,7 +71,7 @@ const Header = ({ user }) => {
                                             <span className="inline-flex rounded-md">
                                                 <button
                                                     type="button"
-                                                    className="px-4 py-2 text-xl font-bold hover:bg-gray-400 bg-gray-300 rounded-full transition ease-in-out duration-150"
+                                                    className="px-4 py-2 text-xl text-white font-bold hover:outline hover:outline-gray-300 bg-gray-700 rounded-full transition ease-in-out duration-300"
                                                 >
                                                     {user.name.charAt(0)}
 
@@ -114,7 +114,7 @@ const Header = ({ user }) => {
                 </div>
             </header>
             {/* SEPARATION !!! */}
-            <div className="mt-28"></div>
+            <div className="mt-[92px]"></div>
         </>
     );
 };
