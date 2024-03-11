@@ -18,12 +18,18 @@ class OrderFactory extends Factory
     public function definition()
     {
         $startDate = Carbon::now()->addWeekdays(5);
-        $endDate = $startDate->copy()->addDays($this->faker->numberBetween(1, 20));
+        $endDate = $startDate->copy()->addDays($this->faker->numberBetween(1, 183));
+
+        // Verifica si la fecha de vencimiento cae en un fin de semana y ajusta si es necesario
+        while ($startDate->isWeekend() || $endDate->isWeekend()) {
+            $startDate = Carbon::now()->addWeekdays(5);
+            $endDate = $startDate->copy()->addDays($this->faker->numberBetween(1, 183));
+        }
 
         return [
             'imageFiles' => $this->faker->imageUrl(),
             'numProducts' => $this->faker->numberBetween(1, 10),
-            'numPerspective' => $this->faker->numberBetween(1, 10),
+            'numPerspective' => $this->faker->numberBetween(1, 3),
             'hasModel' => $this->faker->boolean(),
             '3DModel' => [
                 'path/to/model1.gltf',
