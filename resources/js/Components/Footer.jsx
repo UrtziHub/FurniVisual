@@ -1,6 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { FaInstagram, FaYoutube, FaTwitter, FaFacebook } from "react-icons/fa";
 
+import "../../css/Footer.css"
 export default function Footer() {
     const curretYear = new Date().getFullYear();
     return (
@@ -10,7 +11,7 @@ export default function Footer() {
                 <h1 className="bg-slate-100 p-2 rounded-e-md">Visual</h1>
             </div>
             <div className="flex justify-center w-full gap-10">
-                <ul className="space-y-2">
+                <ul className="space-y-2 &>[]">
                     <h1 className="text-lg font-bold underline-offset-2 underline">
                         Home
                     </h1>
@@ -32,7 +33,7 @@ export default function Footer() {
                         Company
                     </h1>
                     <li>
-                        <Link href="/">About us 📍</Link>
+                        <Link href="/">About us </Link>📍
                     </li>
                     <li>
                         <Link href="/">Shop</Link>
@@ -57,11 +58,11 @@ export default function Footer() {
             <div className="inline-flex items-center justify-center w-full">
                 <hr className="w-96 h-px my-8 bg-neutral-300 border-0 " />
                 <span className="absolute px-3 font-medium -translate-x-1/2 left-1/2">
-                    <div className="flex bg-white px-2 gap-3 text-2xl">
-                        <FaInstagram className="hover:text-purple-400 cursor-pointer"/>
-                        <FaYoutube className="hover:text-red-400 cursor-pointer"/>
-                        <FaFacebook className="hover:text-blue-700 cursor-pointer"/>
-                        <FaTwitter className="hover:text-blue-400 cursor-pointer"/>
+                    <div className="flex bg-white px-2 gap-3 text-2xl"> 
+                        <FaInstagram className="hover:text-purple-400 cursor-pointer transition duration-300 ease-in-out"/>
+                        <FaYoutube className="hover:text-red-400 cursor-pointer transition duration-300 ease-in-out"/>
+                        <FaFacebook className="hover:text-blue-700 cursor-pointer transition duration-300 ease-in-out"/>
+                        <FaTwitter className="hover:text-blue-400 cursor-pointer transition duration-300 ease-in-out"/>
                     </div>
                 </span>
             </div>
