@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->foreignId('cart_id')->constrained()->onDelete('cascade');
+            $table->foreignId('cart_id')->nullable()->constrained()->onDelete('cascade');
         });
     }
 

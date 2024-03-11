@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('reviews', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
         });
     }
 
