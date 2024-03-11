@@ -4,10 +4,10 @@ import ReactCompareImage from 'react-compare-image';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-export default function Welcome(props) {
+export default function Welcome({props, auth}) {
     return (
         <>
-            <Header></Header>
+            <Header user={auth.user}></Header>
             <section className="flex justify-center items-center py-10 mx-4 sm:mx-8 md:mx-16 lg:mx-32 xl:mx-64">
                 <ReactCompareImage leftImage="images/compare1.webp" rightImage="images/compare2.jpg"/>
             </section>

@@ -40,4 +40,9 @@ Route::get('/about', function () {
     return Inertia::render('About');
 })->name('about');
 
+// Calogue page
+Route::get('/catalogue', function () {
+    return Inertia::render('Catalogue');
+})->name('catalogue');
+
 require __DIR__.'/auth.php';
