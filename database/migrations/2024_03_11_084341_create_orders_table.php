@@ -19,6 +19,7 @@ return new class extends Migration
             $table->json('imageFiles');
             $table->integer('numProducts');
             $table->integer('numPerspective');
+            $table->boolean('hasModel');
             $table->json('3DModel')->nullable();
             $table->date('deadline')->nullable();
             $table->text('additionalInfo')->nullable();

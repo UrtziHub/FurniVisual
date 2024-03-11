@@ -10,7 +10,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'imageFiles', 'numProducts', 'numPerspective', '3DModel', 'deadline', 'additionalInfo'
+        'imageFiles', 'numProducts', 'numPerspective', 'hasModel', '3DModel', 'deadline', 'additionalInfo'
     ];
 
     protected $casts = [

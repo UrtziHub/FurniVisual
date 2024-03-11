@@ -24,7 +24,8 @@ class OrderFactory extends Factory
             'imageFiles' => $this->faker->imageUrl(),
             'numProducts' => $this->faker->numberBetween(1, 10),
             'numPerspective' => $this->faker->numberBetween(1, 10),
-            'gallery' => [
+            'hasModel' => $this->faker->boolean(),
+            '3DModel' => [
                 'path/to/model1.gltf',
                 'path/to/model2.obj',
                 // add more 3D files paths if seem so
