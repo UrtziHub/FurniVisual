@@ -25,8 +25,8 @@ class Review extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function users(): BelongsToMany
+    public function users(): BelongsTo
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

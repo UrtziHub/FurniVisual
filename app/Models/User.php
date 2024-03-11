@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Seeders\ReviewSeeder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -50,13 +51,13 @@ class User extends Authenticatable
         return $this->hasOne(Cart::class);
     }
 
-    public function rols(): HasMany
+    public function reviews(): HasMany
     {
-        return $this->hasMany(Rol::class);
+        return $this->hasMany(Review::class);
     }
 
-    public function reviews(): BelongsToMany
+    public function rols(): BelongsToMany
     {
-        return $this->belongsToMany(Review::class);
+        return $this->belongsToMany(Rol::class);
     }
 }
