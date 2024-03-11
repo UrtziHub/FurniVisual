@@ -8,6 +8,7 @@ import {
 } from "react-icons/io5";
 
 import NavLink from "./NavLink";
+import Dropdown from "./Dropdown";
 
 const navlinks = [
     {
@@ -18,27 +19,19 @@ const navlinks = [
     {
         icon: <IoImage className="text-4xl" />,
         text: "Catalogue",
-        href: "dashboard",
+        href: "catalogue",
     },
     {
         icon: <IoInformationCircleSharp className="text-4xl" />,
         text: "About us",
-        href: "dashboard",
-    },
-    {
-        icon: <IoLogIn className="text-4xl" />,
-        text: "Login",
-        href: "login",
+        href: "about",
     },
 ];
 
-const Header = () => {
+const Header = ({ user }) => {
     return (
         <>
-            <header className="bg-gray-100 w-screen flex justify-between items-center py-2 px-10 md:px-32 border-b border-gray-200 fixed top-0 z-50">
-                <div className="flex md:hidden text-4xl">
-                ≡
-                </div>
+            <header className="bg-gray-100 w-screen flex justify-evenly items-center py-2 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-64 border-b border-gray-200 fixed top-0 z-50">
                 <div className="md:flex-1">
                     <div className="w-64">
                     <img src="/images/logo.png" alt="logo" className="" />
@@ -70,8 +63,54 @@ const Header = () => {
                             <NavLink
                                 icon={<IoCart className="text-4xl" />}
                             ></NavLink>
-                        </li>
-                    </ul>
+                        </li>         
+                    {user ? (
+                                <div className="ms-3 relative">
+                                    <Dropdown>
+                                        <Dropdown.Trigger>
+                                            <span className="inline-flex rounded-md">
+                                                <button
+                                                    type="button"
+                                                    className="px-4 py-2 text-xl font-bold hover:bg-gray-400 bg-gray-300 rounded-full transition ease-in-out duration-150"
+                                                >
+                                                    {user.name.charAt(0)}
+
+                                                    
+                                                </button>
+                                            </span>
+                                        </Dropdown.Trigger>
+
+                                        <Dropdown.Content>
+                                            <Dropdown.Link
+                                            >
+                                                Cart
+                                            </Dropdown.Link>
+                                            <Dropdown.Link
+                                                href={route("profile.edit")}
+                                            >
+                                                Profile
+                                            </Dropdown.Link>
+                                            <Dropdown.Link
+                                                href={route("logout")}
+                                                method="post"
+                                                as="button"
+                                            >
+                                                Log Out
+                                            </Dropdown.Link>
+                                        </Dropdown.Content>
+                                    </Dropdown>
+                                </div>
+                        ) : (
+                            <li>
+                                <NavLink 
+                                icon={<IoLogIn className="text-4xl" />} 
+                                href={route('login')}></NavLink>
+                            </li>
+                        )}
+                        </ul>
+                </div>
+                <div className="flex md:hidden text-4xl">
+                ≡
                 </div>
             </header>
             {/* SEPARATION !!! */}
