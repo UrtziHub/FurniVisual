@@ -1,6 +1,9 @@
+import Toggle from "@/Components/Toggle";
 import PageLayout from "@/Layouts/PageLayout";
+import { Link } from "@inertiajs/react";
 
-export default function Catalogue({ auth }) {
+export default function Catalogue({ auth, categories }) {
+    console.log(categories);
     return (
         <PageLayout user={auth.user} className="bg-slate-100">
             <section
@@ -18,74 +21,26 @@ export default function Catalogue({ auth }) {
                 </p>
             </section>
             <section className=" mx-4 xl:mx-64 py-4 grid gap-4 md:grid-cols-2 grid-cols-1 md:text-nowrap">
-                <div className="flex flex-col w-full">
-                    <button className="bg-black text-white text-2xl px-6 py-2 rounded-t-xl">
-                        Tables and Chairs
-                    </button>
-                    <div className="">
+                {categories.map((category, index) => (
+                    <Link key={index} >
                         <img
                             src="/images/catalogue.webp"
                             alt=""
-                            className="rounded-b-xl"
+                            className="rounded-t-md"
                         />
-                    </div>
-                </div>
-                <div className="flex flex-col w-full">
-                    <div className="">
-                        <img
-                            src="/images/catalogue.webp"
-                            alt=""
-                            className="rounded-xl relative z-10"
-                        />
-                        <div className="relative bg-white rounded-b-xl -top-2 shadow-xl px-6 py-4">
-                            <h1 className="text-2xl font-bold">
-                                Tables and Chairs
+                        <div className="bg-white rounded-b-md px-6 py-4 shadow-xl">
+                            <h1 className="font-bold text-xl mb-2">
+                                {category.name}
                             </h1>
-                            <p>100$</p>
+                            <p className="text-gray-700 text-wrap">
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Voluptatibus quia, nulla!
+                                Maiores et perferendis eaque, exercitationem
+                                praesentium nihil.
+                            </p>
                         </div>
-                    </div>
-                </div>
-                <div>
-                    <img
-                        src="/images/catalogue.webp"
-                        alt=""
-                        className="rounded-t-md"
-                    />
-                    <div className="bg-white rounded-b-md px-6 py-4 shadow-xl">
-                        <h1 class="font-bold text-xl mb-2">
-                            Tables And Chairs
-                        </h1>
-                        <p class="text-gray-700 text-wrap">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Voluptatibus quia, nulla! Maiores et
-                            perferendis eaque, exercitationem praesentium nihil.
-                        </p>
-                    </div>
-                </div>
-                <div className="bg-white p-3 rounded-xl flex gap-4">
-                    <div className="w-3/4">
-                        <img
-                            src="/images/catalogue.webp"
-                            alt=""
-                            className="rounded-xl"
-                        />
-                    </div>
-                    <div className="flex items-center">
-                        <h1 class="text-md font-bold">Tables And Chairs</h1>
-                    </div>
-                </div> <div className="bg-white p-3 rounded-xl flex gap-4">
-                    <div className="w-3/4">
-                        <img
-                            src="/images/catalogue.webp"
-                            alt=""
-                            className="rounded-xl"
-                        />
-                    </div>
-                    <div className="flex items-center">
-                        <h1 class="text-md font-bold">Tables And Chairs</h1>
-                    </div>
-                </div>
-               
+                    </Link>
+                ))}
             </section>
             <h1 className="text-xl">
                 Catalogue
