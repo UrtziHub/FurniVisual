@@ -1,7 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { FaInstagram, FaYoutube, FaTwitter, FaFacebook } from "react-icons/fa";
 
-import "../../css/Footer.css"
 export default function Footer() {
     const curretYear = new Date().getFullYear();
     return (

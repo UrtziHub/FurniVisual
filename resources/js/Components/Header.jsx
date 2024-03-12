@@ -82,6 +82,11 @@ const Header = ({ user }) => {
 
                                         <Dropdown.Content>
                                             <Dropdown.Link
+                                                href={route("dashboard")}
+                                            >
+                                                Dashboard
+                                            </Dropdown.Link>
+                                            <Dropdown.Link
                                                 href={route("profile.edit")}
                                             >
                                                 Profile
@@ -100,7 +105,7 @@ const Header = ({ user }) => {
                                 <li>
                                     <Link
                                         href={route("login")}
-                                        className="flex items-center gap-2 text-lg font-semibold bg-gray-100 rounded-full px-6 py-1 "
+                                        className="flex items-center gap-2 text-lg text-gray-600 font-semibold bg-gray-100 rounded-full px-6 py-1 hover:scale-110 duration-500 hover:text-black"
                                     >
                                         <IoPerson />
                                         Sing in
@@ -183,6 +188,12 @@ const Header = ({ user }) => {
                                         className="px-4 py-2 hover:bg-gray-300 text-gray-600 text-2xl font-semibold rounded transition ease-in-out duration-300"
                                     >
                                         Profile
+                                    </Link>
+                                    <Link
+                                        href={route("dashboard")}
+                                        className="px-4 py-2 hover:bg-gray-300 text-gray-600 text-2xl font-semibold rounded transition ease-in-out duration-300"
+                                    >
+                                        Dashboard
                                     </Link>
                                     <Link
                                         href={route("logout")}
