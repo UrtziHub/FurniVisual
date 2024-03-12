@@ -9,7 +9,10 @@ import { Head, Link, useForm } from '@inertiajs/react';
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
+        secondName: '',
         email: '',
+        website: '',
+        phone: '',
         password: '',
         password_confirmation: '',
     });
@@ -53,6 +56,23 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
+                    <InputLabel htmlFor="secondName" value="Second Name" />
+
+                    <TextInput
+                        id="secondName"
+                        name="secondName"
+                        value={data.secondName}
+                        className="mt-1 block w-full"
+                        autoComplete="secondName"
+                        isFocused={true}
+                        onChange={handleOnChange}
+                        required
+                    />
+
+                    <InputError message={errors.secondName} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
                     <InputLabel htmlFor="email" value="Email" />
 
                     <TextInput
@@ -67,6 +87,40 @@ export default function Register() {
                     />
 
                     <InputError message={errors.email} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="website" value="Website" />
+
+                    <TextInput
+                        id="website"
+                        name="website"
+                        value={data.website}
+                        className="mt-1 block w-full"
+                        autoComplete="website"
+                        isFocused={true}
+                        onChange={handleOnChange}
+                        required
+                    />
+
+                    <InputError message={errors.website} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="phone" value="Phone Number" />
+
+                    <TextInput
+                        id="phone"
+                        name="phone"
+                        value={data.phone}
+                        className="mt-1 block w-full"
+                        autoComplete="phone"
+                        isFocused={true}
+                        onChange={handleOnChange}
+                        required
+                    />
+
+                    <InputError message={errors.phone} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
