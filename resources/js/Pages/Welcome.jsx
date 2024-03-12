@@ -17,7 +17,7 @@ export default function Welcome({props, auth}) {
             <section className="flex justify-center items-center py-10 mx-4 sm:mx-8 md:mx-16 lg:mx-32 xl:mx-64">
                 <Carousel autoPlay infiniteLoop showThumbs={false}>
                     <div>
-                        <img src="images/logo.png" alt=""/>
+                        <img src="images/image1.jpg" alt=""/>
                     </div>
                     <div>
                         <img src="images/compare1.webp" alt=""/>
