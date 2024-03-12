@@ -46,7 +46,7 @@ Route::get('/catalogue', function () {
 })->name('catalogue');
 
 Route::get('/a', function () {
-    return \App\Models\Product::with('categories')->get();
+    return \App\Models\User::with('rols')->get();
 })->name('a');
 
 require __DIR__.'/auth.php';
