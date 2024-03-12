@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatalogueController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -41,9 +42,7 @@ Route::get('/about', function () {
 })->name('about');
 
 // Calogue page
-Route::get('/catalogue', function () {
-    return Inertia::render('Catalogue');
-})->name('catalogue');
+Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
 
 Route::get('/a', function () {
     return \App\Models\Product::with('orders')->get();
