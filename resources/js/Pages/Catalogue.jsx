@@ -1,4 +1,3 @@
-import Toggle from "@/Components/Toggle";
 import PageLayout from "@/Layouts/PageLayout";
 import { Link } from "@inertiajs/react";
 
@@ -22,21 +21,18 @@ export default function Catalogue({ auth, categories }) {
             </section>
             <section className=" mx-4 xl:mx-64 py-4 grid gap-4 md:grid-cols-2 grid-cols-1 md:text-nowrap">
                 {categories.map((category, index) => (
-                    <Link key={index} >
+                    <Link key={index} href={route('categoryProduct', category )} className="flex flex-col h-full">
                         <img
                             src="/images/catalogue.webp"
                             alt=""
                             className="rounded-t-md"
                         />
-                        <div className="bg-white rounded-b-md px-6 py-4 shadow-xl">
+                        <div className="bg-white rounded-b-md px-6 py-4 shadow-xl h-full">
                             <h1 className="font-bold text-xl mb-2">
                                 {category.name}
                             </h1>
                             <p className="text-gray-700 text-wrap">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Voluptatibus quia, nulla!
-                                Maiores et perferendis eaque, exercitationem
-                                praesentium nihil.
+                                {category.description}
                             </p>
                         </div>
                     </Link>

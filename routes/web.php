@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatalogueController;
+use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,9 @@ Route::get('/about', function () {
 
 // Calogue page
 Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
+
+// Category product page
+Route::get('/category-product/{category}', [CategoryProductController::class, 'index'])->name('categoryProduct');
 
 Route::get('/a', function () {
     return \App\Models\Product::with('orders')->get();
