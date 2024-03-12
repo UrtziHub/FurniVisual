@@ -1,11 +1,11 @@
 import PageLayout from "@/Layouts/PageLayout";
 import { Link } from "@inertiajs/react";
-import { IoHeartOutline, IoStar } from "react-icons/io5";
+import { IoCartOutline, IoHeartOutline, IoStar } from "react-icons/io5";
 
 export default function Catalogue({ auth, products }) {
     return (
         <PageLayout user={auth.user} className="bg-slate-100">
-            <div className="grid grid-cols-2 gap-4 py-10 mx-32">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 py-10 lg:mx-32 mx-8">
                 {products.data.map((product) => (
                     <div
                         key={product.id}
@@ -28,21 +28,21 @@ export default function Catalogue({ auth, products }) {
                             <div className="flex gap-1 items-center">
                                     <p className="bg-yellow-300 font-bold p-1 rounded-lg">
                                         {product.averageRate}
-                                    </p>{" "}
+                                    </p>
                                     <IoStar className="text-yellow-300 text-2xl" />
                                     <IoStar className="text-yellow-300 text-2xl"/>
                                     <IoStar className="text-yellow-300 text-2xl"/>
                                     <IoStar className="text-yellow-300 text-2xl"/>
                                     <IoStar className="text-yellow-300 text-2xl"/>
                                 </div>
-                                <p className="text-2xl font-bold">
-                                    {product.price} $
-                                </p>
                                 
                             </div>
-                            <div className="flex justify-center">
-                                <button className="bg-black text-white px-8 py-2 rounded-xl">
-                                    Add to card
+                            <div className="flex items-center justify-between">
+                            <p className="text-2xl font-bold">
+                                    {product.price} $
+                                </p>
+                                <button className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl">
+                                <IoCartOutline className="text-2xl "/>Add to card
                                 </button>
                             </div>{" "}
                         </div>
@@ -67,7 +67,7 @@ export default function Catalogue({ auth, products }) {
                                     }}
                                     className={`px-4 py-2 text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0 rounded- ${
                                         link.active
-                                            ? "bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                            ? "bg-gray-900 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                             : "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-100 hover:text-black"
                                     }`}
                                 />
