@@ -24,7 +24,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-})->name('home');   
+})->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -47,5 +47,9 @@ Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue
 Route::get('/a', function () {
     return \App\Models\Product::with('orders')->get();
 })->name('a');
+
+// Product page
+Route::get('/product/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
+Route::get('/product/create', [\App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
 
 require __DIR__.'/auth.php';
