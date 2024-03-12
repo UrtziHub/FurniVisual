@@ -90,7 +90,6 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         className="mt-1 block w-full"
                         value={data.website}
                         onChange={(e) => setData('website', e.target.value)}
-                        required
                         isFocused
                         autoComplete="website"
                     />

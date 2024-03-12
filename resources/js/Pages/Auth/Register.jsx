@@ -100,7 +100,6 @@ export default function Register() {
                         autoComplete="website"
                         isFocused={true}
                         onChange={handleOnChange}
-                        required
                     />
 
                     <InputError message={errors.website} className="mt-2" />

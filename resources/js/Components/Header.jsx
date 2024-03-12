@@ -105,8 +105,7 @@ const Header = ({ user }) => {
                                 <li>
                                     <Link
                                         href={route("login")}
-                                        className="flex items-center gap-2 text-lg text-gray-600 font-semibold bg-gray-100 rounded-full px-6 py-1 hover:scale-110 duration-500 hover:text-black"
-                                    >
+                                        className="flex items-center gap-2 text-lg text-gray-500 font-semibold bg-gray-100 rounded-full px-6 py-1 border hover:border-black duration-500 hover:text-black"                                    >
                                         <IoPerson />
                                         Sing in
                                     </Link>
@@ -167,7 +166,7 @@ const Header = ({ user }) => {
                                     <span className="flex items-center gap-4 rounded-md">
                                         <button
                                             type="button"
-                                            className="px-4 py-2 text-xl text-white font-bold bg-gray-700 rounded-full transition ease-in-out duration-300"
+                                            className="w-10 h-10 text-xl text-white font-bold bg-gray-700 rounded-full transition ease-in-out duration-300"
                                         >
                                             {user.name.charAt(0)}
                                         </button>
