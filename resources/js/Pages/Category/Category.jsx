@@ -46,7 +46,7 @@ export default function Product({ auth, categories }) {
                                         style={{ width: "auto" }}
                                     >
                                         <img
-                                            src={category.image}
+                                            src={`/storage/categories/${category.image}`}
                                             alt=""
                                             className="rounded-t-md max-w-xs"
                                             style={{ maxHeight: "200px" }}
@@ -78,7 +78,7 @@ export default function Product({ auth, categories }) {
                 type="button"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
-                <Link href={route("product.create")}>
+                <Link href={route("category.create")}>
                     <a className="flex flex-col h-full">Create Product</a>
                 </Link>
             </button>

@@ -46,18 +46,18 @@ class CategoryController extends Controller
             'image' => 'required',
         ]);
 
-        $productFileName = ''; // Initialize productFileName variable
+        $categoryFileName = ''; // Initialize categoryFileName variable
 
         if ($request->hasFile('image')) {
-            $productFile = $request->file('image');
-            $productFileName = $productFile->hashName();
-            $productFile->storeAs('categories', $productFileName, 'public');
+            $categoryFile = $request->file('image');
+            $categoryFileName = $categoryFile->hashName();
+            $categoryFile->storeAs('categories', $categoryFileName, 'public');
         }
 
         $category = Category::create([
             'name' => request('name'),
             'description' => request('description'),
-            'image' => $productFileName,
+            'image' => $categoryFileName,
         ]);
 
         $category->save();
@@ -93,29 +93,18 @@ class CategoryController extends Controller
         ]);
 
 
-        $productFileName = ''; // Initialize productFileName variable
+        $categoryFileName = ''; // Initialize categoryFileName variable
 
         if ($request->hasFile('image')) {
-            $productFile = $request->file('image');
-            $productFileName = $productFile->hashName();
-            $productFile->storeAs('categories', $productFileName, 'public');
+            $categoryFile = $request->file('image');
+            $categoryFileName = $categoryFile->hashName();
+            $categoryFile->storeAs('categories', $categoryFileName, 'public');
         }
-
-
-        /* Handle gallery images upload
-    if ($request->hasFile('gallery')) {
-        $galleryFiles = $request->file('gallery');
-        foreach ($galleryFiles as $galleryFile) {
-            $galleryFileName = $galleryFile->hashName();
-            $galleryFile->storeAs('categories', $galleryFileName, 'public');
-            // Associate gallery file names with category or store in database as needed
-        }
-    }*/
 
         $category->update([
             'name' => request('name'),
             'description' => request('description'),
-            'image' => $productFileName,
+            'image' => $categoryFileName,
         ]);
 
         return redirect(route('categories.index'));
