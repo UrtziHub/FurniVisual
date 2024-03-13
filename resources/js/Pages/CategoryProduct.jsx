@@ -17,6 +17,8 @@ export default function Catalogue({ auth, products }) {
                                 src={"/images/catalogue.webp"}
                                 alt={product.name}
                                 className="w-full h-auto rounded-lg"
+                                width={1920}
+                                height={1080}
                             />
                         </div>
                         <div className="py-4 px-2 flex flex-col gap-3">

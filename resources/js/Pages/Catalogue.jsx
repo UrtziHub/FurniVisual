@@ -24,8 +24,10 @@ export default function Catalogue({ auth, categories }) {
                     <Link key={index} href={route('categoryProduct', category )} className="flex flex-col h-full">
                         <img
                             src="/images/catalogue.webp"
-                            alt=""
+                            alt={category.name}
                             className="rounded-t-md"
+                            width={1920}
+                            height={1080}
                         />
                         <div className="bg-white rounded-b-md px-6 py-4 shadow-xl h-full">
                             <h1 className="font-bold text-xl mb-2">
