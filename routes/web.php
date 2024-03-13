@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CatalogueController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -53,7 +54,8 @@ Route::get('/a', function () {
 })->name('a');
 
 // Product page
-Route::get('/product/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
-Route::get('/product/create', [\App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
+Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
+Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+Route::post('/product/index', [ProductController::class, 'store'])->name('product.store');
 
 require __DIR__.'/auth.php';
