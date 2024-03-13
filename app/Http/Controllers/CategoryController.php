@@ -27,19 +27,29 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Category/CategoryCreate');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
+
+        Category::create([
+            'name' => request('name'),
+            'description' => request('description'),
+            'image' => request('image'),
+        ]);
+
+        return redirect(route('categories.index'));
     }
+
 
     /**
      * Display the specified resource.
@@ -49,18 +59,15 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('categories.show', compact('category'));
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -72,7 +79,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
+
+        $category->update([
+            'name' => request('name'),
+            'description' => request('description'),
+            'image' => request('image'),
+        ]);
+
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -83,6 +102,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return back();
     }
 }

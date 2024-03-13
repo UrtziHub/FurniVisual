@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Inertia\Response;
+
 
 class ProductController extends Controller
 {
@@ -16,7 +20,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
         $products = Product::all();
 
@@ -29,13 +33,12 @@ class ProductController extends Controller
     public function create()
     {
         return Inertia::render('Product/ProductCreate');
-
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
             'name' => 'required',
@@ -44,16 +47,26 @@ class ProductController extends Controller
             'image' => 'required',
         ]);
 
-        Product::create([
+        $productFileName = ''; // Initialize productFileName variable
+
+        if ($request->hasFile('image')) {
+            $productFile = $request->file('image');
+            $productFileName = $productFile->hashName();
+            $productFile->storeAs('products', $productFileName, 'public');
+        }
+
+        $product = Product::create([
             'name' => request('name'),
             'price' => request('price'),
             'shortDescription' => request('shortDescription'),
             'fullDescription' => request('fullDescription'),
-            'image' => request('image'),
+            'image' => $productFileName,
             'gallery' => request('gallery'),
         ]);
 
-        return redirect(route('products.index'));
+        $product->save();
+
+        return Redirect::route('product.index');
     }
 
     /**
@@ -69,7 +82,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return Inertia::render('Product/ProductEdit', compact('product'));
     }
 
     /**
@@ -84,12 +97,32 @@ class ProductController extends Controller
             'image' => 'required',
         ]);
 
+
+        $productFileName = ''; // Initialize productFileName variable
+
+        if ($request->hasFile('image')) {
+            $productFile = $request->file('image');
+            $productFileName = $productFile->hashName();
+            $productFile->storeAs('products', $productFileName, 'public');
+        }
+
+
+        /* Handle gallery images upload
+    if ($request->hasFile('gallery')) {
+        $galleryFiles = $request->file('gallery');
+        foreach ($galleryFiles as $galleryFile) {
+            $galleryFileName = $galleryFile->hashName();
+            $galleryFile->storeAs('products', $galleryFileName, 'public');
+            // Associate gallery file names with product or store in database as needed
+        }
+    }*/
+
         $product->update([
             'name' => request('name'),
             'price' => request('price'),
             'shortDescription' => request('shortDescription'),
             'fullDescription' => request('fullDescription'),
-            'image' => request('image'),
+            'image' => $productFileName,
             'gallery' => request('gallery'),
         ]);
 
@@ -103,6 +136,8 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return back();
+        //Eliminar imagen relacionada
+
+        return Redirect::back();
     }
 }
