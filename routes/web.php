@@ -53,6 +53,7 @@ Route::get('/category-product/{category}', [CategoryProductController::class, 'i
 // Product page
 Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
 // Category page
 Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
