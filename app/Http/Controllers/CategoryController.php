@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Inertia\Response;
+
 
 class CategoryController extends Controller
 {
@@ -13,17 +17,18 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): Response
     {
         $categories = Category::all();
-    
+
         return Inertia::render('Category/Category', compact('categories'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -33,7 +38,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
             'name' => 'required',
@@ -41,21 +46,27 @@ class CategoryController extends Controller
             'image' => 'required',
         ]);
 
-        Category::create([
+        $productFileName = ''; // Initialize productFileName variable
+
+        if ($request->hasFile('image')) {
+            $productFile = $request->file('image');
+            $productFileName = $productFile->hashName();
+            $productFile->storeAs('categories', $productFileName, 'public');
+        }
+
+        $category = Category::create([
             'name' => request('name'),
             'description' => request('description'),
-            'image' => request('image'),
+            'image' => $productFileName,
         ]);
 
-        return redirect(route('categories.index'));
-    }
+        $category->save();
 
+        return Redirect::route('category.index');
+    }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
     {
@@ -67,15 +78,11 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit', compact('category'));
+        return Inertia::render('Category/CategoryEdit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Category $category)
     {
@@ -85,10 +92,30 @@ class CategoryController extends Controller
             'image' => 'required',
         ]);
 
+
+        $productFileName = ''; // Initialize productFileName variable
+
+        if ($request->hasFile('image')) {
+            $productFile = $request->file('image');
+            $productFileName = $productFile->hashName();
+            $productFile->storeAs('categories', $productFileName, 'public');
+        }
+
+
+        /* Handle gallery images upload
+    if ($request->hasFile('gallery')) {
+        $galleryFiles = $request->file('gallery');
+        foreach ($galleryFiles as $galleryFile) {
+            $galleryFileName = $galleryFile->hashName();
+            $galleryFile->storeAs('categories', $galleryFileName, 'public');
+            // Associate gallery file names with category or store in database as needed
+        }
+    }*/
+
         $category->update([
             'name' => request('name'),
             'description' => request('description'),
-            'image' => request('image'),
+            'image' => $productFileName,
         ]);
 
         return redirect(route('categories.index'));
@@ -96,13 +123,13 @@ class CategoryController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
     {
         $category->delete();
-        return back();
+
+        //Eliminar imagen relacionada
+
+        return Redirect::back();
     }
 }
