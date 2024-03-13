@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -15,6 +17,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('role_id')->default(1);
             $table->string('name');
             $table->string('secondName');
             $table->string('website');
@@ -25,6 +28,16 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        User::create([
+            'role_id' => 1, // El ID del rol de administrador
+            'name' => 'Admin',
+            'secondName' => 'Admin', // Segundo nombre del administrador
+            'website' => 'example.com', // El sitio web del administrador
+            'phone' => 123456789, // Número de teléfono del administrador
+            'email' => 'admin@example.org', // Correo electrónico del administrador
+            'password' => Hash::make('admin'), // La contraseña del administrador (se encripta automáticamente)
+        ]);
     }
 
     /**
