@@ -1,8 +1,11 @@
 import Toggle from "@/Components/Toggle";
 import PageLayout from "@/Layouts/PageLayout";
-import {Link} from "@inertiajs/react";
+import {Link, useForm} from "@inertiajs/react";
 
 export default function Product({auth, products}) {
+
+    const { delete: handleDelete } = useForm();
+
     if (!products || products.length === 0) {
         return (
             <PageLayout user={auth.user} className="bg-slate-100">
@@ -47,8 +50,8 @@ export default function Product({auth, products}) {
                                 <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}>
                                     <td className="px-4 py-2 border border-gray-300">{product.id}</td>
                                     <td className="px-4 py-2 border border-gray-300" style={{width: "auto"}}>
-                                        <img src={'public/products/'+product.image} alt="" className="rounded-t-md max-w-xs"
-                                             style={{maxHeight: "200px"}}/>
+                                        <img src={`/storage/products/${product.image}`} alt=""
+                                             className="rounded-t-md max-w-xs" style={{maxHeight: "200px"}}/>
                                     </td>
                                     <td className="px-4 py-2 border border-gray-300">{product.name}</td>
                                     <td className="px-4 py-2 border border-gray-300">{product.price}</td>
@@ -67,15 +70,15 @@ export default function Product({auth, products}) {
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                         >
                                             <Link href={route("product.edit", {id: product.id})}>Edit</Link>
-                                            {/*<Link href={route("product.edit", { id: product.id })}>Edit</Link>*/}
                                         </button>
                                     </td>
                                     <td className="px-4 py-2 border border-gray-300">
                                         <button
                                             type="button"
                                             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                            onClick={() => handleDelete(route('product.destroy',product))}
                                         >
-                                            <Link href={route("product.destroy")}>Delete</Link>
+                                            Delete
                                         </button>
                                     </td>
                                 </tr>

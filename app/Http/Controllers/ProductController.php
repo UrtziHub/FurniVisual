@@ -136,6 +136,8 @@ class ProductController extends Controller
     {
         $product->delete();
 
+        //Eliminar imagen relacionada
+
         return Redirect::back();
     }
 }
