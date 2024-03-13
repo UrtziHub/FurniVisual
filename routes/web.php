@@ -60,5 +60,8 @@ Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name
 // Category page
 Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+Route::get('/category/index/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
 require __DIR__.'/auth.php';
