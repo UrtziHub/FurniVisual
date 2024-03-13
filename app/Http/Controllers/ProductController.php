@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Inertia\Response;
+
 
 class ProductController extends Controller
 {
@@ -16,7 +20,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
         $products = Product::all();
 
@@ -29,13 +33,12 @@ class ProductController extends Controller
     public function create()
     {
         return Inertia::render('Product/ProductCreate');
-
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
             'name' => 'required',
@@ -44,7 +47,7 @@ class ProductController extends Controller
             'image' => 'required',
         ]);
 
-        Product::create([
+        $product = Product::create([
             'name' => request('name'),
             'price' => request('price'),
             'shortDescription' => request('shortDescription'),
@@ -53,7 +56,9 @@ class ProductController extends Controller
             'gallery' => request('gallery'),
         ]);
 
-        return redirect(route('products.index'));
+        var_dump($product);
+
+        return Redirect::route('product.index');
     }
 
     /**

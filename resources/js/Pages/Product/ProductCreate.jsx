@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 import PageLayout from "@/Layouts/PageLayout";
+import {Link} from "@inertiajs/react";
 
-export default function ProductCreate({ auth }) {
-    const [formData, setFormData] = useState({
+export default function ProductCreate({auth}) {
+    const [formData, setFormData, post] = useState({
         name: '',
         price: '',
         shortDescription: '',
@@ -13,7 +14,7 @@ export default function ProductCreate({ auth }) {
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -39,6 +40,8 @@ export default function ProductCreate({ auth }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        post(route('product.store'));
+
         // Aquí puedes realizar alguna acción con los datos del formulario, como enviarlos a un servidor.
         console.log('Form data submitted:', formData);
 
@@ -56,7 +59,8 @@ export default function ProductCreate({ auth }) {
     return (
         <PageLayout user={auth.user} className="bg-slate-100">
             <div className="mx-4 xl:mx-64 py-4">
-                <form onSubmit={handleSubmit} className="bg-white rounded-md px-6 py-4 shadow-xl">
+                <form onSubmit={handleSubmit} action={route('product.store')} method="post"
+                      className="bg-white rounded-md px-6 py-4 shadow-xl">
                     <h1 className="font-bold text-xl mb-2">Add New Product</h1>
                     <div className="mb-4">
                         <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
@@ -141,11 +145,13 @@ export default function ProductCreate({ auth }) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    >
-                        Add Product
+                    <button type="button"
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        <Link href={route('product.store')}>
+                            <a className="flex flex-col h-full">
+                                Add Product
+                            </a>
+                        </Link>
                     </button>
                 </form>
             </div>
