@@ -53,9 +53,7 @@ Route::get('/category-product/{category}', [CategoryProductController::class, 'i
 // Product page
 Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-Route::post('/product/index', [ProductController::class, 'store'])->name('product.store');
-Route::get('/product/index/{product}', [ProductController::class, 'edit'])->name('product.edit');
-Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
 // Category page
 Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
