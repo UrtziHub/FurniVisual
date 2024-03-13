@@ -41,13 +41,14 @@ const Header = ({ user }) => {
             <header className="bg-white w-full fixed top-0 z-50">
                 <div className="flex justify-between items-center border-b border-gray-200 py-2 px-8 md:px-16 xl:px-32 2xl:px-64">
                     <div className="md:flex-1">
-                        <div className="w-64">
+                        <Link className="w-64" href={route('home')} >
                             <img
                                 src="/images/logo.png"
                                 alt="logo"
-                                className=""
+                                width={256}
+                                height={75}
                             />
-                        </div>
+                        </Link>
                     </div>
                     <div className="md:flex flex-1 justify-center hidden">
                         <ul className="flex gap-6">
