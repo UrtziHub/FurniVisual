@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CatalogueController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -48,12 +50,12 @@ Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue
 // Category product page
 Route::get('/category-product/{category}', [CategoryProductController::class, 'index'])->name('categoryProduct');
 
-Route::get('/a', function () {
-    return \App\Models\Product::with('orders')->get();
-})->name('a');
-
 // Product page
-Route::get('/product/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
-Route::get('/product/create', [\App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
+Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
+Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+
+// Category page
+Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
 
 require __DIR__.'/auth.php';
