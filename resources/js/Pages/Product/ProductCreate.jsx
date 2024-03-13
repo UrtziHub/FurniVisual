@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-
 import PageLayout from "@/Layouts/PageLayout";
+import {useForm} from "@inertiajs/react";
 
 export default function ProductCreate({ auth }) {
-    const [formData, setFormData] = useState({
+    const {data, setData, post} = useForm({
         name: '',
         price: '',
         shortDescription: '',
@@ -14,7 +13,7 @@ export default function ProductCreate({ auth }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prevData) => ({
+        setData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
@@ -22,7 +21,7 @@ export default function ProductCreate({ auth }) {
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
-        setFormData((prevData) => ({
+        setData((prevData) => ({
             ...prevData,
             image: file,
         }));
@@ -31,7 +30,7 @@ export default function ProductCreate({ auth }) {
     const handleGalleryChange = (e) => {
         const files = e.target.files;
         const galleryArray = Array.from(files);
-        setFormData((prevData) => ({
+        setData((prevData) => ({
             ...prevData,
             gallery: galleryArray,
         }));
@@ -39,11 +38,13 @@ export default function ProductCreate({ auth }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log('Form data submitted:', data);
+        post(route("product.store"))
         // Aquí puedes realizar alguna acción con los datos del formulario, como enviarlos a un servidor.
-        console.log('Form data submitted:', formData);
+
 
         // También puedes reiniciar el estado del formulario después de enviar los datos.
-        setFormData({
+        setData({
             name: '',
             price: '',
             shortDescription: '',
@@ -66,7 +67,7 @@ export default function ProductCreate({ auth }) {
                             type="text"
                             id="name"
                             name="name"
-                            value={formData.name}
+                            value={data.name}
                             onChange={handleChange}
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
@@ -80,7 +81,7 @@ export default function ProductCreate({ auth }) {
                             type="number"
                             id="price"
                             name="price"
-                            value={formData.price}
+                            value={data.price}
                             onChange={handleChange}
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
@@ -93,7 +94,7 @@ export default function ProductCreate({ auth }) {
                         <textarea
                             id="shortDescription"
                             name="shortDescription"
-                            value={formData.shortDescription}
+                            value={data.shortDescription}
                             onChange={handleChange}
                             rows="4"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -107,7 +108,7 @@ export default function ProductCreate({ auth }) {
                         <textarea
                             id="fullDescription"
                             name="fullDescription"
-                            value={formData.fullDescription}
+                            value={data.fullDescription}
                             onChange={handleChange}
                             rows="6"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

@@ -47,16 +47,24 @@ class ProductController extends Controller
             'image' => 'required',
         ]);
 
+        $productFileName = ''; // Initialize productFileName variable
+
+        if ($request->hasFile('image')) {
+            $productFile = $request->file('image');
+            $productFileName = $productFile->hashName();
+            $productFile->storeAs('products', $productFileName, 'public');
+        }
+
         $product = Product::create([
             'name' => request('name'),
             'price' => request('price'),
             'shortDescription' => request('shortDescription'),
             'fullDescription' => request('fullDescription'),
-            'image' => request('image'),
+            'image' => $productFileName,
             'gallery' => request('gallery'),
         ]);
 
-        var_dump($product);
+        $product->save();
 
         return Redirect::route('product.index');
     }
@@ -74,7 +82,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return Inertia::render('Product/ProductEdit', compact('product'));
     }
 
     /**
@@ -89,12 +97,32 @@ class ProductController extends Controller
             'image' => 'required',
         ]);
 
+
+        $productFileName = ''; // Initialize productFileName variable
+
+        if ($request->hasFile('image')) {
+            $productFile = $request->file('image');
+            $productFileName = $productFile->hashName();
+            $productFile->storeAs('products', $productFileName, 'public');
+        }
+
+
+        /* Handle gallery images upload
+    if ($request->hasFile('gallery')) {
+        $galleryFiles = $request->file('gallery');
+        foreach ($galleryFiles as $galleryFile) {
+            $galleryFileName = $galleryFile->hashName();
+            $galleryFile->storeAs('products', $galleryFileName, 'public');
+            // Associate gallery file names with product or store in database as needed
+        }
+    }*/
+
         $product->update([
             'name' => request('name'),
             'price' => request('price'),
             'shortDescription' => request('shortDescription'),
             'fullDescription' => request('fullDescription'),
-            'image' => request('image'),
+            'image' => $productFileName,
             'gallery' => request('gallery'),
         ]);
 
@@ -108,6 +136,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return back();
+        return Redirect::back();
     }
 }
