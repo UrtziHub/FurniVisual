@@ -1,9 +1,8 @@
-import Toggle from "@/Components/Toggle";
 import PageLayout from "@/Layouts/PageLayout";
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 
-export default function Product({ auth, categories }) {
-    console.log(categories);
+export default function Category({ auth, categories }) {
+    const { delete: handleDelete } = useForm();
     return (
         <PageLayout user={auth.user} className="bg-slate-100">
             <div className="mx-4 xl:mx-64 py-4">

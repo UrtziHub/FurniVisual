@@ -1,4 +1,3 @@
-import Toggle from "@/Components/Toggle";
 import PageLayout from "@/Layouts/PageLayout";
 import { Link, useForm } from "@inertiajs/react";
 
