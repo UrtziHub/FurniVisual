@@ -54,6 +54,8 @@ Route::get('/category-product/{category}', [CategoryProductController::class, 'i
 Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
 Route::post('/product/index', [ProductController::class, 'store'])->name('product.store');
+Route::get('/product/index/{product}', [ProductController::class, 'edit'])->name('product.edit');
+Route::delete('/product/index', [ProductController::class, 'destroy'])->name('product.destroy');
 
 // Category page
 Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
