@@ -1,32 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import PageLayout from "@/Layouts/PageLayout";
+import {useForm} from "@inertiajs/react";
 
-export default function ProductEdit({ auth, selectedProduct }) {
-    const [formData, setFormData] = useState({
-        name: '',
-        price: '',
-        shortDescription: '',
-        fullDescription: '',
-        image: null,
-        gallery: [],
+export default function ProductEdit({auth, product}) {
+    const {data, setData, put} = useForm({
+        name: product.name,
+        price: product.price,
+        shortDescription: product.shortDescription,
+        fullDescription: product.fullDescription,
+        image: product.image,
+        gallery: []
     });
 
-    useEffect(() => {
-        if (selectedProduct) {
-            setFormData({
-                name: selectedProduct.name,
-                price: selectedProduct.price,
-                shortDescription: selectedProduct.shortDescription,
-                fullDescription: selectedProduct.fullDescription,
-                image: selectedProduct.image,
-                gallery: [],
-            });
-        }
-    }, [selectedProduct]);
-
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
+        const {name, value} = e.target;
+        setData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
@@ -34,7 +22,7 @@ export default function ProductEdit({ auth, selectedProduct }) {
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
-        setFormData((prevData) => ({
+        setData((prevData) => ({
             ...prevData,
             image: file,
         }));
@@ -43,7 +31,7 @@ export default function ProductEdit({ auth, selectedProduct }) {
     const handleGalleryChange = (e) => {
         const files = e.target.files;
         const galleryArray = Array.from(files);
-        setFormData((prevData) => ({
+        setData((prevData) => ({
             ...prevData,
             gallery: galleryArray,
         }));
@@ -52,17 +40,9 @@ export default function ProductEdit({ auth, selectedProduct }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Aquí puedes realizar alguna acción con los datos del formulario, como enviarlos a un servidor.
-        console.log('Form data submitted:', formData);
+        console.log('Form data submitted:', data);
 
-        // También puedes reiniciar el estado del formulario después de enviar los datos.
-        setFormData({
-            name: '',
-            price: '',
-            shortDescription: '',
-            fullDescription: '',
-            image: null,
-            gallery: [],
-        });
+        put(route("product.update", product))
     };
 
     return (
@@ -78,7 +58,7 @@ export default function ProductEdit({ auth, selectedProduct }) {
                             type="text"
                             id="name"
                             name="name"
-                            value={formData.name}
+                            value={data.name}
                             onChange={handleChange}
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
@@ -92,7 +72,7 @@ export default function ProductEdit({ auth, selectedProduct }) {
                             type="number"
                             id="price"
                             name="price"
-                            value={formData.price}
+                            value={data.price}
                             onChange={handleChange}
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
@@ -105,7 +85,7 @@ export default function ProductEdit({ auth, selectedProduct }) {
                         <textarea
                             id="shortDescription"
                             name="shortDescription"
-                            value={formData.shortDescription}
+                            value={data.shortDescription}
                             onChange={handleChange}
                             rows="4"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -119,7 +99,7 @@ export default function ProductEdit({ auth, selectedProduct }) {
                         <textarea
                             id="fullDescription"
                             name="fullDescription"
-                            value={formData.fullDescription}
+                            value={data.fullDescription}
                             onChange={handleChange}
                             rows="6"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -136,7 +116,6 @@ export default function ProductEdit({ auth, selectedProduct }) {
                             onChange={handleImageChange}
                             accept="image/*"
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            required
                         />
                     </div>
                     <div className="mb-4">

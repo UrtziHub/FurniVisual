@@ -50,10 +50,24 @@ Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue
 // Category product page
 Route::get('/category-product/{category}', [CategoryProductController::class, 'index'])->name('categoryProduct');
 
-// Product page
-Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
+/*Route::middleware('auth')->group(function () {
+    // Product page
+    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+    Route::post('/product', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+});*/
+
+Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+Route::post('/product', [ProductController::class, 'store'])->name('product.store');
+Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
+Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');
+Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
 
 // Category page
 Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
@@ -62,4 +76,4 @@ Route::post('/category/store', [CategoryController::class, 'store'])->name('cate
 Route::get('/category/index/{category}', [CategoryController::class, 'edit'])->name('category.edit');
 Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -40,8 +40,6 @@ export default function ProductCreate({ auth }) {
         e.preventDefault();
         console.log('Form data submitted:', data);
         post(route("product.store"))
-        // Aquí puedes realizar alguna acción con los datos del formulario, como enviarlos a un servidor.
-
 
         // También puedes reiniciar el estado del formulario después de enviar los datos.
         setData({

@@ -4,7 +4,7 @@ import {Link, useForm} from "@inertiajs/react";
 
 export default function Product({auth, products}) {
 
-    const { delete: handleDelete } = useForm();
+    const {delete: handleDelete} = useForm();
 
     if (!products || products.length === 0) {
         return (
@@ -59,9 +59,9 @@ export default function Product({auth, products}) {
                                     <td className="px-4 py-2 border border-gray-300">{product.fullDescription}</td>
                                     <td className="px-4 py-2 border border-gray-300">
 
-                                        {product.gallery?.map((image, idx) => (
-                                            <img key={idx} src={image} alt="" className="max-w-xs h-auto mb-2 mr-2"
-                                                 style={{maxHeight: "100px"}}/>
+                                        {product.gallery && Array.isArray(product.gallery) && product.gallery.map((image, idx) => (
+                                            <img key={idx} src={`/storage/products/${image}`} alt=""
+                                                 className="max-w-xs h-auto mb-2 mr-2" style={{maxHeight: "100px"}}/>
                                         ))}
                                     </td>
                                     <td className="px-4 py-2 border border-gray-300">
@@ -69,14 +69,14 @@ export default function Product({auth, products}) {
                                             type="button"
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                         >
-                                            <Link href={route("product.edit", {id: product.id})}>Edit</Link>
+                                            <Link href={route("product.edit", product)}>Edit</Link>
                                         </button>
                                     </td>
                                     <td className="px-4 py-2 border border-gray-300">
                                         <button
                                             type="button"
                                             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                            onClick={() => handleDelete(route('product.destroy',product))}
+                                            onClick={() => handleDelete(route('product.destroy', product))}
                                         >
                                             Delete
                                         </button>

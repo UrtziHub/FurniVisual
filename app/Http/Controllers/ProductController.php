@@ -41,10 +41,10 @@ class ProductController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
-            'name' => 'required',
-            'price' => 'required',
-            'shortDescription' => 'required',
-            'image' => 'required',
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'shortDescription' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $productFileName = ''; // Initialize productFileName variable
@@ -55,13 +55,24 @@ class ProductController extends Controller
             $productFile->storeAs('products', $productFileName, 'public');
         }
 
+        $galleryFileNames = []; // Initialize an array to store gallery file names
+
+        if ($request->hasFile('gallery')) {
+            $galleryFiles = $request->file('gallery');
+            foreach ($galleryFiles as $galleryFile) {
+                $galleryFileName = $galleryFile->hashName();
+                $galleryFile->storeAs('products', $galleryFileName, 'public');
+                $galleryFileNames[] = $galleryFileName; // Add each file name to the array
+            }
+        }
+
         $product = Product::create([
             'name' => request('name'),
             'price' => request('price'),
             'shortDescription' => request('shortDescription'),
             'fullDescription' => request('fullDescription'),
             'image' => $productFileName,
-            'gallery' => request('gallery'),
+            'gallery' => $galleryFileNames, // Assign the array of file names to 'gallery'
         ]);
 
         $product->save();
@@ -91,12 +102,10 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'price' => 'required',
-            'shortDescription' => 'required',
-            'image' => 'required',
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'shortDescription' => 'required|string|max:255',
         ]);
-
 
         $productFileName = ''; // Initialize productFileName variable
 
@@ -106,27 +115,28 @@ class ProductController extends Controller
             $productFile->storeAs('products', $productFileName, 'public');
         }
 
+        $galleryFileNames = []; // Initialize an array to store gallery file names
 
-        /* Handle gallery images upload
-    if ($request->hasFile('gallery')) {
-        $galleryFiles = $request->file('gallery');
-        foreach ($galleryFiles as $galleryFile) {
-            $galleryFileName = $galleryFile->hashName();
-            $galleryFile->storeAs('products', $galleryFileName, 'public');
-            // Associate gallery file names with product or store in database as needed
+        if ($request->hasFile('gallery')) {
+            $galleryFiles = $request->file('gallery');
+            foreach ($galleryFiles as $galleryFile) {
+                $galleryFileName = $galleryFile->hashName();
+                $galleryFile->storeAs('products', $galleryFileName, 'public');
+                $galleryFileNames[] = $galleryFileName; // Add each file name to the array
+            }
         }
-    }*/
 
+        // Update product attributes
         $product->update([
-            'name' => request('name'),
-            'price' => request('price'),
-            'shortDescription' => request('shortDescription'),
-            'fullDescription' => request('fullDescription'),
+            'name' => $request->input('name'),
+            'price' => $request->input('price'),
+            'shortDescription' => $request->input('shortDescription'),
+            'fullDescription' => $request->input('fullDescription'),
             'image' => $productFileName,
-            'gallery' => request('gallery'),
+            'gallery' => $galleryFileNames, // Assign the array of file names to 'gallery'
         ]);
 
-        return redirect(route('products.index'));
+        return Redirect::route('product.index');
     }
 
     /**
