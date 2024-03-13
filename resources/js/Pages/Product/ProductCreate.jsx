@@ -1,8 +1,11 @@
+import InputError from "@/Components/InputError";
+import TextArea from "@/Components/TextArea";
+import TextInput from "@/Components/TextInput";
 import PageLayout from "@/Layouts/PageLayout";
 import {useForm} from "@inertiajs/react";
 
 export default function ProductCreate({ auth }) {
-    const {data, setData, post} = useForm({
+    const {data, setData, post, processing, errors} = useForm({
         name: '',
         price: '',
         shortDescription: '',
@@ -38,18 +41,7 @@ export default function ProductCreate({ auth }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form data submitted:', data);
         post(route("product.store"))
-
-        // También puedes reiniciar el estado del formulario después de enviar los datos.
-        setData({
-            name: '',
-            price: '',
-            shortDescription: '',
-            fullDescription: '',
-            image: null,
-            gallery: [],
-        });
     };
 
     return (
@@ -61,7 +53,7 @@ export default function ProductCreate({ auth }) {
                         <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
                             Name:
                         </label>
-                        <input
+                        <TextInput
                             type="text"
                             id="name"
                             name="name"
@@ -70,12 +62,14 @@ export default function ProductCreate({ auth }) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
+                        <InputError message={errors.name} className="mt-2" />
+
                     </div>
                     <div className="mb-4">
                         <label htmlFor="price" className="block text-gray-700 text-sm font-bold mb-2">
                             Price:
                         </label>
-                        <input
+                        <TextInput
                             type="number"
                             id="price"
                             name="price"
@@ -84,12 +78,13 @@ export default function ProductCreate({ auth }) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
+                        <InputError message={errors.price} className="mt-2" />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="shortDescription" className="block text-gray-700 text-sm font-bold mb-2">
                             Short Description:
                         </label>
-                        <textarea
+                        <TextArea
                             id="shortDescription"
                             name="shortDescription"
                             value={data.shortDescription}
@@ -97,20 +92,22 @@ export default function ProductCreate({ auth }) {
                             rows="4"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
-                        ></textarea>
+                        ></TextArea>
+                        <InputError message={errors.shortDescription} className="mt-2" />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="fullDescription" className="block text-gray-700 text-sm font-bold mb-2">
                             Full Description:
                         </label>
-                        <textarea
+                        <TextArea
                             id="fullDescription"
                             name="fullDescription"
                             value={data.fullDescription}
                             onChange={handleChange}
                             rows="6"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        ></textarea>
+                        ></TextArea>
+                        <InputError message={errors.fullDescription} className="mt-2" />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="image" className="block text-gray-700 text-sm font-bold mb-2">
@@ -125,6 +122,7 @@ export default function ProductCreate({ auth }) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
+                        <InputError message={errors.image} className="mt-2" />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="gallery" className="block text-gray-700 text-sm font-bold mb-2">
@@ -139,10 +137,12 @@ export default function ProductCreate({ auth }) {
                             multiple
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
+                        <InputError message={errors.gallery} className="mt-2" />
                     </div>
                     <button
                         type="submit"
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        disabled={processing}
                     >
                         Add Product
                     </button>

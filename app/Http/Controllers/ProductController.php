@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -44,10 +45,12 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'shortDescription' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gallery' => 'array|max:5',
+            'gallery.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $productFileName = ''; // Initialize productFileName variable
+        $productFileName = '';
 
         if ($request->hasFile('image')) {
             $productFile = $request->file('image');
@@ -55,14 +58,14 @@ class ProductController extends Controller
             $productFile->storeAs('products', $productFileName, 'public');
         }
 
-        $galleryFileNames = []; // Initialize an array to store gallery file names
+        $galleryFileNames = [];
 
         if ($request->hasFile('gallery')) {
             $galleryFiles = $request->file('gallery');
             foreach ($galleryFiles as $galleryFile) {
                 $galleryFileName = $galleryFile->hashName();
                 $galleryFile->storeAs('products', $galleryFileName, 'public');
-                $galleryFileNames[] = $galleryFileName; // Add each file name to the array
+                $galleryFileNames[] = $galleryFileName;
             }
         }
 
@@ -72,7 +75,7 @@ class ProductController extends Controller
             'shortDescription' => request('shortDescription'),
             'fullDescription' => request('fullDescription'),
             'image' => $productFileName,
-            'gallery' => $galleryFileNames, // Assign the array of file names to 'gallery'
+            'gallery' => $galleryFileNames,
         ]);
 
         $product->save();
@@ -100,44 +103,44 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Product $product)
-    {
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'shortDescription' => 'required|string|max:255',
-        ]);
+{
+    $this->validate($request, [
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric|min:0',
+        'shortDescription' => 'required|string|max:255',
+    ]);
 
-        $productFileName = ''; // Initialize productFileName variable
+    $productFileName = $product->image; 
 
-        if ($request->hasFile('image')) {
-            $productFile = $request->file('image');
-            $productFileName = $productFile->hashName();
-            $productFile->storeAs('products', $productFileName, 'public');
-        }
-
-        $galleryFileNames = []; // Initialize an array to store gallery file names
-
-        if ($request->hasFile('gallery')) {
-            $galleryFiles = $request->file('gallery');
-            foreach ($galleryFiles as $galleryFile) {
-                $galleryFileName = $galleryFile->hashName();
-                $galleryFile->storeAs('products', $galleryFileName, 'public');
-                $galleryFileNames[] = $galleryFileName; // Add each file name to the array
-            }
-        }
-
-        // Update product attributes
-        $product->update([
-            'name' => $request->input('name'),
-            'price' => $request->input('price'),
-            'shortDescription' => $request->input('shortDescription'),
-            'fullDescription' => $request->input('fullDescription'),
-            'image' => $productFileName,
-            'gallery' => $galleryFileNames, // Assign the array of file names to 'gallery'
-        ]);
-
-        return Redirect::route('product.index');
+    if ($request->hasFile('image')) {
+        $productFile = $request->file('image');
+        $productFileName = $productFile->hashName();
+        $productFile->storeAs('products', $productFileName, 'public');
     }
+
+    $galleryFileNames = $product->gallery;
+    
+    if ($request->hasFile('gallery')) {
+        foreach ($request->file('gallery') as $galleryFile) {
+            $galleryFileName = $galleryFile->hashName();
+            $galleryFile->storeAs('products', $galleryFileName, 'public');
+            $galleryFileNames[] = $galleryFileName;
+        }
+    }
+
+    // Update product attributes only if there's a change
+    $product->update([
+        'name' => $request->input('name'),
+        'price' => $request->input('price'),
+        'shortDescription' => $request->input('shortDescription'),
+        'fullDescription' => $request->input('fullDescription'),
+        'image' => $productFileName,
+        'gallery' => $galleryFileNames,
+    ]);
+
+    return Redirect::route('product.index');
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -147,7 +150,13 @@ class ProductController extends Controller
         $product->delete();
 
         //Eliminar imagen relacionada
-
+        if ($product->image) {
+            Storage::disk('public')->delete('products/' . $product->image);
+        }
+        // Eliminar imágenes de la galería
+        foreach ($product->gallery as $galleryImage) {
+            Storage::disk('public')->delete('products/' . $galleryImage);
+        }
         return Redirect::back();
     }
 }

@@ -1,19 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import PageLayout from "@/Layouts/PageLayout";
-import {useForm} from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
+import InputError from "@/Components/InputError";
+import TextInput from "@/Components/TextInput";
+import TextArea from "@/Components/TextArea";
 
-export default function ProductEdit({auth, product}) {
-    const {data, setData, put} = useForm({
+export default function ProductEdit({ auth, product }) {
+    const { data, setData, put, processing, errors } = useForm({
         name: product.name,
         price: product.price,
         shortDescription: product.shortDescription,
         fullDescription: product.fullDescription,
         image: product.image,
-        gallery: []
+        gallery: [],
     });
 
     const handleChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -39,22 +42,25 @@ export default function ProductEdit({auth, product}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí puedes realizar alguna acción con los datos del formulario, como enviarlos a un servidor.
-        console.log('Form data submitted:', data);
-
-        put(route("product.update", product))
+        put(route("product.update", product));
     };
 
     return (
         <PageLayout user={auth.user} className="bg-slate-100">
             <div className="mx-4 xl:mx-64 py-4">
-                <form onSubmit={handleSubmit} className="bg-white rounded-md px-6 py-4 shadow-xl">
+                <form
+                    onSubmit={handleSubmit}
+                    className="bg-white rounded-md px-6 py-4 shadow-xl"
+                >
                     <h1 className="font-bold text-xl mb-2">Edit Product</h1>
                     <div className="mb-4">
-                        <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
+                        <label
+                            htmlFor="name"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
                             Name:
                         </label>
-                        <input
+                        <TextInput
                             type="text"
                             id="name"
                             name="name"
@@ -63,12 +69,16 @@ export default function ProductEdit({auth, product}) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
+                        <InputError message={errors.name} className="mt-2" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="price" className="block text-gray-700 text-sm font-bold mb-2">
+                        <label
+                            htmlFor="price"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
                             Price:
                         </label>
-                        <input
+                        <TextInput
                             type="number"
                             id="price"
                             name="price"
@@ -77,12 +87,16 @@ export default function ProductEdit({auth, product}) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
+                        <InputError message={errors.price} className="mt-2" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="shortDescription" className="block text-gray-700 text-sm font-bold mb-2">
+                        <label
+                            htmlFor="shortDescription"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
                             Short Description:
                         </label>
-                        <textarea
+                        <TextArea
                             id="shortDescription"
                             name="shortDescription"
                             value={data.shortDescription}
@@ -90,26 +104,48 @@ export default function ProductEdit({auth, product}) {
                             rows="4"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
-                        ></textarea>
+                        ></TextArea>
+                        <InputError
+                            message={errors.shortDescription}
+                            className="mt-2"
+                        />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="fullDescription" className="block text-gray-700 text-sm font-bold mb-2">
+                        <label
+                            htmlFor="fullDescription"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
                             Full Description:
                         </label>
-                        <textarea
+                        <TextArea
                             id="fullDescription"
                             name="fullDescription"
                             value={data.fullDescription}
                             onChange={handleChange}
                             rows="6"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        ></textarea>
+                        ></TextArea>
+                        <InputError
+                            message={errors.fullDescription}
+                            className="mt-2"
+                        />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="image" className="block text-gray-700 text-sm font-bold mb-2">
-                            Image:
-                        </label>
-                        <input
+                        <div>
+                            <label
+                                htmlFor="image"
+                                className="block text-gray-700 text-sm font-bold"
+                            >
+                                Image:
+                            </label>
+                            <img
+                                src={`/storage/products/${product.image}`}
+                                alt={'product-'+product.id}
+                                width={200}
+                                height={100}
+                            />
+                        </div>
+                        <TextInput
                             type="file"
                             id="image"
                             name="image"
@@ -117,12 +153,31 @@ export default function ProductEdit({auth, product}) {
                             accept="image/*"
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
+                        <InputError message={errors.image} className="mt-2" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="gallery" className="block text-gray-700 text-sm font-bold mb-2">
-                            Gallery (multiple files):
-                        </label>
-                        <input
+                        <div>
+                            <label
+                                htmlFor="gallery"
+                                className="block text-gray-700 text-sm font-bold"
+                            >
+                                Gallery (multiple files):
+                            </label>
+                            <div className="flex gap-2 py-2">
+                                {product.gallery &&
+                                    Array.isArray(product.gallery) &&
+                                    product.gallery.map((image, index) => (
+                                        <img
+                                            key={index}
+                                            src={`/storage/products/${image}`}
+                                            alt={"gallery-" + index}
+                                            width={200}
+                                            height={100}
+                                        />
+                                    ))}
+                            </div>
+                        </div>
+                        <TextInput
                             type="file"
                             id="gallery"
                             name="gallery"
@@ -131,10 +186,12 @@ export default function ProductEdit({auth, product}) {
                             multiple
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
+                        <InputError message={errors.gallery} className="mt-2" />
                     </div>
                     <button
                         type="submit"
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        disabled={processing}
                     >
                         Update Product
                     </button>
