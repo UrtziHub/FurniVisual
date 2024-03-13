@@ -36,8 +36,7 @@ export default function Dashboard(props) {
                     </div>
                 </Link>
                 <Link
-                    href={route("logout")}
-                    method="post"
+                    href={route("category.index")}
                     as="button"
                     className="text-center p-4 transform transition duration-500 hover:scale-110"
                 >
@@ -45,7 +44,7 @@ export default function Dashboard(props) {
                         <h2 className="text-2xl font-bold mb-2">
                             <IoMail className="inline-block text-3xl mb-4 scale-150" />
                         </h2>
-                        Orders
+                        Orders(Categories)
                     </div>
                 </Link>
                 <Link
@@ -78,7 +77,7 @@ export default function Dashboard(props) {
                     </div>
                 </Link>
                 <Link
-                    href={route("logout")}
+                    href={route("product.index")}
                     as="button"
                     className="text-center p-4 transform transition duration-500 hover:scale-110"
                 >
@@ -86,7 +85,7 @@ export default function Dashboard(props) {
                         <h2 className="text-2xl font-bold mb-2">
                             <FaCreditCard className="inline-block text-3xl mb-4 scale-150" />
                         </h2>
-                        Pays
+                        Pays(Products)
                     </div>
                 </Link>
                 <Link
