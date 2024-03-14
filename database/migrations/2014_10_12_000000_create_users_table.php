@@ -38,6 +38,15 @@ return new class extends Migration
             'email' => 'admin@example.org',
             'password' => Hash::make('admin'),
         ]);
+
+        User::create([
+            'name' => 'User',
+            'secondName' => 'User',
+            'website' => 'example.com',
+            'phone' => 123456788,
+            'email' => 'user@example.org',
+            'password' => Hash::make('user'),
+        ]);
     }
 
     /**
