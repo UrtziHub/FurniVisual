@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\Rol;
@@ -18,19 +19,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            CategorySeeder::class,
             OrderSeeder::class,
             CartSeeder::class,
         ]);
 
-        for ($i = 0; $i < 10; $i++) {
-            $product = Product::factory()->create();
+        for ($j = 0; $j < 10; $j++) {
+            $category = Category::factory()->create();
+            $product = Product::factory()->create([
+                'category_id' => $category->id,
+            ]);
             Review::factory()->create([
                 'product_id' => $product->id,
             ]);
         }
-
-
 
         /* for ($i = 0; $i < 10; $i++) {
              $user = User::factory()->create();
