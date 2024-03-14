@@ -38,7 +38,7 @@ export default function Footer() {
                         <Link href="/">Shop</Link>
                     </li>
                     <li>
-                        <Link href="/howOrder">How to order</Link>
+                        <Link href="/how-order">How to order</Link>
                     </li>
                 </ul>
                 <ul className="space-y-2">

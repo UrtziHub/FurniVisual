@@ -71,8 +71,12 @@ Route::post('/category/store', [CategoryController::class, 'store'])->name('cate
 Route::get('/category/index/{category}', [CategoryController::class, 'edit'])->name('category.edit');
 Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
-Route::get('/howOrder', function () {
+Route::get('/how-order', function () {
     return Inertia::render('HowOrder');
-})->middleware(['auth', 'verified'])->name('howOrder');
+})->name('how-order');
+
+Route::get('/privacy', function () {
+    return Inertia::render('Privacy');
+})->name('privacy');
 
 require __DIR__ . '/auth.php';

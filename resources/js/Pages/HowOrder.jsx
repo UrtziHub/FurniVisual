@@ -11,7 +11,10 @@ import { IoCart, IoExit, IoMail } from "react-icons/io5";
 
 export default function Dashboard(props) {
     return (
-        <PageLayout>
+        <PageLayout
+            user={props.auth.user}
+            errors={props.errors}
+        >
             <section className=" mx-8 md:mx-32 lg:mx-52 xl:mx-80">
                 <h1 className="text-4xl md:text-5xl font-bold text-center py-4">
                     How To Order?
