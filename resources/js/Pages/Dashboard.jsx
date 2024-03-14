@@ -17,7 +17,7 @@ export default function Dashboard(props) {
             user={props.auth.user}
             errors={props.errors}
             header={
-                <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                <h2 className="font-semibold text-xl text-gray-800 ">
                     Dashboard
                 </h2>
             }
