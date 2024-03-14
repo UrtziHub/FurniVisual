@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\Rol;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +18,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            RolSeeder::class,
             CategorySeeder::class,
             OrderSeeder::class,
             CartSeeder::class,
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        
+
 
         /* for ($i = 0; $i < 10; $i++) {
              $user = User::factory()->create();
