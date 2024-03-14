@@ -30,7 +30,7 @@ return new class extends Migration
         });
 
         User::create([
-            'role_id' => 1, // El ID del rol de administrador
+            'role_id' => 2, // El ID del rol de administrador
             'name' => 'Admin',
             'secondName' => 'Admin', // Segundo nombre del administrador
             'website' => 'example.com', // El sitio web del administrador
