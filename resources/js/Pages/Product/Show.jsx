@@ -20,7 +20,7 @@ export default function Show({ auth, product }) {
                         {product.gallery.map((image, index) => (
                             <div key={index}>
                                 <img
-                                    src={image}
+                                    src={`/storage/products/${image}`}
                                     alt={`product-${index}`}
                                     className="rounded-md"
                                 />
