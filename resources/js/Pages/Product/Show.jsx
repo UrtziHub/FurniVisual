@@ -1,10 +1,11 @@
 import PageLayout from "@/Layouts/PageLayout";
-import { useState } from "react";
-import { IoCalendarOutline } from "react-icons/io5";
-import { Carousel } from "react-responsive-carousel";
+import {useState} from "react";
+import {IoCalendarOutline} from "react-icons/io5";
+import {Carousel} from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 const tabs = ["Tab 1", "Tab 2", "Tab 3"];
-export default function Show({ auth, product }) {
+export default function Show({auth, product}) {
     const [activeTab, setActiveTab] = useState(0);
     return (
         <PageLayout user={auth.user}>
@@ -106,7 +107,7 @@ export default function Show({ auth, product }) {
                                     htmlFor="dedline"
                                     className="text-gray-600"
                                 >
-                                    <IoCalendarOutline className="text-xl" />
+                                    <IoCalendarOutline className="text-xl"/>
                                 </label>
                                 <input
                                     type="date"
