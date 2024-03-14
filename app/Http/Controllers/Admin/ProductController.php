@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -25,7 +26,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Product/ProductCreate');
+        $categories = Category::all();
+        return Inertia::render('Product/ProductCreate', compact('categories'));
     }
 
     /**
@@ -39,10 +41,12 @@ class ProductController extends Controller
             'shortDescription' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'gallery' => 'array|max:5',
-            'gallery.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+            'gallery.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category' => 'required',
         ]);
 
         $productFileName = '';
+        $galleryFileNames = [];
 
         if ($request->hasFile('image')) {
             $productFile = $request->file('image');
@@ -50,7 +54,6 @@ class ProductController extends Controller
             $productFile->storeAs('products', $productFileName, 'public');
         }
 
-        $galleryFileNames = [];
 
         if ($request->hasFile('gallery')) {
             $galleryFiles = $request->file('gallery');
@@ -70,6 +73,9 @@ class ProductController extends Controller
             'gallery' => $galleryFileNames,
         ]);
 
+        //Relate the catgory to the product
+        $product->category()->associate(request('category'));
+        //Save the data
         $product->save();
 
         return Redirect::route('product.index');
