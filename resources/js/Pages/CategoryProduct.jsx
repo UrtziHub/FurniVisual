@@ -13,13 +13,15 @@ export default function Catalogue({ auth, products }) {
                     >
                         <div className="relative">
                             <IoHeartOutline className="absolute text-white text-xl top-2 left-2" />
-                            <img
-                                src={"/images/catalogue.webp"}
-                                alt={product.name}
-                                className="w-full h-auto rounded-lg"
-                                width={1920}
-                                height={1080}
-                            />
+                            <Link href={route('product.show',product)} className="w-full h-auto rounded-lg">
+                                <img
+                                    src={"/images/catalogue.webp"}
+                                    alt={product.name}
+                                    
+                                    width={1920}
+                                    height={1080}
+                                />
+                            </Link>
                         </div>
                         <div className="py-4 px-2 flex flex-col gap-3">
                             <h1 className="text-xl font-bold">
@@ -27,24 +29,24 @@ export default function Catalogue({ auth, products }) {
                             </h1>
                             <p>{product.shortDescription}</p>
                             <div className="flex justify-between">
-                            <div className="flex gap-1 items-center">
+                                <div className="flex gap-1 items-center">
                                     <p className="bg-yellow-300 font-bold p-1 rounded-lg">
                                         {product.averageRate}
                                     </p>
                                     <IoStar className="text-yellow-300 text-2xl" />
-                                    <IoStar className="text-yellow-300 text-2xl"/>
-                                    <IoStar className="text-yellow-300 text-2xl"/>
-                                    <IoStar className="text-yellow-300 text-2xl"/>
-                                    <IoStar className="text-yellow-300 text-2xl"/>
+                                    <IoStar className="text-yellow-300 text-2xl" />
+                                    <IoStar className="text-yellow-300 text-2xl" />
+                                    <IoStar className="text-yellow-300 text-2xl" />
+                                    <IoStar className="text-yellow-300 text-2xl" />
                                 </div>
-                                
                             </div>
                             <div className="flex items-center justify-between">
-                            <p className="text-2xl font-bold">
+                                <p className="text-2xl font-bold">
                                     {product.price} $
                                 </p>
                                 <button className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl">
-                                <IoCartOutline className="text-2xl "/>Add to card
+                                    <IoCartOutline className="text-2xl " />
+                                    Add to card
                                 </button>
                             </div>{" "}
                         </div>
