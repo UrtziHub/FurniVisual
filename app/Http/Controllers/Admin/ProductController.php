@@ -78,15 +78,7 @@ class ProductController extends Controller
         //Save the data
         $product->save();
 
-        return Redirect::route('product.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        return Inertia::render('Product/Show', compact('product'));
+        return Redirect::route('admin.product.index');
     }
 
     /**
@@ -94,7 +86,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $this->authorize('view', $product);
         return Inertia::render('Product/ProductEdit', compact('product'));
     }
 
@@ -137,7 +128,7 @@ class ProductController extends Controller
             'gallery' => $galleryFileNames,
         ]);
 
-        return Redirect::route('product.index');
+        return Redirect::route('admin.product.index');
     }
 
 
