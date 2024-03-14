@@ -29,7 +29,7 @@ class User extends Authenticatable
         'phone',
         'email',
         'password',
-        'rol_id',
+        'role_id',
     ];
 
     /**
@@ -53,12 +53,12 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->rol_id === 2;
+        return $this->role_id === 2;
     }
 
     public function isUser(): bool
     {
-        return $this->rol_id === 1;
+        return $this->role_id === 1;
     }
 
     public function cart(): HasOne

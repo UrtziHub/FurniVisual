@@ -78,7 +78,7 @@ const ProductTable = ({ data, thead }) => {
                                     <div className="flex gap-4 font-bold">
                                         <Link
                                             href={route(
-                                                "product.edit",
+                                                "admin.product.edit",
                                                 item
                                             )}
                                             className="text-blue-500 hover:underline"
@@ -89,7 +89,7 @@ const ProductTable = ({ data, thead }) => {
                                             onClick={() =>
                                                 handleDelete(
                                                     route(
-                                                        "product.destroy",
+                                                        "admin.product.destroy",
                                                         item
                                                     )
                                                 )
