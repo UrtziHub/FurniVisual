@@ -51,20 +51,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected function isAdmin(): Attribute
+    public function isAdmin(): bool
     {
-        return new Attribute(
-            get: fn() => $this->rol_id == 2,
-        );
+        return $this->rol_id === 2;
     }
 
-    protected function isUser(): Attribute
+    public function isUser(): bool
     {
-        return new Attribute(
-            get: fn() => $this->rol_id == 1,
-        );
+        return $this->rol_id === 1;
     }
-
 
     public function cart(): HasOne
     {

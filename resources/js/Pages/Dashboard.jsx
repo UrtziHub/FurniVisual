@@ -40,6 +40,7 @@ export default function Dashboard(props) {
                 {role_id === 1 && (
                     <Link
                         href={route("logout")}
+                        method="post"
                         as="button"
                         className="text-center p-4 transform transition duration-500 hover:scale-110"
                     >
@@ -97,6 +98,7 @@ export default function Dashboard(props) {
                 {role_id === 1 && (
                     <Link
                         href={route("logout")}
+                        method="post"
                         as="button"
                         className="text-center p-4 transform transition duration-500 hover:scale-110"
                     >
