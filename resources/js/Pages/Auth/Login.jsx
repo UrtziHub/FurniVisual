@@ -84,7 +84,7 @@ export default function Login({ status, canResetPassword }) {
                             value={data.remember}
                             onChange={handleOnChange}
                         />
-                        <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                        <span className="ml-2 text-sm text-gray-600 ">
                             Remember me
                         </span>
                     </label>
@@ -94,7 +94,7 @@ export default function Login({ status, canResetPassword }) {
                     {canResetPassword && (
                         <Link
                             href={route("password.request")}
-                            className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                             Forgot your password?
                         </Link>
@@ -105,7 +105,7 @@ export default function Login({ status, canResetPassword }) {
                     </PrimaryButton>
                     <Link
                         className="     
-                            ml-4 inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150
+                            ml-4 inline-flex items-center px-4 py-2 bg-white border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150
                         "
                         href={route("register")}
                     >

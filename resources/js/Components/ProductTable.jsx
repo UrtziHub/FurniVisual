@@ -21,7 +21,7 @@ const ProductTable = ({ data, thead }) => {
                 <div>
                     <button
                         type="button"
-                        className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                        className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2"
                     >
                         Last 30 days
                     </button>
@@ -40,7 +40,7 @@ const ProductTable = ({ data, thead }) => {
                 id="myScrollableSection"
                 className="relative overflow-x-auto shadow-md rounded-lg border h-[600px]"
             >
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table className="w-full text-sm text-left text-gray-500">
                     {/* Table header */}
                     <thead className="text-xs uppercase bg-black text-white sticky top-0">
                         <tr>
@@ -68,13 +68,13 @@ const ProductTable = ({ data, thead }) => {
                         {data.map((item) => (
                             <tr
                                 key={item.id}
-                                className={`border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 ${
+                                className={`border-b hover:bg-gray-50 ${
                                     item.id % 2 == 0
                                         ? "bg-gray-100"
                                         : "bg-white"
                                 }`}
                             >
-                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                     <div className="flex gap-4 font-bold">
                                         <Link
                                             href={route(
@@ -100,13 +100,13 @@ const ProductTable = ({ data, thead }) => {
                                         </button>
                                     </div>
                                 </td>
-                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     {item.name}
                                 </td>
-                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     {item.price}
                                 </td>
-                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     <img
                                         src={`/storage/products/${item.image}`}
                                         alt={item.name}
@@ -114,7 +114,7 @@ const ProductTable = ({ data, thead }) => {
                                         className="aspect-square"
                                     />
                                 </td>
-                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     {item.shortDescription}
                                 </td>
                             </tr>
