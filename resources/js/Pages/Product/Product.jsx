@@ -26,8 +26,7 @@ export default function Product({ auth, products }) {
                 >
                     <Link href={route("product.create")}>Create Product</Link>
                 </button>
-                <section className="mt-4">
-                    <div className="overflow-auto h-[700px]">
+                <section id="myScrollableSection" className="mt-4 overflow-auto h-[700px]">
                         <table className="min-w-full table-auto border-collapse  border-gray-300 shadow-md rounded-lg">
                             <thead className="sticky top-0 bg-gray-200">
                                 <tr>
@@ -129,7 +128,6 @@ export default function Product({ auth, products }) {
                                 ))}
                             </tbody>
                         </table>
-                    </div>
                 </section>
             </div>
         </PageLayout>
