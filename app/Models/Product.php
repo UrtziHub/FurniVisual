@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -12,7 +13,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'price', 'shortDescription', 'fullDescription', 'image', 'gallery'
+        'name', 'price', 'shortDescription', 'fullDescription', 'image', 'gallery', 'category_id'
     ];
 
     protected $casts = [
@@ -26,9 +27,9 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function categories(): BelongsToMany
+    public function categories(): BelongsTo
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function orders(): BelongsToMany
