@@ -1,5 +1,6 @@
 import PageLayout from "@/Layouts/PageLayout";
 import { Link, useForm } from "@inertiajs/react";
+import "../../../css/scroll.css"
 
 export default function Category({ auth, categories }) {
     const { delete: handleDelete } = useForm();
@@ -15,21 +16,20 @@ export default function Category({ auth, categories }) {
                 >
                     <Link href={route("category.create")}>Create Category</Link>
                 </button>
-                <section className="mt-4">
-                    <div className="overflow-auto h-[700px]">
-                        <table className="min-w-full table-auto border-collapse border border-gray-300 shadow-md ">
-                        <thead className="sticky top-0 bg-gray-200">
+                <section id="myScrollableSection" className="mt-4 overflow-auto h-[600px]">
+                <table className="min-w-full table-auto border-collapse border border-gray-300 shadow-md">
+                        <thead className="sticky top-0 bg-gray-200 z-10">
                         <tr>
-                                    <th className="px-4 py-2">ID</th>
-                                    <th className="px-4 py-2">Image</th>
-                                    <th className="px-4 py-2">Name</th>
-                                    <th className="px-4 py-2">
+                                    <th className="px-4 py-2 border border-black border-solid">ID</th>
+                                    <th className="px-4 py-2 border border-gray-300">Image</th>
+                                    <th className="px-4 py-2 border border-gray-300">Name</th>
+                                    <th className="px-4 py-2 border border-gray-300">
                                         description
                                     </th>
                                     <th className="px-4 py-2">Edit</th>
                                 </tr>
-                            </thead>
-                            <tbody>
+                        </thead>
+                            <tbody className="">
                                 {categories.map((category, index) => (
                                     <tr
                                         key={index}
@@ -92,7 +92,6 @@ export default function Category({ auth, categories }) {
                                 ))}
                             </tbody>
                         </table>
-                    </div>
                 </section>
             </div>
         </PageLayout>
