@@ -11,6 +11,8 @@ import { IoCart, IoExit, IoMail } from "react-icons/io5";
 
 export default function Dashboard(props) {
     return (
+        /*rol_id == 2*/
+
         <PageLayout
             user={props.auth.user}
             errors={props.errors}

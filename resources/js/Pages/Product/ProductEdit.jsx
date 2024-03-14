@@ -42,7 +42,7 @@ export default function ProductEdit({ auth, product }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        put(route("product.update", product));
+        put(route("admin.product.update", product));
     };
 
     return (

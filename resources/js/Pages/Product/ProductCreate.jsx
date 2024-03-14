@@ -41,7 +41,7 @@ export default function ProductCreate({ auth }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route("product.store"))
+        post(route("admin.product.store"))
     };
 
     return (

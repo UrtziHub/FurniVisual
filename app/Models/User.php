@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Seeders\ReviewSeeder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -49,6 +50,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected function isAdmin(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->rol_id == 2,
+        );
+    }
+
+    protected function isUser(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->rol_id == 1,
+        );
+    }
+
 
     public function cart(): HasOne
     {
