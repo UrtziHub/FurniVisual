@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import PageLayout from "@/Layouts/PageLayout";
 import {useForm} from "@inertiajs/react";
+import TextInput from "@/Components/TextInput";
+import InputError from "@/Components/InputError";
+import TextArea from "@/Components/TextArea";
 
 export default function CategoryEdit({auth, category}) {
-    const {data, setData, put} = useForm({
+    const {data, setData, put, processing, errors} = useForm({
         name: category.name,
         description: category.description,
         image: category.image
@@ -27,9 +30,6 @@ export default function CategoryEdit({auth, category}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí puedes realizar alguna acción con los datos del formulario, como enviarlos a un servidor.
-        console.log('Form data submitted:', data);
-
         put(route("category.update", category))
     };
 
@@ -42,7 +42,7 @@ export default function CategoryEdit({auth, category}) {
                         <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
                             Name:
                         </label>
-                        <input
+                        <TextInput
                             type="text"
                             id="name"
                             name="name"
@@ -51,12 +51,13 @@ export default function CategoryEdit({auth, category}) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
+                        <InputError message={errors.name} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">
-                            Short Description:
+                            Description:
                         </label>
-                        <textarea
+                        <TextArea
                             id="description"
                             name="description"
                             value={data.description}
@@ -64,13 +65,24 @@ export default function CategoryEdit({auth, category}) {
                             rows="4"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
-                        ></textarea>
+                        ></TextArea>
+                        <InputError message={errors.description} className="mt-2"/>
                     </div>
-                    
                     <div className="mb-4">
-                        <label htmlFor="image" className="block text-gray-700 text-sm font-bold mb-2">
-                            Image:
-                        </label>
+                        <div>
+                            <label
+                                htmlFor="image"
+                                className="block text-gray-700 text-sm font-bold"
+                            >
+                                Image:
+                            </label>
+                            <img
+                                src={`/storage/categories/${category.image}`}
+                                alt={'product-' + category.id}
+                                width={200}
+                                height={100}
+                            />
+                        </div>
                         <input
                             type="file"
                             id="image"
@@ -79,10 +91,12 @@ export default function CategoryEdit({auth, category}) {
                             accept="image/*"
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
+                        <InputError message={errors.image} className="mt-2"/>
                     </div>
                     <button
                         type="submit"
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        disabled={processing}
                     >
                         Update Category
                     </button>

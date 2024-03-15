@@ -1,12 +1,12 @@
 import PageLayout from "@/Layouts/PageLayout";
-import { Link } from "@inertiajs/react";
+import {Link} from "@inertiajs/react";
 
-export default function Catalogue({ auth, categories }) {
+export default function Catalogue({auth, categories}) {
     console.log(categories);
     return (
         <PageLayout user={auth.user} className="bg-slate-100">
             <section
-                style={{ backgroundImage: "url('/images/catalogue.webp')" }}
+                style={{backgroundImage: "url('/images/catalogue.webp')"}}
                 className="text-white px-4 sm:px-8 md:px-16 lg:px-32 xl:px-64 py-10 bg-center"
             >
                 <h1 className="text-6xl font-bold mb-10 underline underline-offset-8">
