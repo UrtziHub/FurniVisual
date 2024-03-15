@@ -65,6 +65,7 @@ class DatabaseSeeder extends Seeder
             ]);
             Review::factory()->create([
                 'product_id' => $product->id,
+                'user_id' => 2
             ]);
         }
 
