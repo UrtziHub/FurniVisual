@@ -1,15 +1,15 @@
 import PageLayout from "@/Layouts/PageLayout";
-import {Link, useForm} from "@inertiajs/react";
+import {Link} from "@inertiajs/react";
 import "../../../css/scroll.css"
-import ProductTable from "@/Components/ProductTable";
 import CategoryTable from "@/Components/CategoryTable";
 
 export default function Category({auth, categories}) {
+
     if (!categories || categories.length === 0) {
         return (
             <PageLayout user={auth.user} className="bg-slate-100">
                 <div className="mx-4 xl:mx-64 py-4">
-                    <p>No products found.</p>
+                    <p>No categories found.</p>
                 </div>
             </PageLayout>
         );

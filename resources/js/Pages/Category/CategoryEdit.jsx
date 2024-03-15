@@ -6,7 +6,7 @@ import InputError from "@/Components/InputError";
 import TextArea from "@/Components/TextArea";
 
 export default function CategoryEdit({auth, category}) {
-    const {data, setData, put} = useForm({
+    const {data, setData, put, processing, errors} = useForm({
         name: category.name,
         description: category.description,
         image: category.image
@@ -55,7 +55,7 @@ export default function CategoryEdit({auth, category}) {
                     </div>
                     <div className="mb-4">
                         <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">
-                            Short Description:
+                            Description:
                         </label>
                         <TextArea
                             id="description"
@@ -68,7 +68,6 @@ export default function CategoryEdit({auth, category}) {
                         ></TextArea>
                         <InputError message={errors.description} className="mt-2"/>
                     </div>
-
                     <div className="mb-4">
                         <div>
                             <label
@@ -97,6 +96,7 @@ export default function CategoryEdit({auth, category}) {
                     <button
                         type="submit"
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        disabled={processing}
                     >
                         Update Category
                     </button>

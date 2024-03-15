@@ -5,7 +5,7 @@ import InputError from "@/Components/InputError";
 import TextArea from "@/Components/TextArea";
 
 export default function CategoryCreate({auth}) {
-    const {data, setData, post} = useForm({
+    const {data, setData, post, processing, errors} = useForm({
         name: '',
         description: '',
         image: null,
@@ -85,6 +85,7 @@ export default function CategoryCreate({auth}) {
                     <button
                         type="submit"
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        disabled={processing}
                     >
                         Add Category
                     </button>
