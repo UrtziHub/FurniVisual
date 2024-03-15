@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -71,12 +72,19 @@ Route::post('/category/store', [CategoryController::class, 'store'])->name('cate
 Route::get('/category/index/{category}', [CategoryController::class, 'edit'])->name('category.edit');
 Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
+//How to order page
 Route::get('/how-order', function () {
     return Inertia::render('HowOrder');
 })->name('how-order');
 
+//Privacy page
 Route::get('/privacy', function () {
     return Inertia::render('Privacy');
 })->name('privacy');
 
+//Group of auth verified midleware
+Route::middleware(['auth','verified'])->group(function () {
+    //Cart page
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+});
 require __DIR__ . '/auth.php';
