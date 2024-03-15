@@ -38,9 +38,9 @@ const Header = ({ user }) => {
     const [openNabBar, SetOpenNabBar] = useState(false);
     return (
         <>
-            <header className="bg-white w-full fixed top-0 z-50">
-                <div className="flex justify-between items-center border-b border-gray-200 py-2 px-8 md:px-16 xl:px-32 2xl:px-64">
-                    <div className="md:flex-1">
+            <header className="bg-white w-full  fixed top-0 z-50">
+                <div className="flex justify-between items-center border-b border-gray-200 py-2 px-8 md:px-16 xl:px-32 2xl:px-64 min-h-[92px]">
+                    <div className="flex-1 md:me-10">
                         <Link className="w-64" href={route('home')} >
                             <img
                                 src="/images/logo.png"
@@ -50,7 +50,7 @@ const Header = ({ user }) => {
                             />
                         </Link>
                     </div>
-                    <div className="md:flex flex-1 justify-center hidden">
+                    <div className="lg:flex justify-center hidden">
                         <ul className="flex gap-6">
                             {navlinks.map((link, index) => (
                                 <li key={index}>
@@ -65,7 +65,7 @@ const Header = ({ user }) => {
                         </ul>
                     </div>
 
-                    <div className="flex-1 xl:flex justify-end items-end hidden">
+                    <div className="flex-1 lg:flex justify-end items-end hidden">
                         <ul className="flex space-x-4 items-center">
                             {user ? (
                                 <div className="ms-3 relative">
@@ -106,7 +106,7 @@ const Header = ({ user }) => {
                                 <li>
                                     <Link
                                         href={route("login")}
-                                        className="flex items-center gap-2 text-lg text-gray-500 font-semibold bg-gray-100 rounded-full px-6 py-1 border hover:border-black duration-500 hover:text-black"                                    >
+                                        className="flex items-center gap-2 text-lg text-gray-500 font-semibold bg-gray-100 rounded-full px-6 py-1 border hover:border-black duration-500 hover:text-black whitespace-nowrap ms-10"                                    >
                                         <IoPerson />
                                         Sing in
                                     </Link>
@@ -125,7 +125,7 @@ const Header = ({ user }) => {
                         onClick={() => {
                             SetOpenNabBar((previousState) => !previousState);
                         }}
-                        className={`flex md:hidden text-4xl transition-transform duration-300 ease-in-out ${
+                        className={`flex lg:hidden text-4xl transition-transform duration-300 ease-in-out ${
                             openNabBar ? "rotate-180" : ""
                         }`}
                     >
@@ -144,7 +144,7 @@ const Header = ({ user }) => {
                 <div
                     className={` ${
                         openNabBar ? "flex" : "hidden"
-                    } flex-col py-2 px-10 `}
+                    } flex-col py-2 px-10 border-b-2`}
                 >
                     <div className="border-b-2 pb-2 ">
                         <ul className="flex flex-col">
@@ -219,7 +219,7 @@ const Header = ({ user }) => {
                 </div>
             </header>
             {/* SEPARATION !!! */}
-            <div className={`${openNabBar ? "mt-[478px]" : "mt-[92px]"}`}></div>
+            <div className={`${openNabBar ? (user ? "mt-[528px]" : "mt-[320px]") : "mt-[92px]"}`}></div>
         </>
     );
 };
