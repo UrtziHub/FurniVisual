@@ -40,6 +40,9 @@ export default function Footer() {
                     <li>
                         <Link href="/how-order">How to order</Link>
                     </li>
+                    <li>
+                        <Link href="/privacy">Privacy</Link>
+                    </li>
                 </ul>
                 <ul className="space-y-2">
                     <h1 className="text-lg font-bold underline-offset-2 underline">

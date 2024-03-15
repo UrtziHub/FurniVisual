@@ -42,7 +42,7 @@ const CategoryTable = ({data, thead}) => {
             >
                 <table className="w-full text-sm text-left text-gray-500">
                     {/* Table header */}
-                    <thead className="text-xs uppercase bg-black text-white sticky top-0">
+                    <thead className="text-xs uppercase bg-black text-white sticky top-0 text-center">
                     <tr>
                         {/* <th scope="col" className="p-4">
                             <input
@@ -68,7 +68,7 @@ const CategoryTable = ({data, thead}) => {
                     {data.map((item) => (
                         <tr
                             key={item.id}
-                            className={`border-b hover:bg-gray-50 ${
+                            className={`divide-x border-b hover:bg-gray-50 ${
                                 item.id % 2 == 0
                                     ? "bg-gray-100"
                                     : "bg-white"
@@ -100,20 +100,21 @@ const CategoryTable = ({data, thead}) => {
                                     </button>
                                 </div>
                             </td>
-                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+
+                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
                                 {item.name}
                             </td>
-                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-normal w-[900px]">
                                 {item.description}
                             </td>
-                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
                                 <img
                                     src={`/storage/categories/${item.image}`}
                                     alt={item.name}
-                                    width={50}
+                                    width={70}
                                     className="aspect-square"
                                 />
-                            </td>
+                            </td>   
                         </tr>
                     ))}
                     </tbody>
