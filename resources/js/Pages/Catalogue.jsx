@@ -21,11 +21,15 @@ export default function Catalogue({ auth, categories }) {
             </section>
             <section className=" mx-4 xl:mx-64 py-4 grid gap-4 md:grid-cols-2 grid-cols-1 md:text-nowrap">
                 {categories.map((category, index) => (
-                    <Link key={index} href={route('categoryProduct', category )} className="flex flex-col h-full">
+                    <Link
+                        key={index}
+                        href={route("categoryProduct", category)}
+                        className="flex flex-col h-full"
+                    >
                         <img
-                            src="/images/catalogue.webp"
-                            alt={category.name}
-                            className="rounded-t-md"
+                            src={`/images/categories/${category.image}`}
+                            alt={`category-${index}`}
+                            className="rounded-t-md aspect-video"
                             width={1920}
                             height={1080}
                         />
