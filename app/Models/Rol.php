@@ -20,8 +20,8 @@ class Rol extends Model
         'updated_at' => 'datetime'
     ];
 
-    public function user(): BelongsToMany
+    public function user(): BelongsTo
     {
-        return $this->belongsToMany(User::class);
+        return $this->BelongsTo(User::class);
     }
 }

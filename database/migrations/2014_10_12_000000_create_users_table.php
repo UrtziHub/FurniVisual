@@ -40,8 +40,8 @@ return new class extends Migration
         ]);
 
         User::create([
-            'name' => 'User',
-            'secondName' => 'User',
+            'name' => 'UserView',
+            'secondName' => 'UserView',
             'website' => 'example.com',
             'phone' => 123456788,
             'email' => 'user@example.org',

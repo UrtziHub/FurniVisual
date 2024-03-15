@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -46,6 +47,9 @@ Route::get('/about', function () {
     return Inertia::render('About');
 })->name('about');
 
+// UserView page
+Route::get('/user-management', [UserController::class, 'index'])->name('user.index');
+
 // Catalogue page
 Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
 
@@ -78,5 +82,9 @@ Route::get('/how-order', function () {
 Route::get('/privacy', function () {
     return Inertia::render('Privacy');
 })->name('privacy');
+
+Route::get('/a', function () {
+    return \App\Models\User::all();
+})->name('a');
 
 require __DIR__ . '/auth.php';

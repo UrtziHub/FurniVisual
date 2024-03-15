@@ -34,7 +34,7 @@ export default function Dashboard(props) {
                         <h2 className="text-2xl font-bold mb-2">
                             <FaUserAlt className="inline-block text-3xl mb-4 scale-150"/>
                         </h2>
-                        Profail
+                        Profile
                     </div>
                 </Link>
                 {role_id === 1 && (
@@ -66,19 +66,35 @@ export default function Dashboard(props) {
                         </div>
                     </Link>
                 )}
-                <Link
-                    href={route("logout")}
-                    method="post"
-                    as="button"
-                    className="text-center p-4 transform transition duration-500 hover:scale-110"
-                >
-                    <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
-                        <h2 className="text-2xl font-bold mb-2">
-                            <IoCart className="inline-block text-3xl mb-4 scale-150"/>
-                        </h2>
-                        Cart
-                    </div>
-                </Link>
+                {role_id === 1 && (
+                    <Link
+                        href={route("logout")}
+                        method="post"
+                        as="button"
+                        className="text-center p-4 transform transition duration-500 hover:scale-110"
+                    >
+                        <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
+                            <h2 className="text-2xl font-bold mb-2">
+                                <IoCart className="inline-block text-3xl mb-4 scale-150"/>
+                            </h2>
+                            Cart
+                        </div>
+                    </Link>
+                )}
+                {role_id === 2 && (
+                    <Link
+                        href={route("user.index")}
+                        as="button"
+                        className="text-center p-4 transform transition duration-500 hover:scale-110"
+                    >
+                        <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
+                            <h2 className="text-2xl font-bold mb-2">
+                                <FaCreditCard className="inline-block text-3xl mb-4 scale-150"/>
+                            </h2>
+                            Users Management
+                        </div>
+                    </Link>
+                )}
             </section>
 
             <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-4">
