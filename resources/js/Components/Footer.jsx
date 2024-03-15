@@ -46,11 +46,7 @@ export default function Footer() {
                 </ul>
                 <ul className="space-y-2">
                     <h1 className="text-lg font-bold underline-offset-2 underline">
-<<<<<<< HEAD
                         <Link href="/contact">Contact</Link>
-=======
-                        Contact
->>>>>>> b2d0bed05856901b405ddbd86bcdc78523b08932
                     </h1>
                     <li>
                         <Link href="/">Our website</Link>
