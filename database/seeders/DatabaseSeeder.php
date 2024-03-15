@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Review;
-use App\Models\Rol;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,10 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            //OrderSeeder::class,
-            //CartSeeder::class,
-        ]);
+        /*$this->call([
+            OrderSeeder::class,
+            CartSeeder::class,
+        ]);*/
 
 
         Category::create([
@@ -60,16 +58,15 @@ class DatabaseSeeder extends Seeder
             'image' => 'interiors.webp',
         ]);
 
-        // for ($j = 0; $j < 10; $j++) {
-        //     $num_ramdom = rand(1, 6);
-        //    // $category = Category::factory()->create();
-        //     $product = Product::factory()->create([
-        //         'category_id' => $num_ramdom,
-        //     ]);
-        //     Review::factory()->create([
-        //         'product_id' => $product->id,
-        //     ]);
-        // }
+        for ($j = 0; $j < 10; $j++) {
+            $num_ramdom = rand(1, 6);
+            $product = Product::factory()->create([
+                'category_id' => $num_ramdom,
+            ]);
+            Review::factory()->create([
+                'product_id' => $product->id,
+            ]);
+        }
 
     }
 }
