@@ -19,7 +19,7 @@ export default function Catalogue({ auth, categories }) {
                     proposals that will perfectly meet your expectations.
                 </p>
             </section>
-            <section className=" mx-4 xl:mx-64 py-4 grid gap-4 md:grid-cols-2 grid-cols-1 md:text-nowrap">
+            <section className=" mx-4 my-7 xl:mx-64 py-4 grid gap-10 md:grid-cols-2 grid-cols-1 md:text-nowrap">
                 {categories.map((category, index) => (
                     <Link
                         key={index}
@@ -27,13 +27,13 @@ export default function Catalogue({ auth, categories }) {
                         className="flex flex-col h-full"
                     >
                         <img
-                            src={`/images/categories/${category.image}`}
+                            src={`/storage/categories/${category.image}`}
                             alt={`category-${index}`}
-                            className="rounded-t-md aspect-video"
+                            className="rounded-t-lg aspect-video w-full h-96 object-cover"
                             width={1920}
                             height={1080}
                         />
-                        <div className="bg-white rounded-b-md px-6 py-4 shadow-xl h-full">
+                        <div className="bg-white rounded-b-lg px-6 py-4 shadow-xl h-full hover:bg-gray-100">
                             <h1 className="font-bold text-xl mb-2">
                                 {category.name}
                             </h1>
