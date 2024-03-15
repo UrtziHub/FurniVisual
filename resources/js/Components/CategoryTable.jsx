@@ -2,7 +2,7 @@ import {useState} from "react";
 import TextInput from "./TextInput";
 import {Link, useForm} from "@inertiajs/react";
 
-const ProductTable = ({data, thead}) => {
+const CategoryTable = ({data, thead}) => {
     const [search, setSearch] = useState("");
     const {delete: handleDelete} = useForm();
 
@@ -78,7 +78,7 @@ const ProductTable = ({data, thead}) => {
                                 <div className="flex gap-4 font-bold">
                                     <Link
                                         href={route(
-                                            "admin.product.edit",
+                                            "category.edit",
                                             item
                                         )}
                                         className="text-blue-500 hover:underline"
@@ -89,7 +89,7 @@ const ProductTable = ({data, thead}) => {
                                         onClick={() =>
                                             handleDelete(
                                                 route(
-                                                    "admin.product.destroy",
+                                                    "category.destroy",
                                                     item
                                                 )
                                             )
@@ -104,18 +104,15 @@ const ProductTable = ({data, thead}) => {
                                 {item.name}
                             </td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {item.price}
+                                {item.description}
                             </td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 <img
-                                    src={`/storage/products/${item.image}`}
+                                    src={`/storage/categories/${item.image}`}
                                     alt={item.name}
                                     width={50}
                                     className="aspect-square"
                                 />
-                            </td>
-                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {item.shortDescription}
                             </td>
                         </tr>
                     ))}
@@ -126,7 +123,7 @@ const ProductTable = ({data, thead}) => {
     );
 };
 
-export default ProductTable;
+export default CategoryTable;
 {
     /* <td className="w-4 p-4">
     <input

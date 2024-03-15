@@ -105,10 +105,7 @@ export default function ProductEdit({ auth, product }) {
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         ></TextArea>
-                        <InputError
-                            message={errors.shortDescription}
-                            className="mt-2"
-                        />
+                        <InputError message={errors.shortDescription} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <label
