@@ -30,13 +30,22 @@ return new class extends Migration
         });
 
         User::create([
-            'role_id' => 2, // El ID del rol de administrador
+            'role_id' => 2,
             'name' => 'Admin',
-            'secondName' => 'Admin', // Segundo nombre del administrador
-            'website' => 'example.com', // El sitio web del administrador
-            'phone' => 123456789, // Número de teléfono del administrador
-            'email' => 'admin@example.org', // Correo electrónico del administrador
-            'password' => Hash::make('admin'), // La contraseña del administrador (se encripta automáticamente)
+            'secondName' => 'Admin',
+            'website' => 'example.com',
+            'phone' => 123456789,
+            'email' => 'admin@example.org',
+            'password' => Hash::make('admin'),
+        ]);
+
+        User::create([
+            'name' => 'User',
+            'secondName' => 'User',
+            'website' => 'example.com',
+            'phone' => 123456788,
+            'email' => 'user@example.org',
+            'password' => Hash::make('user'),
         ]);
     }
 
