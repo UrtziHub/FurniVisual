@@ -19,7 +19,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'secondName' => fake()->lastName(),
+            'last_name' => fake()->lastName(),
             'website' => fake()->domainName(),
             'phone' => fake()->phoneNumber(),
             'email' => fake()->unique()->safeEmail(),
@@ -36,7 +36,7 @@ class UserFactory extends Factory
      */
     public function unverified()
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

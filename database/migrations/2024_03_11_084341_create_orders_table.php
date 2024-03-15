@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -23,7 +22,7 @@ return new class extends Migration
             $table->integer('zip');
             $table->integer('phone');
             $table->string('email');
-            $table->string('notes')->nullable();
+            $table->text('notes')->nullable();
             $table->string('number');
             $table->timestamps();
         });
