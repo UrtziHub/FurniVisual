@@ -12,7 +12,7 @@ class Review extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'rate', 'product_id', 'user_id'
+        'comment', 'rate', 'product_id', 'user_id'
     ];
 
     protected $casts = [

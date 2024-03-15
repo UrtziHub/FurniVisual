@@ -13,7 +13,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'price', 'shortDescription', 'fullDescription', 'image', 'gallery', 'category_id'
+        'name', 'price', 'short_description', 'full_description', 'image', 'gallery', 'category_id'
     ];
 
     protected $casts = [
@@ -30,11 +30,6 @@ class Product extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function orders(): BelongsToMany
-    {
-        return $this->belongsToMany(Order::class);
     }
 
     public function carts(): BelongsToMany

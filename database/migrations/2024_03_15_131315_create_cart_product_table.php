@@ -15,10 +15,14 @@ return new class extends Migration
     {
         Schema::create('cart_product', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('cart_id')->constrained();
-            $table->foreignId('product_id')->constrained();
-
+            $table->json('images');
+            $table->integer('products_number');
+            $table->integer('prespective');
+            $table->json('model')->nullable();
+            $table->date('deadline');
+            $table->string('information')->nullable();
+            $table->foreignId('cart_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

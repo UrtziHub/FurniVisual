@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->foreignId('product_id')->nullable()->constrained()->onDelete('cascade');
+        Schema::create('payments', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            $table->double('amount');
+            $table->string('payment_method')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('product_id');
-        });
+        Schema::dropIfExists('payments');
     }
 };

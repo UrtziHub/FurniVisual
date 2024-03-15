@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Cart extends Model
 {
@@ -26,9 +25,9 @@ class Cart extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function orders(): HasMany
+    public function orders(): BelongsTo
     {
-        return $this->hasMany(Order::class);
+        return $this->belongsTo(Order::class);
     }
 
     public function products(): BelongsToMany
