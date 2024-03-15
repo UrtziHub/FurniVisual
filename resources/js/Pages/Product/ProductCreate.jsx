@@ -12,7 +12,7 @@ export default function ProductCreate({auth, categories}) {
         fullDescription: "",
         image: null,
         gallery: [],
-        category: categories[0],
+        category: "",
     });
 
     const handleChange = (e) => {

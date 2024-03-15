@@ -54,7 +54,6 @@ class ProductController extends Controller
             $productFile->storeAs('products', $productFileName, 'public');
         }
 
-
         if ($request->hasFile('gallery')) {
             $galleryFiles = $request->file('gallery');
             foreach ($galleryFiles as $galleryFile) {
@@ -73,7 +72,7 @@ class ProductController extends Controller
             'gallery' => $galleryFileNames,
         ]);
 
-        //Relate the catgory to the product
+        //Relate the category to the product
         $product->category()->associate(request('category'));
         //Save the data
         $product->save();
