@@ -32,7 +32,7 @@ export default function Footer() {
                         Company
                     </h1>
                     <li>
-                        <Link href="/">About us </Link>📍
+                        <Link href="/about">About us </Link>📍
                     </li>
                     <li>
                         <Link href="/">Shop</Link>

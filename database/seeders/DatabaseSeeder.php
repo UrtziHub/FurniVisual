@@ -23,22 +23,22 @@ class DatabaseSeeder extends Seeder
             //CartSeeder::class,
         ]);
 
-        
+
         Category::create([
             'name' => 'Centre Tables',
-            'description' => 'Center tables are not only a practical piece of furniture, but also an important decorative element that adds character to any interior. Thanks to its versatility and diversity of design, it it an excellent investment, being both a functional and aesthetic adding to the home environment.',
+            'description' => 'Center tables are not only a practical piece of furniture, but also an important decorative element that adds character to any interior. Thanks to its versatility and diversity of design, it is an excellent investment, being both a functional and aesthetic adding to the home environment.',
             'image' => 'centre_tables.jpg',
         ]);
 
         Category::create([
             'name' => 'Tables and Chairs',
-            'description' => 'Dining tables and chairs are the heart of this room, being not only the place where meals are eaten, but also the center of family gatherings and conversations. Their choice is cruical to the functionality and aesthetics of this place.',
+            'description' => 'Dining tables and chairs are the heart of this room, being not only the place where meals are eaten, but also the center of family gatherings and conversations. Their choice is crucial to the functionality and aesthetics of this place.',
             'image' => 'tables_and_chairs.jpg',
         ]);
 
         Category::create([
             'name' => 'Fireplaces',
-            'description' => 'The fireplace is not only a source of heat, but also the hart of the home, which creates a cozy atmosphere and encourages spending time with family and friends. Its variety of styles, materials and functions make it a unique and desirable addition to any home.',
+            'description' => 'The fireplace is not only a source of heat, but also the heart of the home, which creates a cozy atmosphere and encourages spending time with family and friends. Its variety of styles, materials and functions make it a unique and desirable addition to any home.',
             'image' => 'fireplaces.jpg',
         ]);
 
