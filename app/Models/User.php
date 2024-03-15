@@ -2,13 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Seeders\ReviewSeeder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -24,12 +20,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'secondName',
+        'last_name',
         'website',
         'phone',
         'email',
+        'is_admin',
         'password',
-        'role_id',
     ];
 
     /**
@@ -53,12 +49,7 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->role_id === 2;
-    }
-
-    public function isUser(): bool
-    {
-        return $this->role_id === 1;
+        return $this->is_admin;
     }
 
     public function carts(): BelongsToMany
@@ -69,10 +60,5 @@ class User extends Authenticatable
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
-    }
-
-    public function rols(): BelongsToMany
-    {
-        return $this->belongsToMany(Rol::class);
     }
 }

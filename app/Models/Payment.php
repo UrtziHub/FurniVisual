@@ -5,23 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Rol extends Model
+class Payment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'order_id', 'amount', 'payment_method'
     ];
 
     protected $casts = [
         'created_at' => 'datetime',
-        'updated_at' => 'datetime'
+        'updated_at' => 'datetime',
     ];
 
-    public function user(): BelongsToMany
+    public function order(): BelongsTo
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(Order::class);
     }
 }

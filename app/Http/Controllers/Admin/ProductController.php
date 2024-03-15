@@ -38,7 +38,7 @@ class ProductController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
-            'shortDescription' => 'required|string|max:255',
+            'short_description' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'gallery' => 'array|max:5',
             'gallery.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -54,7 +54,6 @@ class ProductController extends Controller
             $productFile->storeAs('products', $productFileName, 'public');
         }
 
-
         if ($request->hasFile('gallery')) {
             $galleryFiles = $request->file('gallery');
             foreach ($galleryFiles as $galleryFile) {
@@ -67,13 +66,13 @@ class ProductController extends Controller
         $product = Product::create([
             'name' => request('name'),
             'price' => request('price'),
-            'shortDescription' => request('shortDescription'),
-            'fullDescription' => request('fullDescription'),
+            'short_description' => request('short_description'),
+            'full_description' => request('full_description'),
             'image' => $productFileName,
             'gallery' => $galleryFileNames,
         ]);
 
-        //Relate the catgory to the product
+        //Relate the category to the product
         $product->category()->associate(request('category'));
         //Save the data
         $product->save();
@@ -97,7 +96,7 @@ class ProductController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
-            'shortDescription' => 'required|string|max:255',
+            'short_description' => 'required|string|max:255',
         ]);
 
         $productFileName = $product->image;
@@ -122,8 +121,8 @@ class ProductController extends Controller
         $product->update([
             'name' => $request->input('name'),
             'price' => $request->input('price'),
-            'shortDescription' => $request->input('shortDescription'),
-            'fullDescription' => $request->input('fullDescription'),
+            'short_description' => $request->input('shortDescription'),
+            'full_description' => $request->input('full_description'),
             'image' => $productFileName,
             'gallery' => $galleryFileNames,
         ]);

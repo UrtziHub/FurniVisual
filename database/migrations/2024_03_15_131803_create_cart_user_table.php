@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Cart;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,15 +13,18 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('cart_user', function (Blueprint $table) {
             $table->id();
-
-            $table->string('name');
-            $table->text('description');
-            $table->string('image');
-
+            $table->foreignId('cart_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
+
+        $cart1 = Cart::create(['active' => true]);
+        $cart1->users()->attach(1);
+
+        $cart2 = Cart::create(['active' => true]);
+        $cart2->users()->attach(2);
     }
 
     /**
@@ -30,6 +34,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('cart_user');
     }
 };

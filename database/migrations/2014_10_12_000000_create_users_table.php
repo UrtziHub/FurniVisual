@@ -6,8 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -17,12 +16,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('role_id')->default(1);
             $table->string('name');
-            $table->string('secondName');
-            $table->string('website');
+            $table->string('last_name');
+            $table->string('website')->nullable();
             $table->integer('phone');
             $table->string('email')->unique();
+            $table->boolean('is_admin')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -30,18 +29,18 @@ return new class extends Migration
         });
 
         User::create([
-            'role_id' => 2,
             'name' => 'Admin',
-            'secondName' => 'Admin',
+            'last_name' => 'Admin',
             'website' => 'example.com',
             'phone' => 123456789,
             'email' => 'admin@example.org',
+            'is_admin' => true,
             'password' => Hash::make('admin'),
         ]);
 
         User::create([
             'name' => 'User',
-            'secondName' => 'User',
+            'last_name' => 'User',
             'website' => 'example.com',
             'phone' => 123456788,
             'email' => 'user@example.org',

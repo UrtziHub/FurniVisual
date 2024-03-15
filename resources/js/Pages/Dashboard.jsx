@@ -36,13 +36,13 @@ export default function Dashboard(props) {
                         <h2 className="text-2xl font-bold mb-2">
                             <FaUserAlt className="inline-block text-3xl mb-4 scale-150"/>
                         </h2>
-                        Profail
+                        Profile
                     </div>
                 </Link>
                 {role_id === 1 && (
                     <Link
-                        href={route("logout")}
-                        method="post"
+                        href={route("dashboard")}
+                        //method="post"
                         as="button"
                         className="text-center p-4 transform transition duration-500 hover:scale-110"
                     >
@@ -69,8 +69,8 @@ export default function Dashboard(props) {
                     </Link>
                 )}
                 <Link
-                    href={route("logout")}
-                    method="post"
+                    href={route("dashboard")}
+                    // method="post"
                     as="button"
                     className="text-center p-4 transform transition duration-500 hover:scale-110"
                 >
@@ -85,8 +85,8 @@ export default function Dashboard(props) {
 
             <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-4">
                 <Link
-                    href={route("logout")}
-                    method="post"
+                    href={route("dashboard")}
+                    // method="post"
                     as="button"
                     className="text-center p-4 transform transition duration-500 hover:scale-110"
                 >
@@ -94,13 +94,13 @@ export default function Dashboard(props) {
                         <h2 className="text-2xl font-bold mb-2">
                             <FaRoad className="inline-block text-3xl mb-4 scale-150"/>
                         </h2>
-                        Adresses
+                        Addresses
                     </div>
                 </Link>
                 {role_id === 1 && (
                     <Link
-                        href={route("logout")}
-                        method="post"
+                        href={route("dashboard")}
+                        // method="post"
                         as="button"
                         className="text-center p-4 transform transition duration-500 hover:scale-110"
                     >

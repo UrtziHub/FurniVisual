@@ -11,11 +11,11 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function index()
     {
-        $cart =  auth()->user()->carts->where('active', true)->first();
+        $cart = auth()->user()->carts->where('active', true)->first();
         $cart->load('products');
         return Inertia::render('Cart', compact('cart'));
     }
@@ -33,7 +33,7 @@ class CartController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,7 +44,7 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cart  $cart
+     * @param \App\Models\Cart $cart
      * @return \Illuminate\Http\Response
      */
     public function show(Cart $cart)
@@ -55,7 +55,7 @@ class CartController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cart  $cart
+     * @param \App\Models\Cart $cart
      * @return \Illuminate\Http\Response
      */
     public function edit(Cart $cart)
@@ -66,8 +66,8 @@ class CartController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cart  $cart
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Cart $cart
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Cart $cart)
@@ -78,7 +78,7 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cart  $cart
+     * @param \App\Models\Cart $cart
      * @return \Illuminate\Http\Response
      */
     public function destroy(Cart $cart)

@@ -32,7 +32,7 @@ export default function Footer() {
                         Company
                     </h1>
                     <li>
-                        <Link href="/">About us </Link>📍
+                        <Link href="/about">About us </Link>📍
                     </li>
                     <li>
                         <Link href="/">Shop</Link>
@@ -46,7 +46,11 @@ export default function Footer() {
                 </ul>
                 <ul className="space-y-2">
                     <h1 className="text-lg font-bold underline-offset-2 underline">
+<<<<<<< HEAD
                         <Link href="/contact">Contact</Link>
+=======
+                        Contact
+>>>>>>> b2d0bed05856901b405ddbd86bcdc78523b08932
                     </h1>
                     <li>
                         <Link href="/">Our website</Link>
@@ -59,11 +63,11 @@ export default function Footer() {
                     </li>
                 </ul>
             </div>
-            
+
             <div className="inline-flex items-center justify-center w-full">
                 <hr className="w-96 h-px my-8 bg-neutral-300 border-0 " />
                 <span className="absolute px-3 font-medium -translate-x-1/2 left-1/2">
-                    <div className="flex bg-white px-2 gap-3 text-2xl"> 
+                    <div className="flex bg-white px-2 gap-3 text-2xl">
                         <FaInstagram className="hover:text-purple-400 cursor-pointer transition duration-300 ease-in-out"/>
                         <FaYoutube className="hover:text-red-400 cursor-pointer transition duration-300 ease-in-out"/>
                         <FaFacebook className="hover:text-blue-700 cursor-pointer transition duration-300 ease-in-out"/>

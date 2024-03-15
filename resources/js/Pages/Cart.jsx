@@ -7,8 +7,8 @@ export default function Cart({ auth, cart }) {
         <PageLayout user={auth.user}>
             <div className="flex bg-gray-100 p-10 gap-2">
                 <div className="rounded flex flex-1 flex-col gap-2">
-                    {cart.products.map((product, index) => (
-                        <CartCard product={product} />
+                    {cart.products.map((product) => (
+                        <CartCard key={product.id} product={product} />
                     ))}
                 </div>
                 <div className="bg-white p-4 flex flex-col shadow-lg rounded">

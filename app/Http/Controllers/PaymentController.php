@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rol;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
-class RolController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,7 +30,7 @@ class RolController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,10 +41,10 @@ class RolController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Rol  $rol
+     * @param \App\Models\Payment $payment
      * @return \Illuminate\Http\Response
      */
-    public function show(Rol $rol)
+    public function show(Payment $payment)
     {
         //
     }
@@ -52,10 +52,10 @@ class RolController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Rol  $rol
+     * @param \App\Models\Payment $payment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rol $rol)
+    public function edit(Payment $payment)
     {
         //
     }
@@ -63,11 +63,11 @@ class RolController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rol  $rol
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Payment $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rol $rol)
+    public function update(Request $request, Payment $payment)
     {
         //
     }
@@ -75,10 +75,10 @@ class RolController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Rol  $rol
+     * @param \App\Models\Payment $payment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rol $rol)
+    public function destroy(Payment $payment)
     {
         //
     }

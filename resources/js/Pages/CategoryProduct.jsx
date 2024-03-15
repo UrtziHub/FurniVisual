@@ -27,7 +27,7 @@ export default function Catalogue({auth, products}) {
                             <h1 className="text-xl font-bold">
                                 {product.name}
                             </h1>
-                            <p>{product.shortDescription}</p>
+                            <p>{product.short_description}</p>
                             <div className="flex justify-between">
                                 <div className="flex gap-1 items-center">
                                     <p className="bg-yellow-300 font-bold p-1 rounded-lg">
