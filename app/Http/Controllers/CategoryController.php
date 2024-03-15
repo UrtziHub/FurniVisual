@@ -107,7 +107,7 @@ class CategoryController extends Controller
             'image' => $categoryFileName,
         ]);
 
-        return redirect(route('categories.index'));
+        return redirect(route('category.index'));
     }
 
     /**

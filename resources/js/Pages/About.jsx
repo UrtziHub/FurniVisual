@@ -21,11 +21,11 @@ export default function About({auth}) {
                         </p>
                     </div>
                     <img src="images/image1.jpg" alt="Company Logo"
-                         className="w-full md:w-1/2 rounded-b-lg md:rounded-r-lg shadow-lg"/>
+                         className="w-full md:w-1/2 md:rounded-r-lg shadow-lg"/>
                 </div>
                 <div className="flex flex-col-reverse md:flex-row mx-4 sm:mx-8">
                     <img src="images/image2.jpg" alt="Company Logo"
-                         className="w-full md:w-1/2 rounded-t-lg md:rounded-l-lg shadow-lg"/>
+                         className="w-full md:w-1/2 md:rounded-l-lg shadow-lg"/>
                     <div
                         className="w-full md:w-1/2 bg-gray-100 p-4 sm:p-8 rounded-b-lg md:rounded-r-lg shadow-lg flex justify-center items-center ">
                         <p className="text-sm sm:text-lg text-gray-700">

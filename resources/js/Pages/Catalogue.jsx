@@ -27,7 +27,7 @@ export default function Catalogue({auth, categories}) {
                         className="flex flex-col h-full"
                     >
                         <img
-                            src={`/storage/categories/${category.image}`}
+                            src={`/images/categories/${category.image}`}
                             alt={`category-${index}`}
                             className="rounded-t-lg aspect-video w-full h-96 object-cover"
                             width={1920}

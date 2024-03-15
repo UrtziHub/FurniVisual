@@ -7,7 +7,9 @@ import {
     FaCreditCard,
     FaShoppingCart,
 } from "react-icons/fa";
-import {IoCart, IoExit, IoMail} from "react-icons/io5";
+import {IoCart, IoExit, IoMail, IoBag} from "react-icons/io5";
+import { BiSolidCategory } from "react-icons/bi";
+
 
 export default function Dashboard(props) {
     const {role_id} = props.auth.user;
@@ -60,7 +62,7 @@ export default function Dashboard(props) {
                     >
                         <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
                             <h2 className="text-2xl font-bold mb-2">
-                                <IoMail className="inline-block text-3xl mb-4 scale-150"/>
+                                <BiSolidCategory className="inline-block text-3xl mb-4 scale-150"/>
                             </h2>
                             Categories
                         </div>
@@ -118,7 +120,7 @@ export default function Dashboard(props) {
                     >
                         <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
                             <h2 className="text-2xl font-bold mb-2">
-                                <FaCreditCard className="inline-block text-3xl mb-4 scale-150"/>
+                                <IoBag className="inline-block text-3xl mb-4 scale-150"/>
                             </h2>
                             Products
                         </div>

@@ -43,7 +43,7 @@ const ProductTable = ({data, thead}) => {
                 <table className="w-full text-sm text-left text-gray-500">
                     {/* Table header */}
                     <thead className="text-xs uppercase bg-black text-white sticky top-0">
-                    <tr>
+                    <tr className="">
                         {/* <th scope="col" className="p-4">
                             <input
                                 id="checkbox-all-search"
@@ -68,7 +68,7 @@ const ProductTable = ({data, thead}) => {
                     {data.map((item) => (
                         <tr
                             key={item.id}
-                            className={`border-b hover:bg-gray-50 ${
+                            className={`divide-x border-b hover:bg-gray-50 ${
                                 item.id % 2 == 0
                                     ? "bg-gray-100"
                                     : "bg-white"

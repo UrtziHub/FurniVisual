@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Category;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -55,7 +56,6 @@ Route::get('/category-product/{category}', [CategoryProductController::class, 'i
 
 // Product page for users
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
-
 Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/product', [AdminProductController::class, 'index'])->name('admin.product.index');
     Route::get('/admin/product/create', [AdminProductController::class, 'create'])->name('admin.product.create');
@@ -70,6 +70,7 @@ Route::get('/category/index', [CategoryController::class, 'index'])->name('categ
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
 Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 Route::get('/category/index/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/admin/category/{category}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
 //How to order page
@@ -81,6 +82,12 @@ Route::get('/how-order', function () {
 Route::get('/privacy', function () {
     return Inertia::render('Privacy');
 })->name('privacy');
+
+//Contact page
+Route::get('/contact', function () {
+    return Inertia::render('Contact');
+})->name('contact');
+
 
 //Group of auth verified midleware
 Route::middleware(['auth','verified'])->group(function () {

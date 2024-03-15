@@ -30,7 +30,7 @@ export default function CategoryEdit({auth, category}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        put(route("category.update", category))
+        put(route("category.update", category));
     };
 
     return (

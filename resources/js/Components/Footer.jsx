@@ -46,7 +46,7 @@ export default function Footer() {
                 </ul>
                 <ul className="space-y-2">
                     <h1 className="text-lg font-bold underline-offset-2 underline">
-                        Constact
+                        <Link href="/contact">Contact</Link>
                     </h1>
                     <li>
                         <Link href="/">Our website</Link>
