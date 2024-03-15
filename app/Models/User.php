@@ -61,9 +61,9 @@ class User extends Authenticatable
         return $this->role_id === 1;
     }
 
-    public function cart(): HasOne
+    public function carts(): BelongsToMany
     {
-        return $this->hasOne(Cart::class);
+        return $this->belongsToMany(Cart::class);
     }
 
     public function reviews(): HasMany
