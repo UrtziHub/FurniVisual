@@ -1,2 +1,2 @@
-UserView-agent: *
+User-agent: *
 Disallow:

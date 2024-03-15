@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        $rols = ['UserView', 'Admin'];
+        $rols = ['User', 'Admin'];
 
         foreach ($rols as $rol) {
             Rol::create(['name' => $rol]);
