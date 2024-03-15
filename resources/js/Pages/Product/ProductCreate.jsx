@@ -8,8 +8,8 @@ export default function ProductCreate({auth, categories}) {
     const {data, setData, post, processing, errors} = useForm({
         name: "",
         price: "",
-        shortDescription: "",
-        fullDescription: "",
+        short_description: "",
+        full_description: "",
         image: null,
         gallery: [],
         category: categories[0],
@@ -91,39 +91,39 @@ export default function ProductCreate({auth, categories}) {
                     </div>
                     <div className="mb-4">
                         <label
-                            htmlFor="shortDescription"
+                            htmlFor="short_description"
                             className="block text-gray-700 text-sm font-bold mb-2"
                         >
                             Short Description:
                         </label>
                         <TextArea
-                            id="shortDescription"
-                            name="shortDescription"
-                            value={data.shortDescription}
+                            id="short_description"
+                            name="short_description"
+                            value={data.short_description}
                             onChange={handleChange}
                             rows="4"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         ></TextArea>
-                        <InputError message={errors.shortDescription} className="mt-2"/>
+                        <InputError message={errors.short_description} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <label
-                            htmlFor="fullDescription"
+                            htmlFor="full_description"
                             className="block text-gray-700 text-sm font-bold mb-2"
                         >
                             Full Description:
                         </label>
                         <TextArea
-                            id="fullDescription"
-                            name="fullDescription"
-                            value={data.fullDescription}
+                            id="full_description"
+                            name="full_description"
+                            value={data.full_description}
                             onChange={handleChange}
                             rows="6"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         ></TextArea>
                         <InputError
-                            message={errors.fullDescription}
+                            message={errors.full_description}
                             className="mt-2"
                         />
                     </div>

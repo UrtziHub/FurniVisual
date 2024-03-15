@@ -34,7 +34,7 @@ export default function Show({auth, product}) {
                     <h1 className="text-2xl">{product.price}$</h1>
                     <div>
                         <h1 className="font-semibold">Description: </h1>
-                        <p>{product.fullDescription}</p>
+                        <p>{product.full_description}</p>
                     </div>
                     <section className="flex flex-col gap-2 ">
                         <div>
