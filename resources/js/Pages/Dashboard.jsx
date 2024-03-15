@@ -10,7 +10,7 @@ import {
 import {IoCart, IoExit, IoMail} from "react-icons/io5";
 
 export default function Dashboard(props) {
-    const {role_id} = props.auth.user;
+    const {is_admin} = props.auth.user;
 
     return (
         <PageLayout
@@ -37,7 +37,7 @@ export default function Dashboard(props) {
                         Profile
                     </div>
                 </Link>
-                {role_id === 1 && (
+                {!is_admin && (
                     <Link
                         href={route("dashboard")}
                         //method="post"
@@ -52,7 +52,7 @@ export default function Dashboard(props) {
                         </div>
                     </Link>
                 )}
-                {role_id === 2 && (
+                {is_admin && (
                     <Link
                         href={route("category.index")}
                         as="button"
@@ -95,7 +95,7 @@ export default function Dashboard(props) {
                         Addresses
                     </div>
                 </Link>
-                {role_id === 1 && (
+                {!is_admin && (
                     <Link
                         href={route("dashboard")}
                         // method="post"
@@ -110,7 +110,7 @@ export default function Dashboard(props) {
                         </div>
                     </Link>
                 )}
-                {role_id === 2 && (
+                {is_admin && (
                     <Link
                         href={route("admin.product.index")}
                         as="button"
