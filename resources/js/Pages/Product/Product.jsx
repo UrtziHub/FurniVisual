@@ -1,8 +1,9 @@
 import ProductTable from "@/Components/ProductTable";
 import PageLayout from "@/Layouts/PageLayout";
-import { Link } from "@inertiajs/react";
+import {Link} from "@inertiajs/react";
 import "../../../css/scroll.css";
-export default function Product({ auth, products }) {
+
+export default function Product({auth, products}) {
 
     if (!products || products.length === 0) {
         return (
@@ -21,9 +22,6 @@ export default function Product({ auth, products }) {
                     <span class="bg-clip-text text-transparent bg-center bg-[url('/images/catalogue.webp')]">
                         Products
                     </span>
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-    Hello world
-  </span>
                 </div>
                 <button
                     type="button"
@@ -34,7 +32,7 @@ export default function Product({ auth, products }) {
                 <section id="myScrollableSection">
                     <ProductTable
                         data={products}
-                        thead={["action", "name","price", "action","desription"]}
+                        thead={["action", "name", "price", "image", "description"]}
                     ></ProductTable>
                 </section>
             </div>

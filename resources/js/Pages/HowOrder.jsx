@@ -1,13 +1,13 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import PageLayout from "@/Layouts/PageLayout";
-import { Head, Link } from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import {
     FaUserAlt,
     FaRoad,
     FaCreditCard,
     FaShoppingCart,
 } from "react-icons/fa";
-import { IoCart, IoExit, IoMail } from "react-icons/io5";
+import {IoCart, IoExit, IoMail} from "react-icons/io5";
 
 export default function Dashboard(props) {
     return (
@@ -39,12 +39,12 @@ export default function Dashboard(props) {
                         </p>
                     </div>
                     <div className="w-1/4 mx-4">
-                        <img src="images/01.png" alt="Imagen" />
+                        <img src="images/01.png" alt="Imagen"/>
                     </div>
                 </div>
                 <div className="flex justify-between items-center border-b pb-4 mb-4">
                     <div className="w-1/4">
-                        <img src="images/02.png" alt="Imagen" />
+                        <img src="images/02.png" alt="Imagen"/>
                     </div>
                     <div className="w-3/4 text-xl text-right lg:text-center">
                         <h2 className="text-3xl font-bold">
@@ -84,12 +84,12 @@ export default function Dashboard(props) {
                         </p>
                     </div>
                     <div className="w-1/4 mx-4">
-                        <img src="images/03.png" alt="Imagen" />
+                        <img src="images/03.png" alt="Imagen"/>
                     </div>
                 </div>
                 <div className="flex justify-between items-center border-b pb-4 mb-4">
                     <div className="w-1/4">
-                        <img src="images/04.png" alt="Imagen" />
+                        <img src="images/04.png" alt="Imagen"/>
                     </div>
                     <div className="w-3/4 text-xl text-right">
                         <h2 className="text-3xl font-bold">
@@ -130,12 +130,12 @@ export default function Dashboard(props) {
                         </p>
                     </div>
                     <div className="w-1/4 mx-4">
-                        <img src="images/05.png" alt="Imagen" />
+                        <img src="images/05.png" alt="Imagen"/>
                     </div>
                 </div>
                 <div className="flex justify-between items-center border-b pb-4 mb-4">
                     <div className="w-1/4">
-                        <img src="images/06.png" alt="Imagen" />
+                        <img src="images/06.png" alt="Imagen"/>
                     </div>
 
                     <div className="w-3/4 text-xl text-right">
@@ -184,7 +184,7 @@ export default function Dashboard(props) {
                         </p>
                     </div>
                     <div className="w-1/4 mx-4">
-                        <img src="images/07.png" alt="Imagen" />
+                        <img src="images/07.png" alt="Imagen"/>
                     </div>
                 </div>
                 <div className="flex justify-between items-center border-b pb-4 pt-3 mt-7 mb-4">

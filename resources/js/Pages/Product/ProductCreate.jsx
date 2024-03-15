@@ -2,10 +2,10 @@ import InputError from "@/Components/InputError";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import PageLayout from "@/Layouts/PageLayout";
-import { useForm } from "@inertiajs/react";
+import {useForm} from "@inertiajs/react";
 
-export default function ProductCreate({ auth, categories }) {
-    const { data, setData, post, processing, errors } = useForm({
+export default function ProductCreate({auth, categories}) {
+    const {data, setData, post, processing, errors} = useForm({
         name: "",
         price: "",
         shortDescription: "",
@@ -16,7 +16,7 @@ export default function ProductCreate({ auth, categories }) {
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -69,7 +69,7 @@ export default function ProductCreate({ auth, categories }) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
-                        <InputError message={errors.name} className="mt-2" />
+                        <InputError message={errors.name} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <label
@@ -87,7 +87,7 @@ export default function ProductCreate({ auth, categories }) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
-                        <InputError message={errors.price} className="mt-2" />
+                        <InputError message={errors.price} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <label
@@ -105,10 +105,7 @@ export default function ProductCreate({ auth, categories }) {
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         ></TextArea>
-                        <InputError
-                            message={errors.shortDescription}
-                            className="mt-2"
-                        />
+                        <InputError message={errors.shortDescription} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <label
@@ -146,7 +143,7 @@ export default function ProductCreate({ auth, categories }) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
-                        <InputError message={errors.image} className="mt-2" />
+                        <InputError message={errors.image} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <label
@@ -164,7 +161,7 @@ export default function ProductCreate({ auth, categories }) {
                             multiple
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
-                        <InputError message={errors.gallery} className="mt-2" />
+                        <InputError message={errors.gallery} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <label
@@ -174,11 +171,11 @@ export default function ProductCreate({ auth, categories }) {
                             Categories:
                         </label>
 
-                        <select 
-                        name="category" 
-                        id="category"
-                        onChange={handleChange}
-                        value={data.category}
+                        <select
+                            name="category"
+                            id="category"
+                            onChange={handleChange}
+                            value={data.category}
                         >
                             {categories.map((category, index) => (
                                 <option key={index} value={category.id}>
@@ -186,7 +183,7 @@ export default function ProductCreate({ auth, categories }) {
                                 </option>
                             ))}
                         </select>
-                        <InputError message={errors.category} className="mt-2" />
+                        <InputError message={errors.category} className="mt-2"/>
                     </div>
                     <button
                         type="submit"

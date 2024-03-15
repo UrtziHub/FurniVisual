@@ -13,7 +13,7 @@ class Cart extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'active'
+        'active'
     ];
 
     protected $casts = [
@@ -21,9 +21,9 @@ class Cart extends Model
         'updated_at' => 'datetime',
     ];
 
-    public function user(): BelongsTo
+    public function users(): BelongsToMany
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function orders(): HasMany

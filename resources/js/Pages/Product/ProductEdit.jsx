@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import PageLayout from "@/Layouts/PageLayout";
-import { useForm } from "@inertiajs/react";
+import {useForm} from "@inertiajs/react";
 import InputError from "@/Components/InputError";
 import TextInput from "@/Components/TextInput";
 import TextArea from "@/Components/TextArea";
 
-export default function ProductEdit({ auth, product }) {
-    const { data, setData, put, processing, errors } = useForm({
+export default function ProductEdit({auth, product}) {
+    const {data, setData, put, processing, errors} = useForm({
         name: product.name,
         price: product.price,
         shortDescription: product.shortDescription,
@@ -16,7 +16,7 @@ export default function ProductEdit({ auth, product }) {
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -69,7 +69,7 @@ export default function ProductEdit({ auth, product }) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
-                        <InputError message={errors.name} className="mt-2" />
+                        <InputError message={errors.name} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <label
@@ -87,7 +87,7 @@ export default function ProductEdit({ auth, product }) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         />
-                        <InputError message={errors.price} className="mt-2" />
+                        <InputError message={errors.price} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <label
@@ -105,10 +105,7 @@ export default function ProductEdit({ auth, product }) {
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             required
                         ></TextArea>
-                        <InputError
-                            message={errors.shortDescription}
-                            className="mt-2"
-                        />
+                        <InputError message={errors.shortDescription} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <label
@@ -140,7 +137,7 @@ export default function ProductEdit({ auth, product }) {
                             </label>
                             <img
                                 src={`/storage/products/${product.image}`}
-                                alt={'product-'+product.id}
+                                alt={'product-' + product.id}
                                 width={200}
                                 height={100}
                             />
@@ -153,7 +150,7 @@ export default function ProductEdit({ auth, product }) {
                             accept="image/*"
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
-                        <InputError message={errors.image} className="mt-2" />
+                        <InputError message={errors.image} className="mt-2"/>
                     </div>
                     <div className="mb-4">
                         <div>
@@ -186,7 +183,7 @@ export default function ProductEdit({ auth, product }) {
                             multiple
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
-                        <InputError message={errors.gallery} className="mt-2" />
+                        <InputError message={errors.gallery} className="mt-2"/>
                     </div>
                     <button
                         type="submit"
