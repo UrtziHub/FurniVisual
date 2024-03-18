@@ -73,7 +73,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update([
-            'role_id' => request('role_id'),
+            'is_admin' => $request->input('is_admin'),
         ]);
 
         return redirect(route('user.index'));
@@ -88,5 +88,14 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->is_admin = $request->is_admin;
+        $user->save();
+
+        return response()->json(['success' => 'Status change successfully.']);
     }
 }

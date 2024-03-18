@@ -77,7 +77,7 @@ export default function Dashboard(props) {
                             <h2 className="text-2xl font-bold mb-2">
                                 <IoCart className="inline-block text-3xl mb-4 scale-150"/>
                             </h2>
-                            User
+                            User Management
                         </div>
                     </Link>
                 ) : (
@@ -91,7 +91,7 @@ export default function Dashboard(props) {
                             <h2 className="text-2xl font-bold mb-2">
                                 <FaCreditCard className="inline-block text-3xl mb-4 scale-150"/>
                             </h2>
-                            Users Management
+                            Cart
                         </div>
                     </Link>
                 )}
