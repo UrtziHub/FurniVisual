@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -48,6 +49,15 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
+
+        // Create new car for this user
+        $cart = Cart::create([
+            'active' => true,
+        ]);
+        $cart->save();
+
+        // Asociar el carrito recién creado al usuario
+        $user->carts()->attach($cart);
 
         event(new Registered($user));
 

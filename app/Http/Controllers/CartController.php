@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class CartController extends Controller
@@ -15,7 +18,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = auth()->user()->carts->where('active', true)->first();
+        $user = auth()->user();
+        $cart = $user->carts->where('active', true)->first();
         $cart->load('products');
         return Inertia::render('Cart', compact('cart'));
     }
@@ -38,7 +42,48 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'product_id' => 'required',
+            'images' => 'array|max:5',
+            'images.*' => 'image|max:2048',
+            'model' => 'array|max:5',
+            'model.*' => 'mimes:jpeg,png,jpg,gif|max:2048',
+            'deadline' => 'required|date',
+            'prespective' => 'required|integer',
+            'information' => '',
+            'products_number' => 'required|integer',
+        ]);
+    
+        $user = auth()->user();
+    
+        // Obtén o crea un carrito activo para el usuario
+        $cart = $user->carts->where('active', true)->first();
+        if (!$cart) {
+            $cart = $user->carts->create(['active' => true]);
+        }
+    
+        $product = Product::findOrFail($request->input('product_id'));
+    
+        $imagesJsonNames = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $imageFileName = $imageFile->hashName();
+                // Guarda la imagen en el sistema de archivos
+                $imagesJsonNames[] = $imageFileName;
+            }
+        }
+    
+        // Adjunta el producto al carrito con los datos proporcionados
+        $cart->products()->attach($product->id, [
+            'products_number' => $request->input('products_number'),
+            'prespective' => $request->input('prespective'),
+            'model' => $request->input('model'),
+            'deadline' => $request->input('deadline'),
+            'images' => json_encode($imagesJsonNames), // Almacena los nombres de archivo como JSON
+            'information' => $request->input('information'),
+        ]);
+    
+        return Redirect::route('cart.index');
     }
 
     /**
