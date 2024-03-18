@@ -93,6 +93,15 @@ const Header = ({ user }) => {
                                                 Profile
                                             </Dropdown.Link>
                                             <Dropdown.Link
+                                                href={route("category.index")}
+                                            >
+                                                Categories
+                                            </Dropdown.Link>                                            <Dropdown.Link
+                                                href={route("admin.product.index")}
+                                            >
+                                                Products
+                                            </Dropdown.Link>
+                                            <Dropdown.Link
                                                 href={route("logout")}
                                                 method="post"
                                                 as="button"
