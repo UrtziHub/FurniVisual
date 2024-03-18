@@ -1,7 +1,7 @@
-import InputError from "@/Components/InputError";
-import TextArea from "@/Components/TextArea";
-import TextInput from "@/Components/TextInput";
 import PageLayout from "@/Layouts/PageLayout";
+import InputError from "@/Components/InputError";
+import TextInput from "@/Components/TextInput";
+import TextArea from "@/Components/TextArea";
 import {useForm} from "@inertiajs/react";
 
 export default function ProductCreate({auth, categories}) {

@@ -70,10 +70,9 @@ class ProductController extends Controller
             'full_description' => request('full_description'),
             'image' => $productFileName,
             'gallery' => $galleryFileNames,
+            'category_id' => request('category'),
         ]);
 
-        //Relate the category to the product
-        $product->category()->associate(request('category'));
         //Save the data
         $product->save();
 
@@ -85,7 +84,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return Inertia::render('Product/ProductEdit', compact('product'));
+        $categories = Category::all();
+        return Inertia::render('Product/ProductEdit', compact('product', 'categories'));
     }
 
     /**
@@ -97,6 +97,10 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'short_description' => 'required|string|max:255',
+            //'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gallery' => 'array|max:5',
+            'gallery.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category' => 'required',
         ]);
 
         $productFileName = $product->image;
@@ -121,10 +125,11 @@ class ProductController extends Controller
         $product->update([
             'name' => $request->input('name'),
             'price' => $request->input('price'),
-            'short_description' => $request->input('shortDescription'),
+            'short_description' => $request->input('short_description'),
             'full_description' => $request->input('full_description'),
             'image' => $productFileName,
             'gallery' => $galleryFileNames,
+            'category_id' => request('category'),
         ]);
 
         return Redirect::route('admin.product.index');
