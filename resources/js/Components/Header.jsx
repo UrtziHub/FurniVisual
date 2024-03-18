@@ -117,6 +117,7 @@ const Header = ({ user }) => {
                                     icon={
                                         <IoCart className="text-3xl hover:text-black transition-colors duration-300" />
                                     }
+                                    href={route('cart.index')}
                                 ></NavLink>
                             </li>
                         </ul>
@@ -182,7 +183,7 @@ const Header = ({ user }) => {
                                     </span>
                                 </div>
                                 <div className="flex flex-col text-xl">
-                                    <Link className="px-4 py-2 text-gray-600 text-2xl font-semibold hover:bg-gray-300 rounded transition ease-in-out duration-300">Cart</Link>
+                                    <Link className="px-4 py-2 text-gray-600 text-2xl font-semibold hover:bg-gray-300 rounded transition ease-in-out duration-300" href={route('cart.index')}>Cart</Link>
                                     <Link
                                         href={route("profile.edit")}
                                         className="px-4 py-2 hover:bg-gray-300 text-gray-600 text-2xl font-semibold rounded transition ease-in-out duration-300"
