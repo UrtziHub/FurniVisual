@@ -48,6 +48,9 @@ Route::get('/about', function () {
     return Inertia::render('About');
 })->name('about');
 
+// UserView page
+Route::get('/user-management', [UserController::class, 'index'])->name('user.index');
+
 // Catalogue page
 Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
 
