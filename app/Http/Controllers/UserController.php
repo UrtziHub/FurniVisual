@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('rol')->get();
+        $users = User::all();
 
         return Inertia::render('UserView', compact('users'));
     }

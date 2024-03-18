@@ -1,17 +1,17 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import PageLayout from "@/Layouts/PageLayout";
-import { Head, Link } from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import {
     FaUserAlt,
     FaRoad,
     FaCreditCard,
     FaShoppingCart,
 } from "react-icons/fa";
-import { IoCart, IoExit, IoMail, IoBag } from "react-icons/io5";
-import { BiSolidCategory } from "react-icons/bi";
+import {IoCart, IoExit, IoMail, IoBag} from "react-icons/io5";
+import {BiSolidCategory} from "react-icons/bi";
 
 export default function Dashboard(props) {
-    const { is_admin } = props.auth.user;
+    const {is_admin} = props.auth.user;
 
     return (
         <PageLayout
@@ -23,7 +23,7 @@ export default function Dashboard(props) {
                 </h2>
             }
         >
-            <Head title="Dashboard" />
+            <Head title="Dashboard"/>
 
             <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-4 my-8">
                 <Link
@@ -33,7 +33,7 @@ export default function Dashboard(props) {
                 >
                     <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
                         <h2 className="text-2xl font-bold mb-2">
-                            <FaUserAlt className="inline-block text-3xl mb-4 scale-150" />
+                            <FaUserAlt className="inline-block text-3xl mb-4 scale-150"/>
                         </h2>
                         Profile
                     </div>
@@ -46,7 +46,7 @@ export default function Dashboard(props) {
                     >
                         <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
                             <h2 className="text-2xl font-bold mb-2">
-                                <BiSolidCategory className="inline-block text-3xl mb-4 scale-150" />
+                                <BiSolidCategory className="inline-block text-3xl mb-4 scale-150"/>
                             </h2>
                             Categories
                         </div>
@@ -60,16 +60,16 @@ export default function Dashboard(props) {
                     >
                         <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
                             <h2 className="text-2xl font-bold mb-2">
-                                <IoMail className="inline-block text-3xl mb-4 scale-150" />
+                                <IoMail className="inline-block text-3xl mb-4 scale-150"/>
                             </h2>
                             Orders
                         </div>
                     </Link>
                 )}
-                {role_id === 1 && (
+                {is_admin ? (
                     <Link
-                        href={route("logout")}
-                        method="post"
+                        href={route("user.index")}
+                        //method="post"
                         as="button"
                         className="text-center p-4 transform transition duration-500 hover:scale-110"
                     >
@@ -77,13 +77,13 @@ export default function Dashboard(props) {
                             <h2 className="text-2xl font-bold mb-2">
                                 <IoCart className="inline-block text-3xl mb-4 scale-150"/>
                             </h2>
-                            Cart
+                            User
                         </div>
                     </Link>
-                )}
-                {role_id === 2 && (
+                ) : (
                     <Link
-                        href={route("user.index")}
+                        href={route("dashboard")}
+                        // method="post"
                         as="button"
                         className="text-center p-4 transform transition duration-500 hover:scale-110"
                     >
@@ -106,7 +106,7 @@ export default function Dashboard(props) {
                 >
                     <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
                         <h2 className="text-2xl font-bold mb-2">
-                            <FaRoad className="inline-block text-3xl mb-4 scale-150" />
+                            <FaRoad className="inline-block text-3xl mb-4 scale-150"/>
                         </h2>
                         Addresses
                     </div>
@@ -119,7 +119,7 @@ export default function Dashboard(props) {
                     >
                         <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
                             <h2 className="text-2xl font-bold mb-2">
-                                <IoBag className="inline-block text-3xl mb-4 scale-150" />
+                                <IoBag className="inline-block text-3xl mb-4 scale-150"/>
                             </h2>
                             Products
                         </div>
@@ -133,7 +133,7 @@ export default function Dashboard(props) {
                     >
                         <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
                             <h2 className="text-2xl font-bold mb-2">
-                                <FaCreditCard className="inline-block text-3xl mb-4 scale-150" />
+                                <FaCreditCard className="inline-block text-3xl mb-4 scale-150"/>
                             </h2>
                             Pays
                         </div>
@@ -147,7 +147,7 @@ export default function Dashboard(props) {
                 >
                     <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
                         <h2 className="text-2xl font-bold mb-2">
-                            <IoExit className="inline-block text-3xl mb-4 scale-150" />
+                            <IoExit className="inline-block text-3xl mb-4 scale-150"/>
                         </h2>
                         Log out
                     </div>
