@@ -1,7 +1,9 @@
+import { useForm } from "@inertiajs/react";
 import { IoTrashOutline } from "react-icons/io5";
 
 export default function CartCard({ product }) {
-    console.log(product);
+    const { delete: handleDelete } = useForm();
+
     return (
         <div className="flex items-center gap-4 p-4 bg-white rounded shadow-lg">
             <div className="w-48">
@@ -25,7 +27,13 @@ export default function CartCard({ product }) {
             <div className="flex items-center gap-1 bg-red-500 p-2 rounded-xl text-white font-bold cursor-pointer hover:bg-red-600">
                 {/* <h1>{product.price}</h1> */}
                 <IoTrashOutline className="font-black text-xl" />
-                <button>Delete</button>
+                <button
+                    onClick={() =>
+                        handleDelete(route("cart.destroy.product", {product}))
+                    }
+                >
+                    Delete
+                </button>
             </div>
         </div>
     );

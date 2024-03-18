@@ -204,12 +204,14 @@ export default function Show({ auth, product }) {
                             />
                         </div>
                         <p>Category:</p>
-                        <button>Add to cart</button>
+                        <div className="flex justify-center">
+                        <button className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl text-center">Add to cart</button>
+                        </div>
                     </form>
                 </div>
             </section>
             <section className="lg:px-32 px-8 bg-white">
-                <h1>asdasd</h1>
+                <h1>Next section to do</h1>
             </section>
         </PageLayout>
     );

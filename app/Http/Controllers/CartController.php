@@ -44,26 +44,33 @@ class CartController extends Controller
     {
         $this->validate($request, [
             'product_id' => 'required',
-            'images' => 'array|max:5',
+            'images' => 'required|array|max:5',
             'images.*' => 'image|max:2048',
             'model' => 'array|max:5',
             'model.*' => 'mimes:jpeg,png,jpg,gif|max:2048',
-            'deadline' => 'required|date',
+            'deadline' => 'date',
             'prespective' => 'required|integer',
             'information' => '',
             'products_number' => 'required|integer',
         ]);
-    
+
         $user = auth()->user();
-    
+
         // Obtén o crea un carrito activo para el usuario
         $cart = $user->carts->where('active', true)->first();
         if (!$cart) {
             $cart = $user->carts->create(['active' => true]);
         }
-    
+
         $product = Product::findOrFail($request->input('product_id'));
-    
+
+        $existingProduct = $cart->products()->where('product_id', $product->id)->first();
+
+        if($existingProduct){
+            return "exist";
+            // Cuando exista el producto en el carrito hacer algo
+        }
+
         $imagesJsonNames = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
@@ -72,7 +79,7 @@ class CartController extends Controller
                 $imagesJsonNames[] = $imageFileName;
             }
         }
-    
+
         // Adjunta el producto al carrito con los datos proporcionados
         $cart->products()->attach($product->id, [
             'products_number' => $request->input('products_number'),
@@ -82,7 +89,7 @@ class CartController extends Controller
             'images' => json_encode($imagesJsonNames), // Almacena los nombres de archivo como JSON
             'information' => $request->input('information'),
         ]);
-    
+
         return Redirect::route('cart.index');
     }
 
@@ -128,6 +135,14 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        //
+        return $cart;
+    }
+    public function destroyProduct(Product $product)
+    {
+        $user = auth()->user();
+        $cart = $user->carts->where('active', true)->first();
+        $cart->products()->detach($product);
+
+        return Redirect::route('cart.index');
     }
 }

@@ -99,6 +99,8 @@ Route::middleware(['auth','verified'])->group(function () {
     //Cart page
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::delete('/cart/product/{product}', [CartController::class, 'destroyProduct'])->name('cart.destroy.product');
+
 
 });
 require __DIR__ . '/auth.php';
