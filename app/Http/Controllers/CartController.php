@@ -49,7 +49,7 @@ class CartController extends Controller
             'model' => 'array|max:5',
             'model.*' => 'mimes:jpeg,png,jpg,gif|max:2048',
             'deadline' => 'date',
-            'prespective' => 'required|integer',
+            'perspective' => 'required|integer',
             'information' => '',
             'products_number' => 'required|integer',
         ]);
@@ -83,7 +83,7 @@ class CartController extends Controller
         // Adjunta el producto al carrito con los datos proporcionados
         $cart->products()->attach($product->id, [
             'products_number' => $request->input('products_number'),
-            'prespective' => $request->input('prespective'),
+            'perspective' => $request->input('perspective'),
             'model' => $request->input('model'),
             'deadline' => $request->input('deadline'),
             'images' => json_encode($imagesJsonNames), // Almacena los nombres de archivo como JSON

@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->json('images');
             $table->integer('products_number');
-            $table->integer('prespective');
+            $table->integer('perspective');
             $table->json('model')->nullable();
             $table->date('deadline');
             $table->string('information')->nullable();

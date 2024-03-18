@@ -2,17 +2,17 @@ import InputError from "@/Components/InputError";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import PageLayout from "@/Layouts/PageLayout";
-import { useForm } from "@inertiajs/react";
-import { IoCalendarOutline } from "react-icons/io5";
-import { Carousel } from "react-responsive-carousel";
+import {useForm} from "@inertiajs/react";
+import {IoCalendarOutline} from "react-icons/io5";
+import {Carousel} from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-export default function Show({ auth, product }) {
-    const { data, setData, post, processing, errors } = useForm({
+export default function Show({auth, product}) {
+    const {data, setData, post, processing, errors} = useForm({
         product_id: product.id,
         images: [],
         products_number: 1,
-        prespective: 1,
+        perspective: 1,
         model: [],
         deadline: null,
         information: "",
@@ -90,13 +90,13 @@ export default function Show({ auth, product }) {
                             </h1>
                             <TextInput
                                 type="number"
-                                name="prespective"
-                                value={data.prespective}
-                                id="prespective"
+                                name="perspective"
+                                value={data.perspective}
+                                id="perspective"
                                 onChange={handleOnChange}
                             />
                             <InputError
-                                message={errors.prespective}
+                                message={errors.perspective}
                                 className="mt-2"
                             />
                             <p className="text-base text-gray-600">
@@ -147,7 +147,7 @@ export default function Show({ auth, product }) {
                                     htmlFor="deadline"
                                     className="text-gray-600"
                                 >
-                                    <IoCalendarOutline className="text-xl" />
+                                    <IoCalendarOutline className="text-xl"/>
                                 </label>
                                 <TextInput
                                     type="date"
@@ -170,15 +170,15 @@ export default function Show({ auth, product }) {
                                 Description of the product
                             </p>
                             <TextArea
-                               name="information"
-                               value={data.information}
-                               id="information"
-                               onChange={handleOnChange}
+                                name="information"
+                                value={data.information}
+                                id="information"
+                                onChange={handleOnChange}
                                 rows="10"
                                 className="border-gray-300 rounded-md w-full"
                                 placeholder="Explain your idea of product..."
                             ></TextArea>
-                             <InputError
+                            <InputError
                                 message={errors.information}
                                 className="mt-2"
                             />
@@ -198,14 +198,17 @@ export default function Show({ auth, product }) {
                                 "
                                 multiple={true}
                             />
-                             <InputError
+                            <InputError
                                 message={errors.images}
                                 className="mt-2"
                             />
                         </div>
                         <p>Category:</p>
                         <div className="flex justify-center">
-                        <button className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl text-center">Add to cart</button>
+                            <button
+                                className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl text-center">Add
+                                to cart
+                            </button>
                         </div>
                     </form>
                 </div>
