@@ -1,20 +1,20 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import PageLayout from "@/Layouts/PageLayout";
-import { Head, Link } from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import {
     FaUserAlt,
     FaRoad,
     FaCreditCard,
     FaShoppingCart,
 } from "react-icons/fa";
-import { IoCart, IoExit, IoMail } from "react-icons/io5";
+import {IoCart, IoExit, IoMail} from "react-icons/io5";
 
 export default function Dashboard(props) {
     return (
         <PageLayout user={props.auth.user} errors={props.errors}>
             <section className="mx-8 md:mx-32 lg:mx-52 xl:mx-80">
                 <Head>
-                    <title>Terms of Service - Furnicisual</title>
+                    <title>Terms of Service - Furni Visual</title>
                 </Head>
                 <div className="mx-auto max-w-6xl p-6 bg-white rounded-md shadow-md">
                     <h1 className="text-3xl font-semibold mb-4 text-center">
@@ -45,12 +45,14 @@ export default function Dashboard(props) {
                             <strong>Service </strong> – the internet service
                             “furnivisual.com,” operating at
                             https://furnivisual.com/
-                        </li>{" "}
+                        </li>
+                        {" "}
                         <li>
                             <strong>Service Provider </strong> – the company
                             “Erynek Ltd.” with the registered address: 30-698
                             Kraków ul. Szybisko 26, NIP: 6793014045,
-                        </li>{" "}
+                        </li>
+                        {" "}
                         <li>
                             <strong>Service User </strong> – any natural person
                             accessing the Service and using services provided
@@ -416,7 +418,7 @@ export default function Dashboard(props) {
                             data about Users is automatically collected. This
                             includes:
                             <ul className="list-disc pl-6 space-y-2">
-                                <li>IP adress</li>
+                                <li>IP address</li>
                                 <li>Browser type</li>
                                 <li>Screen resolution</li>
                                 <li>Approximate location</li>

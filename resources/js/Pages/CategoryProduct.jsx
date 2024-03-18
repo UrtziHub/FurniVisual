@@ -1,13 +1,13 @@
 import ProductCard from "@/Components/ProductCard";
 import PageLayout from "@/Layouts/PageLayout";
-import { Link } from "@inertiajs/react";
+import {Link} from "@inertiajs/react";
 
-export default function Catalogue({ auth, products }) {
+export default function Catalogue({auth, products}) {
     return (
         <PageLayout user={auth.user} className="bg-slate-100">
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 py-10 lg:mx-32 mx-8">
-                {products.data.map((product,index) => (
-                    <ProductCard key={index} product={product}/> 
+                {products.data.map((product, index) => (
+                    <ProductCard key={index} product={product}/>
                 ))}
             </div>
             <div className="flex items-center justify-center border-t border-gray-200 bg-white px-4 py-3 sm:px-6">

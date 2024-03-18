@@ -114,7 +114,7 @@ const CategoryTable = ({data, thead}) => {
                                     width={70}
                                     className="aspect-square"
                                 />
-                            </td>   
+                            </td>
                         </tr>
                     ))}
                     </tbody>

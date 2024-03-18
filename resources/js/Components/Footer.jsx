@@ -1,5 +1,5 @@
-import { Link } from "@inertiajs/react";
-import { FaInstagram, FaYoutube, FaTwitter, FaFacebook } from "react-icons/fa";
+import {Link} from "@inertiajs/react";
+import {FaInstagram, FaYoutube, FaTwitter, FaFacebook} from "react-icons/fa";
 
 export default function Footer() {
     const curretYear = new Date().getFullYear();
@@ -77,13 +77,14 @@ export default function Footer() {
             </div>
 
             <div className="inline-flex items-center justify-center w-full">
-                <hr className="w-96 h-px my-8 bg-neutral-300 border-0 " />
+                <hr className="w-96 h-px my-8 bg-neutral-300 border-0 "/>
                 <span className="absolute px-3 font-medium -translate-x-1/2 left-1/2">
                     <div className="flex bg-white px-2 gap-3 text-2xl">
-                        <FaInstagram className="hover:text-fuchsia-400 cursor-pointer transition duration-300 ease-in-out" />
-                        <FaYoutube className="hover:text-red-600 cursor-pointer transition duration-300 ease-in-out" />
-                        <FaFacebook className="hover:text-blue-700 cursor-pointer transition duration-300 ease-in-out" />
-                        <FaTwitter className="hover:text-blue-400 cursor-pointer transition duration-300 ease-in-out" />
+                        <FaInstagram
+                            className="hover:text-fuchsia-400 cursor-pointer transition duration-300 ease-in-out"/>
+                        <FaYoutube className="hover:text-red-600 cursor-pointer transition duration-300 ease-in-out"/>
+                        <FaFacebook className="hover:text-blue-700 cursor-pointer transition duration-300 ease-in-out"/>
+                        <FaTwitter className="hover:text-blue-400 cursor-pointer transition duration-300 ease-in-out"/>
                     </div>
                 </span>
             </div>

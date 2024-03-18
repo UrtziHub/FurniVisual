@@ -1,20 +1,20 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import PageLayout from "@/Layouts/PageLayout";
-import { Head, Link } from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import {
     FaUserAlt,
     FaRoad,
     FaCreditCard,
     FaShoppingCart,
 } from "react-icons/fa";
-import { IoCart, IoExit, IoMail } from "react-icons/io5";
+import {IoCart, IoExit, IoMail} from "react-icons/io5";
 
 export default function Dashboard(props) {
     return (
         <PageLayout user={props.auth.user} errors={props.errors}>
             <section className="mx-8 md:mx-32 lg:mx-52 xl:mx-80">
                 <Head>
-                    <title>Privacy Policy - Furnicisual</title>
+                    <title>Privacy Policy - Furni Visual</title>
                 </Head>
                 <div className="mx-auto max-w-6xl p-6 bg-white rounded-md shadow-md">
                     <h1 className="text-3xl font-semibold mb-4 text-center">
