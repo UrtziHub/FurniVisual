@@ -67,7 +67,7 @@ export default function Dashboard(props) {
                     </Link>
                 )}
                 <Link
-                    href={route("dashboard")}
+                    href={route("cart.index")}
                     // method="post"
                     as="button"
                     className="text-center p-4 transform transition duration-500 hover:scale-110"

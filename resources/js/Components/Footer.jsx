@@ -15,21 +15,22 @@ export default function Footer() {
                         Home
                     </h1>
                     <li>
-                    <Link href={route("catalogue")} as="button">
+                        <Link href={route("catalogue")} as="button">
                             Catalogue
                         </Link>
                     </li>
                     <li>
-                    <Link href={route("cart.index")} as="button">
+                        <Link href={route("cart.index")} as="button">
                             Cart
                         </Link>
                     </li>
                     <li>
-                    <Link href={route("login")} as="button">
-                            Login   
-                        </Link>                    </li>
+                        <Link href={route("login")} as="button">
+                            Login
+                        </Link>{" "}
+                    </li>
                     <li>
-                    <Link href={route("register")} as="button">
+                        <Link href={route("register")} as="button">
                             Register
                         </Link>
                     </li>
@@ -58,10 +59,10 @@ export default function Footer() {
                     </li>
                 </ul>
                 <ul className="space-y-2">
-                    <h1 className="text-lg font-bold underline-offset-2 underline">
+                    <h1 className="text-lg font-bold underline">
                         <Link href={route("contact")} as="button">
                             Contact
-                        </Link>{" "}
+                        </Link>
                     </h1>
                     <li>
                         <Link href="/">Our website</Link>
@@ -79,8 +80,8 @@ export default function Footer() {
                 <hr className="w-96 h-px my-8 bg-neutral-300 border-0 " />
                 <span className="absolute px-3 font-medium -translate-x-1/2 left-1/2">
                     <div className="flex bg-white px-2 gap-3 text-2xl">
-                        <FaInstagram className="hover:text-purple-400 cursor-pointer transition duration-300 ease-in-out" />
-                        <FaYoutube className="hover:text-red-400 cursor-pointer transition duration-300 ease-in-out" />
+                        <FaInstagram className="hover:text-fuchsia-400 cursor-pointer transition duration-300 ease-in-out" />
+                        <FaYoutube className="hover:text-red-600 cursor-pointer transition duration-300 ease-in-out" />
                         <FaFacebook className="hover:text-blue-700 cursor-pointer transition duration-300 ease-in-out" />
                         <FaTwitter className="hover:text-blue-400 cursor-pointer transition duration-300 ease-in-out" />
                     </div>
