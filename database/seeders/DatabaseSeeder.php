@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
             CartSeeder::class,
         ]);*/
 
-
         Category::create([
             'name' => 'Centre Tables',
             'description' => 'Center tables are not only a practical piece of furniture, but also an important decorative element that adds character to any interior. Thanks to their versatility and diverse designs, they are an excellent investment, adding both functionality and aesthetics to the home environment.',
@@ -62,9 +61,9 @@ class DatabaseSeeder extends Seeder
 
 
         for ($j = 0; $j < 10; $j++) {
-            $num_ramdom = rand(1, 6);
+            $num_random = rand(1, 6);
             $product = Product::factory()->create([
-                'category_id' => $num_ramdom,
+                'category_id' => $num_random,
             ]);
             Review::factory()->create([
                 'product_id' => $product->id,

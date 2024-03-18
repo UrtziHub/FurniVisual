@@ -32,7 +32,7 @@ export default function Product({auth, products}) {
                 <section id="myScrollableSection">
                     <ProductTable
                         data={products}
-                        thead={["action", "name", "price", "image", "description"]}
+                        thead={["action", "name", "price", "image", "description", "category"]}
                     ></ProductTable>
                 </section>
             </div>

@@ -16,7 +16,7 @@ class ProductController extends Controller
 {
     public function index(): Response
     {
-        $products = Product::all();
+        $products = Product::with('category')->get();
 
         return Inertia::render('Product/Product', compact('products'));
     }
