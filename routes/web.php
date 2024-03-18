@@ -88,6 +88,11 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('contact');
 
+//Contact page
+Route::get('/regulations', function () {
+    return Inertia::render('Regulations');
+})->name('regulations');
+
 
 //Group of auth verified midleware
 Route::middleware(['auth','verified'])->group(function () {
