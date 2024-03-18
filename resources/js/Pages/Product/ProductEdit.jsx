@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from "react";
 import PageLayout from "@/Layouts/PageLayout";
-import {useForm} from "@inertiajs/react";
 import InputError from "@/Components/InputError";
 import TextInput from "@/Components/TextInput";
 import TextArea from "@/Components/TextArea";
+import {useForm} from "@inertiajs/react";
 
-export default function ProductEdit({auth, product}) {
+export default function ProductEdit({auth, product, categories}) {
     const {data, setData, put, processing, errors} = useForm({
         name: product.name,
         price: product.price,
@@ -13,6 +12,7 @@ export default function ProductEdit({auth, product}) {
         full_description: product.full_description,
         image: product.image,
         gallery: [],
+        category: product.category_id,
     });
 
     const handleChange = (e) => {
@@ -184,6 +184,28 @@ export default function ProductEdit({auth, product}) {
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                         <InputError message={errors.gallery} className="mt-2"/>
+                    </div>
+                    <div className="mb-4">
+                        <label
+                            htmlFor="gallery"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
+                            Categories:
+                        </label>
+
+                        <select
+                            name="category"
+                            id="category"
+                            onChange={handleChange}
+                            value={data.category}
+                        >
+                            {categories.map((category, index) => (
+                                <option key={index} value={category.id}>
+                                    {category.name}
+                                </option>
+                            ))}
+                        </select>
+                        <InputError message={errors.category} className="mt-2"/>
                     </div>
                     <button
                         type="submit"

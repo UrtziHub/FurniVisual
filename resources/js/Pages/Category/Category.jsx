@@ -17,8 +17,8 @@ export default function Category({auth, categories}) {
     return (
         <PageLayout user={auth.user} className="bg-slate-100">
             <div className="mx-4 xl:mx-64 py-4">
-                <div class="text-9xl font-black font-mono text-center">
-                    <span class="bg-clip-text text-transparent bg-center bg-[url('/images/catalogue.webp')]">
+                <div className="text-9xl font-black font-mono text-center">
+                    <span className="bg-clip-text text-transparent bg-center bg-[url('/images/catalogue.webp')]">
                         Categories
                     </span>
                 </div>

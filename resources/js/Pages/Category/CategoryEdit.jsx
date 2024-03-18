@@ -1,4 +1,3 @@
-import React, {useState, useEffect} from 'react';
 import PageLayout from "@/Layouts/PageLayout";
 import {useForm} from "@inertiajs/react";
 import TextInput from "@/Components/TextInput";
