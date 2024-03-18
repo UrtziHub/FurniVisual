@@ -95,8 +95,9 @@ Route::get('/regulations', function () {
 
 
 //Group of auth verified midleware
-Route::middleware(['auth','verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     //Cart page
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 });
+
 require __DIR__ . '/auth.php';
