@@ -46,7 +46,7 @@ export default function Footer() {
                     </li>
                     <li>
                         <Link href={route("privacy")} as="button">
-                            Regulations
+                            Privacy
                         </Link>
                     </li>
                 </ul>
