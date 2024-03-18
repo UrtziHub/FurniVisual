@@ -32,21 +32,29 @@ export default function Footer() {
                         Company
                     </h1>
                     <li>
-                        <Link href="/about">About us </Link>📍
+                        <Link href={route("regulations")} as="button">
+                            Regulations
+                        </Link>
                     </li>
                     <li>
                         <Link href="/">Shop</Link>
                     </li>
                     <li>
-                        <Link href="/how-order">How to order</Link>
+                        <Link href={route("how-order")} as="button">
+                            How to order
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/privacy">Privacy</Link>
+                        <Link href={route("privacy")} as="button">
+                            Regulations
+                        </Link>
                     </li>
                 </ul>
                 <ul className="space-y-2">
                     <h1 className="text-lg font-bold underline-offset-2 underline">
-                        <Link href="/contact">Contact</Link>
+                        <Link href={route("contact")} as="button">
+                            Contact
+                        </Link>{" "}
                     </h1>
                     <li>
                         <Link href="/">Our website</Link>
@@ -64,15 +72,17 @@ export default function Footer() {
                 <hr className="w-96 h-px my-8 bg-neutral-300 border-0 " />
                 <span className="absolute px-3 font-medium -translate-x-1/2 left-1/2">
                     <div className="flex bg-white px-2 gap-3 text-2xl">
-                        <FaInstagram className="hover:text-purple-400 cursor-pointer transition duration-300 ease-in-out"/>
-                        <FaYoutube className="hover:text-red-400 cursor-pointer transition duration-300 ease-in-out"/>
-                        <FaFacebook className="hover:text-blue-700 cursor-pointer transition duration-300 ease-in-out"/>
-                        <FaTwitter className="hover:text-blue-400 cursor-pointer transition duration-300 ease-in-out"/>
+                        <FaInstagram className="hover:text-purple-400 cursor-pointer transition duration-300 ease-in-out" />
+                        <FaYoutube className="hover:text-red-400 cursor-pointer transition duration-300 ease-in-out" />
+                        <FaFacebook className="hover:text-blue-700 cursor-pointer transition duration-300 ease-in-out" />
+                        <FaTwitter className="hover:text-blue-400 cursor-pointer transition duration-300 ease-in-out" />
                     </div>
                 </span>
             </div>
             <div>
-                <p className="text-neutral-500">© {curretYear}. Developed By FurniVisual</p>
+                <p className="text-neutral-500">
+                    © {curretYear}. Developed By FurniVisual
+                </p>
             </div>
         </div>
     );

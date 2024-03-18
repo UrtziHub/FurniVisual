@@ -128,7 +128,7 @@ export default function Dashboard(props) {
                         </li>
                         <li>
                             Technical requirements for using the Service:
-                            <ul>
+                            <ul className="list-disc pl-6 space-y-2">
                                 <li>
                                     Device with a display for viewing web pages,
                                 </li>
@@ -152,7 +152,7 @@ export default function Dashboard(props) {
                         <li>
                             Prohibited actions performed personally by Service
                             Users or using software:
-                            <ul>
+                            <ul className="list-disc pl-6 space-y-2">
                                 <li>
                                     Without written consent, decompilation and
                                     analysis of the source code,
@@ -199,7 +199,7 @@ export default function Dashboard(props) {
                     <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
                         IV. Conditions and Rules of Registration
                     </h2>
-                    <ul>
+                    <ul className="list-disc pl-6 space-y-2">
                         <li>
                             Service Users can use the Service without the need
                             for registration.
@@ -219,7 +219,7 @@ export default function Dashboard(props) {
                         <li>
                             Technical requirements related to account
                             registration:
-                            <ul>
+                            <ul className="list-disc pl-6 space-y-2">
                                 <li>Having an individual email account,</li>
                             </ul>
                         </li>
@@ -253,7 +253,7 @@ export default function Dashboard(props) {
                         </li>
                         <li>
                             Additional security rules regarding account use:
-                            <ul>
+                            <ul className="list-disc pl-6 space-y-2">
                                 <li>
                                     Registered Service Users are prohibited from
                                     sharing their login and password for their
@@ -268,7 +268,7 @@ export default function Dashboard(props) {
                         </li>
                         <li>
                             Account deletion:
-                            <ul>
+                            <ul className="list-disc pl-6 space-y-2">
                                 <li>
                                     Each Service User with an account on the
                                     Service has the possibility to independently
@@ -290,7 +290,7 @@ export default function Dashboard(props) {
                     <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
                         V. Terms of Newsletter Service
                     </h2>
-                    <ul>
+                    <ul className="list-disc pl-6 space-y-2">
                         <li>
                             Service Users can use the Service without the need
                             to subscribe to the Newsletter.
@@ -302,13 +302,13 @@ export default function Dashboard(props) {
                         <li>
                             Technical requirements related to the Newsletter
                             service:
-                            <ul>
+                            <ul className="list-disc pl-6 space-y-2">
                                 <li>Having an individual email account,</li>
                             </ul>
                         </li>
                         <li>
                             Terms of the Newsletter service:
-                            <ul>
+                            <ul className="list-disc pl-6 space-y-2">
                                 <li>
                                     Providing an individual email account in the
                                     electronic form,
@@ -325,7 +325,7 @@ export default function Dashboard(props) {
                         </li>
                         <li>
                             Scope of the Newsletter service:
-                            <ul>
+                            <ul className="list-disc pl-6 space-y-2">
                                 <li>
                                     Notifying about new updates, posts,
                                     contests, and other promotional activities
@@ -339,7 +339,7 @@ export default function Dashboard(props) {
                         </li>
                         <li>
                             Unsubscribing from the Newsletter service:
-                            <ul>
+                            <ul className="list-disc pl-6 space-y-2">
                                 <li>
                                     Each Service User subscribed to the
                                     Newsletter service has the possibility to
@@ -363,12 +363,12 @@ export default function Dashboard(props) {
                         VI. Terms of Communication and Provision of Other
                         Services on the Service
                     </h2>
-                    <ul>
+                    <ul className="list-disc pl-6 space-y-2">
                         <li>
                             The Service provides services and tools that allow
                             Service Users to interact with the Service in the
                             form of:
-                            <ul>
+                            <ul className="list-disc pl-6 space-y-2">
                                 <li>Contact form</li>
                                 <li>Commenting on posts and articles</li>
                             </ul>
@@ -376,7 +376,7 @@ export default function Dashboard(props) {
                         <li>
                             The Service provides contact information in the form
                             of:
-                            <ul>
+                            <ul className="list-disc pl-6 space-y-2">
                                 <li>Email address</li>
                             </ul>
                         </li>
@@ -385,6 +385,215 @@ export default function Dashboard(props) {
                             Service Provider, the personal data of Service Users
                             will be processed in accordance with the “Privacy
                             Policy,” which is an integral part of the Terms.
+                        </li>
+                    </ul>
+                    <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+                        VII. Collection of User Data
+                    </h2>
+                    <p>
+                        For the proper provision of services by the Service,
+                        legal protection of the Service Provider’s interests,
+                        and to ensure the compliance of the Service’s operation
+                        with applicable law, the Service Provider collects and
+                        processes certain data about Users through the Service.
+                    </p>
+                    <p>
+                        For the proper provision of services, the Service uses
+                        and stores some anonymous information about Users in
+                        cookies.
+                    </p>
+                    <p>
+                        The scope, purposes, method, and rules of data
+                        processing are available in the attachments to the
+                        Terms: “Information obligation under GDPR” and in the
+                        “Privacy Policy,” which is an integral part of the
+                        Terms.
+                    </p>
+                    <ul className="list-disc pl-6 space-y-2">
+                        <li>
+                            Data collected automatically: For the efficient
+                            operation of the Service and for statistics, some
+                            data about Users is automatically collected. This
+                            includes:
+                            <ul className="list-disc pl-6 space-y-2">
+                                <li>IP adress</li>
+                                <li>Browser type</li>
+                                <li>Screen resolution</li>
+                                <li>Approximate location</li>
+                                <li>Opened subpages of the service</li>
+                                <li>
+                                    Time spent on a specific subpage of the
+                                    service
+                                </li>
+                                <li>Operating system type</li>
+                                <li>Previous subpage address</li>
+                                <li>Referring page address</li>
+                                <li>Browser language</li>
+                                <li>Internet connection speed</li>
+                                <li>Internet service provider</li>
+                                <li>
+                                    Anonymous demographic data based on Google
+                                    Analytics:
+                                    <ul className="list-disc pl-6 space-y-2">
+                                        <li>Gender</li>
+                                        <li>Age</li>
+                                        <li>Interests</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <li>
+                                Data collected during registration: User name,
+                                first and last name, email address In the case
+                                of logged-in Users (those with an account on the
+                                Service), an identifier associated with the
+                                User’s account may be placed in cookies stored
+                                on the User’s device
+                            </li>
+                            <li>
+                                Data collected during newsletter subscription:
+                                Email address
+                            </li>
+                        </li>
+                    </ul>
+                    <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+                        VIII. Copyrights
+                    </h2>
+                    <ul className="list-disc pl-6 space-y-2">
+                        <li>
+                            The owner of the Service and copyrights to the
+                            service is the Service Provider.
+                        </li>
+                        <li>
+                            Some of the data posted on the Service is protected
+                            by copyrights belonging to companies, institutions,
+                            and third-party individuals not related to the
+                            Service Provider in any way. It is used based on
+                            obtained licenses or licenses free of charge.
+                        </li>
+                        <li>
+                            Based on the Act of February 4, 1994, on copyright
+                            and related rights, it is forbidden to use, copy,
+                            reproduce in any form, and store in search engines,
+                            excluding Google, Bing, Yahoo, NetSprint,
+                            DuckDuckGo, Facebook, and LinkedIn, any articles,
+                            descriptions, photos, and all other content, graphic
+                            materials, video, or audio in the Service without
+                            the written consent or consent given via Electronic
+                            Communication of their legal owner.
+                        </li>
+                        <li>
+                            According to the Act of February 4, 1994, on
+                            copyright protection, simple press information,
+                            understood as information alone, without the
+                            author’s commentary and evaluation, is not subject
+                            to protection. The author understands this as the
+                            possibility of using information from texts posted
+                            on the service, but not copying the whole or part of
+                            the articles unless indicated in the respective
+                            material provided in the Service.
+                        </li>
+                    </ul>
+                    <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+                        IX. Changes to the Terms
+                    </h2>
+                    <ul className="list-disc pl-6 space-y-2">
+                        <li>
+                            All provisions of the Terms may be unilaterally
+                            changed by the Service Provider at any time, without
+                            giving reasons.
+                        </li>
+                        <li>
+                            Information about the change of the Terms will be
+                            sent electronically to Users registered on the
+                            Service.
+                        </li>
+                        <li>
+                            In the event of a change in the Terms, its
+                            provisions come into effect immediately after its
+                            publication for Users without an account on the
+                            Service.
+                        </li>
+                        <li>
+                            In the event of a change in the Terms, its
+                            provisions come into effect with a 7-day
+                            transitional period for Users with accounts on the
+                            Service registered before the change of the Terms.
+                        </li>
+                        <li>
+                            It is considered that each User continuing to use
+                            the Service after a change in the Terms accepts it
+                            in full.
+                        </li>
+                    </ul>
+                    <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+                        X. Final Provisions{" "}
+                    </h2>
+                    <ul className="list-disc pl-6 space-y-2">
+                        <li>
+                            The Service Provider is not responsible in any way,
+                            except as allowed by applicable law, for the content
+                            transmitted and published on the Service by Service
+                            Users, for its accuracy, reliability, authenticity,
+                            or legal defects.
+                        </li>
+                        <li>
+                            The Service Provider will make every effort to
+                            ensure that the services of the Service are offered
+                            continuously. However, it does not assume any
+                            responsibility for disruptions caused by force
+                            majeure or unauthorized interference by Service
+                            Users, third parties, or the activity of external
+                            automated programs.
+                        </li>
+                        <li>
+                            The Service Provider reserves the right to change
+                            any information posted on the Service at the
+                            discretion of the Service Provider, at a time chosen
+                            by the Service Provider, without the need to inform
+                            Service Users using the Service.
+                        </li>
+                        <li>
+                            The Service Provider reserves the right to
+                            temporarily, completely, or partially disable the
+                            Service to improve it, add services, or carry out
+                            maintenance, without prior notice to Service Users.
+                        </li>
+                        <li>
+                            The Service Provider reserves the right to
+                            permanently disable the Service without prior notice
+                            to Service Users.
+                        </li>
+                        <li>
+                            The Service Provider reserves the right to assign in
+                            whole or in part all of its rights and obligations
+                            related to the Service without the consent and the
+                            possibility of expressing any objections by Service
+                            Users.
+                        </li>
+                        <li>
+                            Current and previous Service Terms are located on
+                            this subpage under the current Terms.
+                        </li>
+                        <li>
+                            In all matters related to the operation of the
+                            Service, please contact the Service Provider using
+                            one of the following contact methods:
+                            <ul className="list-disc pl-6 space-y-2">
+                                <li>
+                                    Using the contact form available on the
+                                    Service
+                                </li>
+                                <li>
+                                    Sending a message to the email address:
+                                    office@furnivisual.com
+                                </li>
+                                <li>
+                                    By phone call with the number: (+48)
+                                    504-999-310
+                                </li>
+                            </ul>
+                            Contact using the indicated means of communication
+                            only for matters related to the conducted Service.
                         </li>
                     </ul>
                 </div>
