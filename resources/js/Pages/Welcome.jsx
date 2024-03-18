@@ -12,18 +12,20 @@ export default function Welcome({props, auth}) {
                 <ReactCompareImage leftImage="images/compare1.webp" rightImage="images/compare2.jpg"/>
             </section>
             <section className="flex justify-center items-center py-10 mx-4 sm:mx-8 md:mx-16 lg:mx-32 xl:mx-64">
-                <img src="images/order-setup-jpg.webp" alt="order"/>
+                <div className="shadow-lg rounded-lg overflow-hidden">
+                    <img className="w-full h-auto" src="images/order-setup-jpg.webp" alt="order"/>
+                </div>
             </section>
             <section className="flex justify-center items-center py-10 mx-4 sm:mx-8 md:mx-16 lg:mx-32 xl:mx-64">
                 <Carousel autoPlay infiniteLoop showThumbs={false}>
                     <div>
-                        <img src="images/image1.jpg" alt=""/>
+                        <img className="w-full h-auto" src="images/image1.jpg" alt=""/>
                     </div>
                     <div>
-                        <img src="images/compare1.webp" alt=""/>
+                        <img className="w-full h-auto" src="images/compare1.webp" alt=""/>
                     </div>
                     <div>
-                        <img src="images/compare2.jpg" alt=""/>
+                        <img className="w-full h-auto" src="images/compare2.jpg" alt=""/>
                     </div>
                 </Carousel>
             </section>

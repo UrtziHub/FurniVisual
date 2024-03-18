@@ -67,7 +67,6 @@ export default function ProductEdit({auth, product, categories}) {
                             value={data.name}
                             onChange={handleChange}
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            required
                         />
                         <InputError message={errors.name} className="mt-2"/>
                     </div>
@@ -85,7 +84,7 @@ export default function ProductEdit({auth, product, categories}) {
                             value={data.price}
                             onChange={handleChange}
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            required
+                            
                         />
                         <InputError message={errors.price} className="mt-2"/>
                     </div>
@@ -103,7 +102,7 @@ export default function ProductEdit({auth, product, categories}) {
                             onChange={handleChange}
                             rows="4"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            required
+                            
                         ></TextArea>
                         <InputError message={errors.short_description} className="mt-2"/>
                     </div>

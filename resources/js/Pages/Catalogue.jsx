@@ -44,12 +44,6 @@ export default function Catalogue({auth, categories}) {
                     </Link>
                 ))}
             </section>
-            <h1 className="text-xl">
-                Catalogue
-                <a href="/" className="underline">
-                    go home
-                </a>
-            </h1>
         </PageLayout>
     );
 }

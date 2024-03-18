@@ -15,16 +15,23 @@ export default function Footer() {
                         Home
                     </h1>
                     <li>
-                        <Link href="/">Catalogue</Link>
+                    <Link href={route("catalogue")} as="button">
+                            Catalogue
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/">Cart</Link>
+                    <Link href={route("cart.index")} as="button">
+                            Cart
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/">Login</Link>
-                    </li>
+                    <Link href={route("login")} as="button">
+                            Login   
+                        </Link>                    </li>
                     <li>
-                        <Link href="/">Register</Link>
+                    <Link href={route("register")} as="button">
+                            Register
+                        </Link>
                     </li>
                 </ul>
                 <ul className="space-y-2">
@@ -46,7 +53,7 @@ export default function Footer() {
                     </li>
                     <li>
                         <Link href={route("privacy")} as="button">
-                            Regulations
+                            Privacy
                         </Link>
                     </li>
                 </ul>

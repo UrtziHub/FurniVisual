@@ -5,12 +5,12 @@ import {Link, useForm} from "@inertiajs/react";
 const ProductTable = ({data, thead}) => {
     const [search, setSearch] = useState("");
     const {delete: handleDelete} = useForm();
-
     const handleSearchChange = (e) => {
+
         setSearch(e.target.value);
     };
-
     const handleCheckboxChange = (e) => {
+
         // Handle checkbox changes
     };
 
@@ -66,6 +66,7 @@ const ProductTable = ({data, thead}) => {
                     {/* Table body */}
                     <tbody>
                     {data.map((item) => (
+
                         <tr
                             key={item.id}
                             className={`border-b hover:bg-gray-50 ${
@@ -104,7 +105,7 @@ const ProductTable = ({data, thead}) => {
                                 {item.name}
                             </td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {item.price}
+                                {item.price}€
                             </td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 <img
@@ -116,6 +117,9 @@ const ProductTable = ({data, thead}) => {
                             </td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {item.short_description}
+                            </td>
+                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                {item.category.name}
                             </td>
                         </tr>
                     ))}
