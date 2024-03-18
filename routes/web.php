@@ -98,5 +98,7 @@ Route::get('/regulations', function () {
 Route::middleware(['auth','verified'])->group(function () {
     //Cart page
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+
 });
 require __DIR__ . '/auth.php';
