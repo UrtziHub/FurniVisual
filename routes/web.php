@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Models\Category;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/about', function () {
     return Inertia::render('About');
 })->name('about');
+
+// UserView page
+Route::get('/user-management', [UserController::class, 'index'])->name('user.index');
 
 // Catalogue page
 Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
@@ -107,5 +111,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
     Route::delete('/cart/product/{product}', [CartController::class, 'destroyProduct'])->name('cart.destroy.product');
 });
+
+Route::get('/a', function () {
+    return \App\Models\User::all();
+})->name('a');
 
 require __DIR__ . '/auth.php';
