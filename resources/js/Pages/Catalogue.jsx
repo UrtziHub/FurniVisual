@@ -24,7 +24,7 @@ export default function Catalogue({auth, categories}) {
                     <Link
                         key={index}
                         href={route("categoryProduct", category)}
-                        className="flex flex-col h-full"
+                        className="flex flex-col h-full border border-gray-200 rounded-lg"
                     >
                         <img
                             src={`/images/categories/${category.image}`}
