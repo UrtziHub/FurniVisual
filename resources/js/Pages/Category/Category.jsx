@@ -26,7 +26,7 @@ export default function Category({auth, categories}) {
                     type="button"
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
-                    <Link href={route("category.create")}>Create Category</Link>
+                    <Link href={route("admin.category.create")}>Create Category</Link>
                 </button>
                 <section id="myScrollableSection">
                     <CategoryTable
