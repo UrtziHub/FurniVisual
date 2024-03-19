@@ -3,16 +3,16 @@ import InputError from "@/Components/InputError";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import PageLayout from "@/Layouts/PageLayout";
-import { useForm } from "@inertiajs/react";
-import { useState } from "react";
-import { IoCalendarOutline } from "react-icons/io5";
-import { Carousel } from "react-responsive-carousel";
+import {useForm} from "@inertiajs/react";
+import {useState} from "react";
+import {IoCalendarOutline} from "react-icons/io5";
+import {Carousel} from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-export default function Show({ auth, product }) {
+export default function Show({auth, product}) {
     const [hasModel, setHasModel] = useState(true);
 
-    const { data, setData, post, processing, errors } = useForm({
+    const {data, setData, post, processing, errors} = useForm({
         product_id: product.id,
         images: [],
         products_number: 1,
@@ -192,7 +192,7 @@ export default function Show({ auth, product }) {
                                     htmlFor="deadline"
                                     className="text-gray-600"
                                 >
-                                    <IoCalendarOutline className="text-xl" />
+                                    <IoCalendarOutline className="text-xl"/>
                                 </label>
                                 <TextInput
                                     type="date"
@@ -231,7 +231,8 @@ export default function Show({ auth, product }) {
                         </div>
                         <p>Category: </p>
                         <div className="flex justify-center">
-                            <button className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl text-center">
+                            <button
+                                className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl text-center">
                                 Add to cart
                             </button>
                         </div>

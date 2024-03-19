@@ -23,9 +23,9 @@ class CartController extends Controller
         $cart->load('products');
         $total = 0;
         foreach ($cart->products as $product) {
-        $total += $product->price;
-    }
-        return Inertia::render('Cart', compact('cart','total'));
+            $total += $product->price;
+        }
+        return Inertia::render('Cart', compact('cart', 'total'));
     }
 
     /**
@@ -70,7 +70,7 @@ class CartController extends Controller
 
         $existingProduct = $cart->products()->where('product_id', $product->id)->first();
 
-        if($existingProduct){
+        if ($existingProduct) {
             return "exist";
             // Cuando exista el producto en el carrito hacer algo
         }
@@ -141,6 +141,7 @@ class CartController extends Controller
     {
         return $cart;
     }
+
     public function destroyProduct(Product $product)
     {
         $user = auth()->user();
