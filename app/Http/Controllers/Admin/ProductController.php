@@ -93,15 +93,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $this->validate($request, [
+        $rules = [
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'short_description' => 'required|string|max:255',
-            //'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'gallery' => 'array|max:5',
-            'gallery.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'category' => 'required',
-        ]);
+        ];
+
+        if ($request->hasFile('image')) {
+            $rules['image'] = 'image|mimes:jpeg,png,jpg,gif|max:2048';
+        }
+
+        if ($request->hasFile('gallery')) {
+            $newGalleryFiles = $request->file('gallery');
+            if (count($product->gallery) + count($newGalleryFiles) > 5) {
+                return Redirect::back()->withErrors(['gallery' => 'Max: 5 images in gallery.']);
+            }
+        }
+
+        $this->validate($request, $rules);
 
         $productFileName = $product->image;
 

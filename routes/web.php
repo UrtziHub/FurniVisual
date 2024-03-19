@@ -61,17 +61,22 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/product/create', [AdminProductController::class, 'create'])->name('admin.product.create');
     Route::post('/admin/product', [AdminProductController::class, 'store'])->name('admin.product.store');
     Route::get('/admin/product/edit/{product}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
-    Route::put('/admin/product/{product}', [AdminProductController::class, 'update'])->name('admin.product.update');
+    Route::post('/admin/product/{product}', [AdminProductController::class, 'update'])->name('admin.product.update');
     Route::delete('/admin/product/{product}', [AdminProductController::class, 'destroy'])->name('admin.product.destroy');
 });
 
 // Category page
-Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
-Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
-Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
-Route::get('/category/index/{category}', [CategoryController::class, 'edit'])->name('category.edit');
-Route::put('/admin/category/{category}', [CategoryController::class, 'update'])->name('category.update');
-Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
+Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category.index');
+    Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+    Route::post('/admin/category', [CategoryController::class, 'store'])->name('admin.category.store');
+    Route::get('/admin/category/edit/{category}', [CategoryController::class, 'edit'])->name('admin.category.edit');
+    Route::put('/admin/category/{category}', [CategoryController::class, 'update'])->name('admin.category.update');
+    Route::delete('/admin/category/{category}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+});
+
+
 
 //How to order page
 Route::get('/how-order', function () {
