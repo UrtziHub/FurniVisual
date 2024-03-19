@@ -51,6 +51,7 @@ Route::get('/about', function () {
 
 // UserView page
 Route::get('/user-management', [UserController::class, 'index'])->name('user.index');
+Route::post('/user/changeStatus', [UserController::class, 'changeStatus']);
 
 // Catalogue page
 Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
@@ -104,7 +105,7 @@ Route::get('/regulations', function () {
     return Inertia::render('Regulations');
 })->name('regulations');
 
-// Group of auth verified midleware
+// Group of auth verified middleware
 Route::middleware(['auth', 'verified'])->group(function () {
     //Cart page
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');

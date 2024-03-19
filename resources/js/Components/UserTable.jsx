@@ -2,7 +2,7 @@ import {useState} from "react";
 import TextInput from "./TextInput";
 import {Link, useForm} from "@inertiajs/react";
 
-const UserTable = ({data, thead}) => {
+const UserTable = ({auth, data, thead}) => {
     const [search, setSearch] = useState("");
     const {delete: handleDelete} = useForm();
     const [checkedItems, setCheckedItems] = useState({});
@@ -15,13 +15,24 @@ const UserTable = ({data, thead}) => {
         // Handle checkbox changes
     };
 
-    const handleToggleChange = (itemAdmin) => {
-        setCheckedItems((prev) => ({
-            ...prev,
-            [itemAdmin]: !prev[itemAdmin] // set checked state based on item's is_admin function
-        }));
+    const handleToggleChange = (userId, isAdmin) => {
+        axios.post('/user/changeStatus', {
+            id: userId,
+            is_admin: !isAdmin
+        })
+            .then(response => {
+                if (response.data.success) {
+                    setCheckedItems((prev) => ({
+                        ...prev,
+                        [userId]: !isAdmin
+                    }));
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
     };
-
+    
     return (
         <div className="flex flex-col gap-4 py-4">
             <div className="flex flex-col sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between">
@@ -84,21 +95,23 @@ const UserTable = ({data, thead}) => {
                         >
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                 <div className="flex gap-4 font-bold">
-                                    <label className="inline-flex items-center cursor-pointer">
-                                        <input
-                                            type="checkbox"
-                                            value=""
-                                            className="sr-only peer"
-                                            checked={checkedItems[item.is_admin]} // set false by default
-                                            //checked={item.is_admin} // set checked state based on item's isAdmin property
-                                            onChange={() => handleToggleChange(item.is_admin)}
-                                        />
-                                        <div
-                                            className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                                        <span className="ms-3 text-sm font-medium text-gray-900 ">
-                                            Toggle me
-                                        </span>
-                                    </label>
+                                    {auth.user.id !== item.id && (
+                                        <label className="inline-flex items-center cursor-pointer">
+                                            <input
+                                                type="checkbox"
+                                                value=""
+                                                className="sr-only peer"
+                                                checked={checkedItems[item.id] || item.is_admin}
+                                                onChange={() => handleToggleChange(item.id, item.is_admin)}
+                                            />
+                                            <div
+                                                className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full transition-all duration-200 ease-in-out peer-checked:bg-blue-600 peer-unchecked:bg-gray-200 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-unchecked:after:translate-x-0 rtl:peer-unchecked:after:translate-x-0 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all duration-200 ease-in-out"
+                                            ></div>
+                                            <span className="ms-3 text-sm font-medium text-gray-900 ">
+        Toggle me
+    </span>
+                                        </label>
+                                    )}
                                 </div>
                             </td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">

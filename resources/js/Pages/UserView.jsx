@@ -25,7 +25,8 @@ export default function UserView({auth, users}) {
                 </div>
                 <section id="myScrollableSection">
                     <UserTable
-                            data={users}
+                        auth={auth}
+                        data={users}
                         thead={["rol", "name", "email", "phone"]}
                     ></UserTable>
                 </section>

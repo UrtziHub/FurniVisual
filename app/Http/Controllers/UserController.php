@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('id')->skip(1)->take(PHP_INT_MAX)->get();
 
         return Inertia::render('UserView', compact('users'));
     }
