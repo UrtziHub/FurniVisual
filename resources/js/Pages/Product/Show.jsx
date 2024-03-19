@@ -1,14 +1,18 @@
+import CantidadSelector from "@/Components/CantidadSelector";
 import InputError from "@/Components/InputError";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import PageLayout from "@/Layouts/PageLayout";
-import {useForm} from "@inertiajs/react";
-import {IoCalendarOutline} from "react-icons/io5";
-import {Carousel} from "react-responsive-carousel";
+import { useForm } from "@inertiajs/react";
+import { useState } from "react";
+import { IoCalendarOutline } from "react-icons/io5";
+import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-export default function Show({auth, product}) {
-    const {data, setData, post, processing, errors} = useForm({
+export default function Show({ auth, product }) {
+    const [hasModel, setHasModel] = useState(true);
+
+    const { data, setData, post, processing, errors } = useForm({
         product_id: product.id,
         images: [],
         products_number: 1,
@@ -28,7 +32,8 @@ export default function Show({auth, product}) {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("cart.store"));
+        console.log(data);
+        //post(route("cart.store"));
     };
     return (
         <PageLayout user={auth.user}>
@@ -60,19 +65,20 @@ export default function Show({auth, product}) {
                         <p>{product.full_description}</p>
                     </div>
                     <form onSubmit={submit} className="flex flex-col gap-2 ">
+                        <div></div>
                         <div>
                             <h1 className="font-semibold">
-                                Enter number of products{" "}
-                                <span className="text-red-500">*</span>
+                                Enter number of products
+                                <span className="text-red-500"> *</span>
                             </h1>
-                            <TextInput
-                                type="number"
-                                name="products_number"
+
+                            <CantidadSelector
                                 value={data.products_number}
-                                id="products_number"
-                                isFocused={true}
-                                onChange={handleOnChange}
-                            />
+                                cantidadInicial={1}
+                                onCantidadChange={(number) =>
+                                    setData("products_number", number)
+                                }
+                            ></CantidadSelector>
                             <InputError
                                 message={errors.products_number}
                                 className="mt-2"
@@ -85,16 +91,17 @@ export default function Show({auth, product}) {
                         </div>
                         <div>
                             <h1 className="font-bold">
-                                Enter number of products{" "}
-                                <span className="text-red-500">*</span>
+                                Enter number of products
+                                <span className="text-red-500"> *</span>
                             </h1>
-                            <TextInput
-                                type="number"
-                                name="perspective"
+                            <CantidadSelector
                                 value={data.perspective}
-                                id="perspective"
-                                onChange={handleOnChange}
-                            />
+                                cantidadInicial={1}
+                                maxCantidad={product.gallery.length}
+                                onCantidadChange={(number) =>
+                                    setData("perspective", number)
+                                }
+                            ></CantidadSelector>
                             <InputError
                                 message={errors.perspective}
                                 className="mt-2"
@@ -114,18 +121,20 @@ export default function Show({auth, product}) {
                                 <span className="text-red-500">*</span>
                             </h1>
                             <div className="flex items-center gap-2 uppercase text-base">
-                                <TextInput
+                                <input
                                     type="radio"
                                     name="model"
                                     id=""
                                     value={true}
+                                    onChange={() => setHasModel(false)}
                                 />
                                 yes
-                                <TextInput
+                                <input
                                     type="radio"
                                     name="model"
                                     id=""
                                     value={false}
+                                    onChange={() => setHasModel(true)}
                                 />
                                 no
                             </div>
@@ -133,6 +142,21 @@ export default function Show({auth, product}) {
                                 message={errors.model}
                                 className="mt-2"
                             />
+                            {hasModel !== null && hasModel === false && (
+                                <div>
+                                    <label
+                                        htmlFor="fileInput"
+                                        className="block uppercase text-base mt-2"
+                                    >
+                                        Upload File:
+                                    </label>
+                                    <input
+                                        type="file"
+                                        id="fileInput"
+                                        name="fileInput"
+                                    />
+                                </div>
+                            )}
                             <p className="text-base text-gray-600">
                                 (Mark YES if you have your own 3D model of the
                                 product, mark NO if you do not have a 3D model.
@@ -147,7 +171,7 @@ export default function Show({auth, product}) {
                                     htmlFor="deadline"
                                     className="text-gray-600"
                                 >
-                                    <IoCalendarOutline className="text-xl"/>
+                                    <IoCalendarOutline className="text-xl" />
                                 </label>
                                 <TextInput
                                     type="date"
@@ -184,7 +208,7 @@ export default function Show({auth, product}) {
                             />
                         </div>
                         <div>
-                            <TextInput
+                            <input
                                 type="file"
                                 name="images"
                                 id="images"
@@ -205,9 +229,8 @@ export default function Show({auth, product}) {
                         </div>
                         <p>Category:</p>
                         <div className="flex justify-center">
-                            <button
-                                className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl text-center">Add
-                                to cart
+                            <button className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl text-center">
+                                Add to cart
                             </button>
                         </div>
                     </form>
