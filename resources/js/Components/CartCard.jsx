@@ -30,7 +30,7 @@ export default function CartCard({product}) {
                 <IoTrashOutline className="font-black text-xl"/>
                 <button
                     onClick={() =>
-                        handleDelete(route("cart.destroy.product", {product}))
+                        handleDelete(route("cart.destroy.product", product))
                     }
                 >
                     Delete
