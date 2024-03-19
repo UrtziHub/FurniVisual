@@ -39,7 +39,7 @@ export default function About({auth}) {
                 <div
                     className="flex flex-col justify-center items-center bg-gray-100 mx-4 sm:mx-8 md:mx-40 rounded-t-lg shadow-lg pb-4 sm:pb-10">
                     <h1 className="pt-4 sm:pt-10 text-2xl sm:text-3xl">Our Team</h1>
-                    <p className="px-2 sm:px-4 md:px-52 py-4 sm:py-10 text-center text-sm sm:text-lx">Our Graphic Design
+                    <p className="px-2 sm:px-4 md:px-52 py-4 sm:py-10 text-center sm:text-lx">Our Graphic Design
                         Team, although not traditional artists, is a group of skilled professionals dedicated to
                         enhancing your projects. We take pride in our after-sales support, ensuring your satisfaction
                         with the final result.
@@ -47,8 +47,8 @@ export default function About({auth}) {
                         masterpieces. At our Graphic Studio, your concepts find a home where technical prowess meets
                         reliability, and client-provided materials evolve into captivating visual narratives. Welcome to
                         a space where quality, punctuality, and client satisfaction are our guiding principles.</p>
-                    <div className="flex items-center justify-center w-full md:w-{500px}">
-                        <img src="images/group.png" alt="" className="rounded-b-lg"/>
+                    <div className="flex items-center justify-center w-full md:w-{200px}">
+                        <img src="images/group.png" alt="" className="rounded-b-lg w-40"/>
                     </div>
                 </div>
             </div>
