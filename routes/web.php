@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Models\Category;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,10 @@ Route::get('/about', function () {
     return Inertia::render('About');
 })->name('about');
 
+// UserView page
+Route::get('/user-management', [UserController::class, 'index'])->name('user.index');
+Route::post('/user/changeStatus', [UserController::class, 'changeStatus']);
+
 // Catalogue page
 Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
 
@@ -56,6 +61,8 @@ Route::get('/category-product/{category}', [CategoryProductController::class, 'i
 
 // Product page for users
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+
+// Product page for admins
 Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/product', [AdminProductController::class, 'index'])->name('admin.product.index');
     Route::get('/admin/product/create', [AdminProductController::class, 'create'])->name('admin.product.create');
@@ -67,6 +74,8 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
 
 // Category page
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
+
+// Category page for admins
 Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category.index');
     Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
@@ -76,37 +85,36 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::delete('/admin/category/{category}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
 });
 
-
-
-//How to order page
+// How to order page
 Route::get('/how-order', function () {
     return Inertia::render('HowOrder');
 })->name('how-order');
 
-//Privacy page
+// Privacy page
 Route::get('/privacy', function () {
     return Inertia::render('Privacy');
 })->name('privacy');
 
-//Contact page
+// Contact page
 Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('contact');
 
-//Contact page
+// Regulation page
 Route::get('/regulations', function () {
     return Inertia::render('Regulations');
 })->name('regulations');
 
-
-//Group of auth verified midleware
+// Group of auth verified middleware
 Route::middleware(['auth', 'verified'])->group(function () {
     //Cart page
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
     Route::delete('/cart/product/{product}', [CartController::class, 'destroyProduct'])->name('cart.destroy.product');
-
-
 });
+
+Route::get('/a', function () {
+    return \App\Models\User::all();
+})->name('a');
 
 require __DIR__ . '/auth.php';
