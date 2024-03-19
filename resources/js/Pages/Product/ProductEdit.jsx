@@ -5,15 +5,17 @@ import TextArea from "@/Components/TextArea";
 import {useForm} from "@inertiajs/react";
 
 export default function ProductEdit({auth, product, categories}) {
-    const {data, setData, put, processing, errors} = useForm({
+    const {data, setData, post, processing, errors} = useForm({
         name: product.name,
         price: product.price,
         short_description: product.short_description,
         full_description: product.full_description,
         image: product.image,
-        gallery: [],
+        gallery: product.gallery,
         category: product.category_id,
     });
+
+    console.log(product.gallery);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -42,7 +44,7 @@ export default function ProductEdit({auth, product, categories}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        put(route("admin.product.update", product));
+        post(route("admin.product.update", product));
     };
 
     return (
