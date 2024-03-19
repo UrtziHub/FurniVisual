@@ -1,5 +1,7 @@
 import CantidadSelector from "@/Components/CantidadSelector";
 import InputError from "@/Components/InputError";
+import MainButton from "@/Components/MainButton";
+import StarRating from "@/Components/Rate";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import PageLayout from "@/Layouts/PageLayout";
@@ -239,7 +241,30 @@ export default function Show({ auth, product }) {
                 </div>
             </section>
             <section className="lg:px-32 px-8 bg-white">
-                <h1>Next section to do</h1>
+                <div>
+                    <h1>Description</h1>
+                    <hr />
+                    <h1>{product.full_description}</h1>
+                </div>
+                <div>
+                    <h1>Reviews</h1>
+                    <hr />
+                    <form action="" className="flex flex-col gap-4">
+                        <div>
+                            <h1>Review for the product: {product.name}</h1>
+                        </div>
+                        <div>
+                            <TextArea
+                                placeholder="Enter the comment"
+                                className="w-full"
+                            />
+                        </div>
+                        <div>
+                            <StarRating totalStars={5} onChange={(rate)=>(console.log(rate))} />
+                        </div>
+                        <MainButton>Send message</MainButton>
+                    </form>
+                </div>
             </section>
         </PageLayout>
     );
