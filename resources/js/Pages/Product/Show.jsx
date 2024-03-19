@@ -33,7 +33,7 @@ export default function Show({ auth, product }) {
     const submit = (e) => {
         e.preventDefault();
         console.log(data);
-        //post(route("cart.store"));
+        post(route("cart.store"));
     };
     return (
         <PageLayout user={auth.user}>
