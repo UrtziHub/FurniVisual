@@ -10,7 +10,7 @@ class CategoryProductController extends Controller
     {
         $products = $category->products()->with('reviews')->paginate(4);
         foreach ($products as $product) {
-            $product->averageRate = $product->reviews->avg('rate');
+            $product->averageRate = round($product->reviews->avg('rate'),2);
         }
         return inertia('CategoryProduct', [
             'products' => $products,
