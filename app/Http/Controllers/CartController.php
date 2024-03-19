@@ -21,7 +21,11 @@ class CartController extends Controller
         $user = auth()->user();
         $cart = $user->carts->where('active', true)->first();
         $cart->load('products');
-        return Inertia::render('Cart', compact('cart'));
+        $total = 0;
+        foreach ($cart->products as $product) {
+        $total += $product->price;
+    }
+        return Inertia::render('Cart', compact('cart','total'));
     }
 
     /**

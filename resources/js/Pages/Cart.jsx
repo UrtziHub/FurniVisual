@@ -1,8 +1,7 @@
 import CartCard from "@/Components/CartCard";
 import PageLayout from "@/Layouts/PageLayout";
 
-export default function Cart({ auth, cart }) {
-    console.log(cart);
+export default function Cart({ auth, cart, total }) {
     return (
         <PageLayout user={auth.user}>
             <div className="flex bg-gray-100 p-10 gap-2">
@@ -35,7 +34,7 @@ export default function Cart({ auth, cart }) {
                             <div className="flex flex-col gap-1">
                                 <div className="flex justify-between">
                                     <h1 className="font-semibold">Subtotal:</h1>
-                                    <h1>{" 120 "}</h1>
+                                    <h1>{total}</h1>
                                 </div>
                                 <div className="flex justify-between border-b-2">
                                     <h1 className="font-semibold">VAT:</h1>
@@ -44,7 +43,7 @@ export default function Cart({ auth, cart }) {
                             </div>
                             <div className="flex justify-between mt-4 mb-2">
                                 <h1 className="font-semibold">Total:</h1>
-                                <h1>{" 120 "}</h1>
+                                <h1>{total}</h1>
                             </div>
                         </div>
                         <button className="bg-black text-white font-bold px-10 py-2 rounded-xl">
