@@ -100,7 +100,7 @@ Route::get('/regulations', function () {
     return Inertia::render('Regulations');
 })->name('regulations');
 
-// Group of auth verified midleware
+// Group of auth verified middleware
 Route::middleware(['auth', 'verified'])->group(function () {
     //Cart page
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
