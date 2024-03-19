@@ -25,7 +25,7 @@ export default function ProductCard({product}) {
                 <div className="flex justify-between">
                     <div className="flex gap-1 items-center">
                         <p className="bg-yellow-300 font-bold p-1 rounded-lg">
-                            {product.averageRate}
+                            {product.averageRate > 0 ? product.averageRate:'0.0'}
                         </p>
                         <IoStar className="text-yellow-300 text-2xl"/>
                         <IoStar className="text-yellow-300 text-2xl"/>
