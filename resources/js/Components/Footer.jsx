@@ -1,8 +1,8 @@
-import { Link } from "@inertiajs/react";
-import { FaInstagram, FaYoutube, FaTwitter, FaFacebook } from "react-icons/fa";
+import {Link} from "@inertiajs/react";
+import {FaInstagram, FaYoutube, FaTwitter, FaFacebook} from "react-icons/fa";
 
 export default function Footer() {
-    const curretYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear();
     return (
         <div className="px-4 gb-white flex flex-col items-center w-full border-t bg-white mt-4">
             <div className="flex py-4 text-5xl uppercase">
@@ -54,7 +54,7 @@ export default function Footer() {
                     </li>
                     <li>
                         <Link href={route("privacy")} as="button">
-                            Privacy
+                            Privacy Policy
                         </Link>
                     </li>
                 </ul>
@@ -77,7 +77,7 @@ export default function Footer() {
             </div>
 
             <div className="inline-flex items-center justify-center w-full">
-                <hr className="w-96 h-px my-8 bg-neutral-300 border-0 " />
+                <hr className="w-96 h-px my-8 bg-neutral-300 border-0 "/>
                 <span className="absolute px-3 font-medium -translate-x-1/2 left-1/2">
                     <div className="flex bg-white px-2 gap-3 text-2xl">
                         <FaInstagram href="https://www.instagram.com/erynek3d/" className="hover:text-fuchsia-400 cursor-pointer transition duration-300 ease-in-out" />
@@ -89,7 +89,7 @@ export default function Footer() {
             </div>
             <div>
                 <p className="text-neutral-500">
-                    © {curretYear}. Developed By FurniVisual
+                    © {currentYear}. Developed By FurniVisual
                 </p>
             </div>
         </div>

@@ -1,6 +1,6 @@
-import { Link } from "@inertiajs/react";
+import {Link} from "@inertiajs/react";
 
-export default function DashboardCard({href,icon,text}) {
+export default function DashboardCard({href, icon, text}) {
     return (
         <Link
             href={href}

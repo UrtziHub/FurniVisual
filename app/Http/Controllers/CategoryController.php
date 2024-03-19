@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
-
 class CategoryController extends Controller
 {
     /**

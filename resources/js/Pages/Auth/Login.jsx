@@ -1,14 +1,14 @@
-import { useEffect } from "react";
+import {useEffect} from "react";
 import Checkbox from "@/Components/Checkbox";
 import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
-import { Head, Link, useForm } from "@inertiajs/react";
+import {Head, Link, useForm} from "@inertiajs/react";
 
-export default function Login({ status, canResetPassword }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
+export default function Login({status, canResetPassword}) {
+    const {data, setData, post, processing, errors, reset} = useForm({
         email: "",
         password: "",
         remember: "",
@@ -37,7 +37,7 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <GuestLayout>
-            <Head title="Log in" />
+            <Head title="Log in"/>
             {status && (
                 <div className="mb-4 font-medium text-sm text-green-600">
                     {status}
@@ -45,7 +45,7 @@ export default function Login({ status, canResetPassword }) {
             )}
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value="Email"/>
 
                     <TextInput
                         id="email"
@@ -58,11 +58,11 @@ export default function Login({ status, canResetPassword }) {
                         onChange={handleOnChange}
                     />
 
-                    <InputError message={errors.email} className="mt-2" />
+                    <InputError message={errors.email} className="mt-2"/>
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlFor="password" value="Password"/>
 
                     <TextInput
                         id="password"
@@ -74,7 +74,7 @@ export default function Login({ status, canResetPassword }) {
                         onChange={handleOnChange}
                     />
 
-                    <InputError message={errors.password} className="mt-2" />
+                    <InputError message={errors.password} className="mt-2"/>
                 </div>
 
                 <div className="block mt-4">
@@ -104,7 +104,7 @@ export default function Login({ status, canResetPassword }) {
                         Log in
                     </PrimaryButton>
                     <Link
-                        className="     
+                        className="
                             ml-4 inline-flex items-center px-4 py-2 bg-white border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150
                         "
                         href={route("register")}

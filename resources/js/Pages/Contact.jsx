@@ -2,11 +2,11 @@ import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import PageLayout from "@/Layouts/PageLayout";
 import {FaCalendarAlt} from "react-icons/fa";
-import { FaLocationDot, FaPhoneVolume } from "react-icons/fa6";
+import {FaLocationDot, FaPhoneVolume} from "react-icons/fa6";
 
-import { MdEmail } from "react-icons/md";
+import {MdEmail} from "react-icons/md";
 
-export default function Catalogue({ auth, categories }) {
+export default function Catalogue({auth, categories}) {
     console.log(categories);
     return (
         <PageLayout user={auth.user} className="bg-slate-100">
@@ -29,7 +29,7 @@ export default function Catalogue({ auth, categories }) {
                 <div className="flex flex-col gap-7 justify-start px-4 md:px-36">
                     <div className="flex flex-row gap-7 justify-start mt-16">
                         <h2 className="text-2xl font-bold mb-2">
-                            <FaLocationDot className="inline-block text-3xl mb-4 scale-150" />
+                            <FaLocationDot className="inline-block text-3xl mb-4 scale-150"/>
                         </h2>
                         <p className="font-bold text-3xl text-left">
                             ul. Szybisko 26 98 Krakow
@@ -37,7 +37,7 @@ export default function Catalogue({ auth, categories }) {
                     </div>
                     <div className="flex flex-row gap-7 justify-start">
                         <h2 className="text-2xl font-bold mb-2">
-                            <FaCalendarAlt  className="inline-block text-3xl mb-4 scale-150" />
+                            <FaCalendarAlt className="inline-block text-3xl mb-4 scale-150"/>
                         </h2>
                         <p className="font-bold text-3xl">
                             Monday – Friday 8:00am – 4:00pm
@@ -45,7 +45,7 @@ export default function Catalogue({ auth, categories }) {
                     </div>
                     <div className="flex flex-row gap-7 justify-start">
                         <h2 className="text-2xl font-bold mb-2">
-                            <FaPhoneVolume  className="inline-block text-3xl mb-4 scale-150" />
+                            <FaPhoneVolume className="inline-block text-3xl mb-4 scale-150"/>
                         </h2>
                         <p className="font-bold text-3xl">
                             TEL: (+48)504-999-310
@@ -53,7 +53,7 @@ export default function Catalogue({ auth, categories }) {
                     </div>
                     <div className="flex flex-row gap-7 justify-start">
                         <h2 className="text-2xl font-bold mb-2">
-                            <MdEmail className="inline-block text-3xl mb-4 scale-150" />
+                            <MdEmail className="inline-block text-3xl mb-4 scale-150"/>
                         </h2>
                         <p className="font-bold text-3xl">
                             office@furnivisual.com
@@ -73,13 +73,13 @@ export default function Catalogue({ auth, categories }) {
                 </div>
             </section>
             <hr
-                            class="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient mx-auto"
-                            style={{
-                                height: "3  px",
-                                background:
-                                    "linear-gradient(to right, black, #FFB900)",
-                            }}
-                        />
+                class="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient mx-auto"
+                style={{
+                    height: "3  px",
+                    background:
+                        "linear-gradient(to right, black, #FFB900)",
+                }}
+            />
             <section className="mx-36 ">
                 <form className="flex flex-col gap-5 justify-center px-4 md:px-36 py-10">
                     <h1 className="text-4xl font-bold mb-10 underline underline-offset-8">

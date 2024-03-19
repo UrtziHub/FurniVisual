@@ -25,7 +25,7 @@ export default function Dashboard(props) {
                             Choose Your Style
                         </h2>
                         <hr
-                            class="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient text-right"
+                            className="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient text-right"
                             style={{
                                 height: "9px",
                                 background:
@@ -51,7 +51,7 @@ export default function Dashboard(props) {
                             Customize to Your Needs
                         </h2>
                         <hr
-                            class="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient mx-auto"
+                            className="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient mx-auto"
                             style={{
                                 height: "9px",
                                 background:
@@ -70,7 +70,7 @@ export default function Dashboard(props) {
                             Know the cost and lead time
                         </h2>
                         <hr
-                            class="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient text-right"
+                            className="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient text-right"
                             style={{
                                 height: "9px",
                                 background:
@@ -96,7 +96,7 @@ export default function Dashboard(props) {
                             Confirm the order
                         </h2>
                         <hr
-                            class="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient ml-auto"
+                            className="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient ml-auto"
                             style={{
                                 height: "9px",
                                 background:
@@ -117,7 +117,7 @@ export default function Dashboard(props) {
                             Start of production{" "}
                         </h2>
                         <hr
-                            class="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient text-right"
+                            className="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient text-right"
                             style={{
                                 height: "9px",
                                 background:
@@ -143,7 +143,7 @@ export default function Dashboard(props) {
                             See the preview of the project{" "}
                         </h2>
                         <hr
-                            class="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient ml-auto"
+                            className="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient ml-auto"
                             style={{
                                 height: "9px",
                                 background:
@@ -163,7 +163,7 @@ export default function Dashboard(props) {
                             Confirm the final design
                         </h2>
                         <hr
-                            class="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient text-right"
+                            className="w-3/4 md:w-1/2 lg:w-1/3 my-4 gradient text-right"
                             style={{
                                 height: "9px",
                                 background:
