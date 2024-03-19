@@ -32,8 +32,7 @@ export default function Show({ auth, product }) {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(data);
-        //post(route("cart.store"));
+        post(route("cart.store"));
     };
     return (
         <PageLayout user={auth.user}>
@@ -65,10 +64,33 @@ export default function Show({ auth, product }) {
                         <p>{product.full_description}</p>
                     </div>
                     <form onSubmit={submit} className="flex flex-col gap-2 ">
-                        <div></div>
-                        <div>
+                        <div className="mb-4">
                             <h1 className="font-semibold">
-                                Enter number of products
+                                Upload samples:
+                                <span className="text-red-500"> *</span>
+                            </h1>
+                            <input
+                                type="file"
+                                name="images"
+                                id="images"
+                                onChange={handleImagesChange}
+                                className="block w-full text-sm text-slate-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-full file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-black file:text-white
+                                hover:file:bg-neutral-800 file:cursor-pointer
+                                "
+                                multiple={true}
+                            />
+                            <InputError
+                                message={errors.images}
+                                className="mt-2"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <h1 className="font-semibold">
+                                Enter number of furnitures:
                                 <span className="text-red-500"> *</span>
                             </h1>
 
@@ -84,14 +106,14 @@ export default function Show({ auth, product }) {
                                 className="mt-2"
                             />
                             <p className="text-base text-gray-600">
-                                (enter the number of products you want to
-                                include in the arrangement (you can add several
-                                product variants to one arrangement/view))
+                                Enter number of products you want to include in
+                                the arrangement (you can add several product
+                                variants to one arrangement)
                             </p>
                         </div>
-                        <div>
+                        <div className="mb-4">
                             <h1 className="font-bold">
-                                Enter number of products
+                                Enter number of prespectives:
                                 <span className="text-red-500"> *</span>
                             </h1>
                             <CantidadSelector
@@ -107,19 +129,11 @@ export default function Show({ auth, product }) {
                                 className="mt-2"
                             />
                             <p className="text-base text-gray-600">
-                                (enter the number of visualizations you choose)
-                                When you choose the number of visualizations
-                                also choose the number of the visualization you
-                                want us to use (please only choose as many
-                                visualizations as there are images on the
-                                product)
+                                Enter the number of scenes you want
                             </p>
                         </div>
-                        <div>
-                            <h1 className="font-bold">
-                                Enter number of products{" "}
-                                <span className="text-red-500">*</span>
-                            </h1>
+                        <div className="mb-4">
+                            <h1 className="font-bold">3D Model:</h1>
                             <div className="flex items-center gap-2 uppercase text-base">
                                 <input
                                     type="radio"
@@ -154,18 +168,25 @@ export default function Show({ auth, product }) {
                                         type="file"
                                         id="fileInput"
                                         name="fileInput"
+                                        className="block w-full text-sm text-slate-500
+                                        file:mr-4 file:py-2 file:px-4
+                                        file:rounded-full file:border-0
+                                        file:text-sm file:font-semibold
+                                        file:bg-black file:text-white
+                                        hover:file:bg-neutral-800 file:cursor-pointer
+                                        "
                                     />
                                 </div>
                             )}
                             <p className="text-base text-gray-600">
-                                (Mark YES if you have your own 3D model of the
+                                Mark YES if you have your own 3D model of the
                                 product, mark NO if you do not have a 3D model.
                                 NOTE: If you do not have a model, please send
-                                photos, drawings, design or reference.)
+                                photos, drawings, design or reference.
                             </p>
                         </div>
-                        <div>
-                            <p className="font-bold">I have a deadline</p>
+                        <div className="mb-4">
+                            <p className="font-bold">I have a deadline:</p>
                             <div className="flex items-center space-x-2">
                                 <label
                                     htmlFor="deadline"
@@ -186,12 +207,13 @@ export default function Show({ auth, product }) {
                                 className="mt-2"
                             />
                             <p className="text-base text-gray-600">
-                                (We do not work on weekends.)
+                                Enter your deadline. NOTE: we do not work on
+                                weekends
                             </p>
                         </div>
-                        <div>
+                        <div className="mb-4">
                             <p className="font-bold">
-                                Description of the product
+                                Any additional information:
                             </p>
                             <TextArea
                                 name="information"
@@ -207,27 +229,7 @@ export default function Show({ auth, product }) {
                                 className="mt-2"
                             />
                         </div>
-                        <div>
-                            <input
-                                type="file"
-                                name="images"
-                                id="images"
-                                onChange={handleImagesChange}
-                                className="block w-full text-sm text-slate-500
-                                file:mr-4 file:py-2 file:px-4
-                                file:rounded-full file:border-0
-                                file:text-sm file:font-semibold
-                                file:bg-black file:text-white
-                                hover:file:bg-neutral-800 file:cursor-pointer
-                                "
-                                multiple={true}
-                            />
-                            <InputError
-                                message={errors.images}
-                                className="mt-2"
-                            />
-                        </div>
-                        <p>Category:</p>
+                        <p>Category: </p>
                         <div className="flex justify-center">
                             <button className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl text-center">
                                 Add to cart
