@@ -181,7 +181,7 @@ export default function ProductCreate({auth, categories}) {
                                 <option key={index} value={category.id}>
                                     {category.name}
                                 </option>
-                                ))}
+                            ))}
                         </select>
                         <InputError message={errors.category} className="mt-2"/>
                     </div>

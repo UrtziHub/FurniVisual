@@ -1,7 +1,7 @@
 import CartCard from "@/Components/CartCard";
 import PageLayout from "@/Layouts/PageLayout";
 
-export default function Cart({ auth, cart, total }) {
+export default function Cart({auth, cart, total}) {
     return (
         <PageLayout user={auth.user}>
             <div className="flex bg-gray-100 p-10 gap-2">
