@@ -2,7 +2,7 @@ import {Link} from "@inertiajs/react";
 import {FaInstagram, FaYoutube, FaTwitter, FaFacebook} from "react-icons/fa";
 
 export default function Footer() {
-    const curretYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear();
     return (
         <div className="px-4 gb-white flex flex-col items-center w-full border-t bg-white mt-4">
             <div className="flex py-4 text-5xl uppercase">
@@ -54,7 +54,7 @@ export default function Footer() {
                     </li>
                     <li>
                         <Link href={route("privacy")} as="button">
-                            Privacy
+                            Privacy Policy
                         </Link>
                     </li>
                 </ul>
@@ -90,7 +90,7 @@ export default function Footer() {
             </div>
             <div>
                 <p className="text-neutral-500">
-                    © {curretYear}. Developed By FurniVisual
+                    © {currentYear}. Developed By FurniVisual
                 </p>
             </div>
         </div>
