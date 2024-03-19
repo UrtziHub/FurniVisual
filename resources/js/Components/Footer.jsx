@@ -59,8 +59,8 @@ export default function Footer() {
                     </li>
                 </ul>
                 <ul className="space-y-2">
-                    <h1 className="text-lg font-bold underline">
-                        <Link href={route("contact")} as="button">
+                    <h1 className="text-lg font-bold">
+                        <Link href={route("contact")} as="button" className="underline">
                             Contact
                         </Link>
                     </h1>
