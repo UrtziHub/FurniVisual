@@ -6,13 +6,13 @@ import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import PageLayout from "@/Layouts/PageLayout";
 import {useForm} from "@inertiajs/react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {IoCalendarOutline} from "react-icons/io5";
 import {Carousel} from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function Show({auth, product}) {
-    const [hasModel, setHasModel] = useState(true);
+    const [hasModel, setHasModel] = useState(false);
 
     const {data, setData, post, processing, errors} = useForm({
         product_id: product.id,
@@ -31,9 +31,20 @@ export default function Show({auth, product}) {
     const handleImagesChange = (event) => {
         setData("images", Array.from(event.target.files));
     };
+    const handleModelChange = (event) => {
+        setData("model", Array.from(event.target.files));
+    };
+    //Para cuando el usuario cambie el valor del modelo
+    useEffect(() => {
+        const updateModel = async () => {
+            await setData("model", hasModel ? [] : null);
+        };
+        updateModel();
+    }, [hasModel]);
 
     const submit = (e) => {
         e.preventDefault();
+        console.log(data);
         post(route("cart.store"));
     };
     return (
@@ -139,18 +150,18 @@ export default function Show({auth, product}) {
                             <div className="flex items-center gap-2 uppercase text-base">
                                 <input
                                     type="radio"
-                                    name="model"
+                                    name="radio"
                                     id=""
-                                    value={true}
-                                    onChange={() => setHasModel(false)}
+                                    value={false}
+                                    onChange={() => setHasModel(true)}
                                 />
                                 yes
                                 <input
                                     type="radio"
-                                    name="model"
+                                    name="radio"
                                     id=""
-                                    value={false}
-                                    onChange={() => setHasModel(true)}
+                                    value={true}
+                                    onChange={() => setHasModel(false)}
                                 />
                                 no
                             </div>
@@ -158,7 +169,7 @@ export default function Show({auth, product}) {
                                 message={errors.model}
                                 className="mt-2"
                             />
-                            {hasModel !== null && hasModel === false && (
+                            {hasModel !== null && hasModel === true && (
                                 <div>
                                     <label
                                         htmlFor="fileInput"
@@ -168,8 +179,10 @@ export default function Show({auth, product}) {
                                     </label>
                                     <input
                                         type="file"
-                                        id="fileInput"
-                                        name="fileInput"
+                                        id="model"
+                                        name="model"
+                                        onChange={handleModelChange}
+                                        multiple
                                         className="block w-full text-sm text-slate-500
                                         file:mr-4 file:py-2 file:px-4
                                         file:rounded-full file:border-0
@@ -231,7 +244,7 @@ export default function Show({auth, product}) {
                                 className="mt-2"
                             />
                         </div>
-                        <p>Category: </p>
+                        <p>Category: {product.category.name}</p>
                         <div className="flex justify-center">
                             <button
                                 className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl text-center">
@@ -261,7 +274,7 @@ export default function Show({auth, product}) {
                             />
                         </div>
                         <div>
-                            <StarRating totalStars={5} onChange={(rate)=>(console.log(rate))} />
+                            <StarRating totalStars={5} />
                         </div>
                         <MainButton>Send message</MainButton>
                     </form>
