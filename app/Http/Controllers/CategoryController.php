@@ -117,6 +117,12 @@ class CategoryController extends Controller
         $category->delete();
 
         //Eliminar imagen relacionada
+        /*$categoryFileName = $category->image;
+        $categoryFile = public_path('storage/categories/' . $categoryFileName);
+        if (file_exists($categoryFile
+        )) {
+            unlink($categoryFile);
+        }*/
 
         return Redirect::back();
     }

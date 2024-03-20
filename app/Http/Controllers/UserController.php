@@ -96,6 +96,8 @@ class UserController extends Controller
         $user->is_admin = $request->is_admin;
         $user->save();
 
+        //return Redirect::back();
+
         return response()->json(['success' => 'Status change successfully.']);
     }
 }
