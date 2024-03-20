@@ -3,20 +3,7 @@ import PageLayout from "@/Layouts/PageLayout";
 import { Link } from "@inertiajs/react";
 
 export default function Cart({auth, cart, total}) {
-    const handleCheckout = () => {
-        axios.post('/checkout')
-            .then(response => {
-                // Redirige al usuario a la URL de la sesión de Stripe
-                window.location.href = response.data.url;
-            })
-            .catch(error => {
-                // Maneja cualquier error que pueda ocurrir
-                console.error('Error during checkout:', error);
-            });
-    };
-
     return (
-
         <PageLayout user={auth.user}>
             <div className="flex flex-col md:flex-row bg-gray-100 p-10 gap-2">
                 <div className="rounded flex flex-1 flex-col gap-2">
@@ -63,10 +50,9 @@ export default function Cart({auth, cart, total}) {
                                 <h1>{total}</h1>
                             </div>
                         </div>
-                        <button onClick={handleCheckout}
-                                className="bg-black text-white font-bold px-10 py-2 rounded-xl">
+                        <Link href={route('checkout')} method="POST" className="bg-black text-white font-bold px-10 py-2 rounded-xl">
                             Proceed to checkout
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

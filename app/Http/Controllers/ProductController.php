@@ -78,8 +78,8 @@ class ProductController extends Controller
         $order->session_id = $session->id;
         $order->save();
 
-        // En lugar de redirigir al usuario, devolvemos la URL de la sesión en una respuesta JSON
-        return response()->json(['url' => $session->url]);
+        // En lugar de devolver una respuesta JSON, devolvemos una respuesta de Inertia
+        return Inertia::render('Checkout', ['checkoutUrl' => $session->url]);
     }
 
     public function success(Request $request)
