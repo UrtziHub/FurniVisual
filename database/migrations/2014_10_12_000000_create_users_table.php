@@ -35,6 +35,7 @@ return new class extends Migration {
             'phone' => 123456789,
             'email' => 'admin@example.org',
             'is_admin' => true,
+            'email_verified_at' => now(),
             'password' => Hash::make('admin'),
         ]);
 
@@ -44,6 +45,7 @@ return new class extends Migration {
             'website' => 'example.com',
             'phone' => 123456788,
             'email' => 'user@example.org',
+            'email_verified_at' => now(),
             'password' => Hash::make('user'),
         ]);
     }
