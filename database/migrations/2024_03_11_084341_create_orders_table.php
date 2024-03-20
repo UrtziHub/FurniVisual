@@ -14,16 +14,19 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->integer('ship_addresd_id')->nullable();
-            $table->integer('fact_address_id')->nullable();
+            $table->string('order_number');
             $table->integer('tax_number');
-            $table->integer('cart_id')->constrained('cart')->onDelete('cascade');
             $table->integer('zip');
             $table->integer('phone');
             $table->string('email');
             $table->text('notes')->nullable();
-            $table->string('number');
+            $table->string('status');
+            $table->decimal('total_price', 6, 2);
+            $table->string('session_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->integer('cart_id')->constrained('cart')->onDelete('cascade');
+            $table->integer('ship_address_id')->nullable();
+            $table->integer('fact_address_id')->nullable();
             $table->timestamps();
         });
     }

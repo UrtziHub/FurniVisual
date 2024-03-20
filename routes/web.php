@@ -122,11 +122,16 @@ Route::get('/a', function () {
 })->name('a');
 
 // Checkout page
+Route::post('/checkout', [ProductController::class, 'checkout'])->name('checkout');
+//Route::match(['get', 'post'], '/checkout', [ProductController::class, 'checkout'])->name('checkout');
+Route::get('/success', [ProductController::class, 'success'])->name('checkout.success');
+Route::get('/cancel', [ProductController::class, 'cancel'])->name('checkout.cancel');
+
 /*Route::get('/charge', function () {
     return view('charge');
 });*/
 
-Route::get('/checkout', function (Request $request) {
+/*Route::get('/checkout', function (Request $request) {
     $stripePriceId = 'price_1OwOIrRpxT4HivI8Jc7AhMdw';
 
     $quantity = 1;
@@ -177,6 +182,6 @@ Route::get('/cart/{cart}/checkout', function (Request $request, Cart $cart) {
 
 Route::get('/billing-portal', function (Request $request) {
     return $request->user()->redirectToBillingPortal(route('billing'));
-});
+});*/
 
 require __DIR__ . '/auth.php';

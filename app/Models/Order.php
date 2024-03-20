@@ -12,7 +12,19 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'ship_addresd_id', 'fact_address_id', 'tax_number', 'cart_id', 'zip', 'phone', 'email', 'notes', 'number'
+        'order_number',
+        'tax_number',
+        'zip',
+        'phone',
+        'email',
+        'notes',
+        'status',
+        'total_price',
+        'session_id',
+        'user_id',
+        'cart_id',
+        'ship_address_id',
+        'fact_address_id',
     ];
 
     protected $casts = [
