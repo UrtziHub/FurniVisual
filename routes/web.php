@@ -105,6 +105,11 @@ Route::get('/regulations', function () {
     return Inertia::render('Regulations');
 })->name('regulations');
 
+// Adresses page
+Route::get('/editAdresses', function () {
+    return Inertia::render('Profile/EditAdresses');
+})->name('editAdresses');
+
 // Group of auth verified middleware
 Route::middleware(['auth', 'verified'])->group(function () {
     //Cart page
