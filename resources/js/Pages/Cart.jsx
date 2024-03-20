@@ -50,9 +50,9 @@ export default function Cart({auth, cart, total}) {
                                 <h1>{total}</h1>
                             </div>
                         </div>
-                        <button className="bg-black text-white font-bold px-10 py-2 rounded-xl">
+                        <Link href={route('checkout',total)} className="bg-black text-white font-bold px-10 py-2 rounded-xl">
                             Proceed to checkout
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

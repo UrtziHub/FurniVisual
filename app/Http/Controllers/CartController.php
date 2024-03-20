@@ -51,7 +51,7 @@ class CartController extends Controller
             'product_id' => 'required',
             'images' => 'required|array|max:5',
             'images.*' => 'image|max:2048',
-            'model' => 'array|max:5',
+            'model' => 'nullable|array|max:5',
             'model.*' => 'mimes:jpeg,png,jpg,gif|max:2048',
             'deadline' => 'nullable|date',
             'perspective' => 'required|integer',
