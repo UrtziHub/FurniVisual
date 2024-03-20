@@ -113,8 +113,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/cart/product/{product}', [CartController::class, 'destroyProduct'])->name('cart.destroy.product');
 });
 
-Route::get('/a', function () {
-    return \App\Models\User::all();
-})->name('a');
-
 require __DIR__ . '/auth.php';

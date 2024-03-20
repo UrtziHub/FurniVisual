@@ -28,6 +28,7 @@ class ProductController extends Controller
      */
     public function show(Product $product): Response
     {
+        $product->load('category');
         return Inertia::render('Product/Show', compact('product'));
     }
 }

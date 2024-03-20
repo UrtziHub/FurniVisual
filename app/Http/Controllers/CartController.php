@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class CartController extends Controller
@@ -54,8 +55,8 @@ class CartController extends Controller
             'model.*' => 'mimes:jpeg,png,jpg,gif|max:2048',
             'deadline' => 'nullable|date',
             'perspective' => 'required|integer',
-            'information' => '',
             'products_number' => 'required|integer',
+            'information' => 'nullable|string',
         ]);
 
         $user = auth()->user();
@@ -71,16 +72,26 @@ class CartController extends Controller
         $existingProduct = $cart->products()->where('product_id', $product->id)->first();
 
         if ($existingProduct) {
-            return "exist";
+            return "This product already exist pls edit or create a new one";
             // Cuando exista el producto en el carrito hacer algo
         }
-
+        //Create Json for the database
         $imagesJsonNames = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
-                $imageFileName = $imageFile->hashName();
+                $imageFileName = $user->id . '-' . $imageFile->hashName();
                 // Guarda la imagen en el sistema de archivos
+                $imageFile->storeAs('cart', $imageFileName, 'public');
                 $imagesJsonNames[] = $imageFileName;
+            }
+        }
+        $modelJsonNames = [];
+        if ($request->hasFile('model')) {
+            foreach ($request->file('model') as $modelFile) {
+                $modelFileName = $user->id . '-' . $modelFile->hashName();
+                // Guarda el modelo en el sistema de archivos
+                $modelFile->storeAs('model', $modelFileName, 'public');
+                $modelJsonNames[] = $modelFileName;
             }
         }
 
@@ -88,9 +99,9 @@ class CartController extends Controller
         $cart->products()->attach($product->id, [
             'products_number' => $request->input('products_number'),
             'perspective' => $request->input('perspective'),
-            'model' => $request->input('model'),
+            'model' => json_encode($modelJsonNames),
             'deadline' => $request->input('deadline'),
-            'images' => json_encode($imagesJsonNames), // Almacena los nombres de archivo como JSON
+            'images' => json_encode($imagesJsonNames),
             'information' => $request->input('information'),
         ]);
 
@@ -146,6 +157,23 @@ class CartController extends Controller
     {
         $user = auth()->user();
         $cart = $user->carts->where('active', true)->first();
+
+        // Obtén las imágenes y los modelos asociados al producto
+        $images = $cart->products()->where('product_id', $product->id)->pluck('images')->first();
+        $models = $cart->products()->where('product_id', $product->id)->pluck('model')->first();
+
+        // Decodifica los nombres de archivo de las imágenes y los modelos
+        $images = json_decode($images, true);
+        $models = json_decode($models, true);
+
+        // Elimina los archivos de imagen del servidor
+        foreach ($images as $imageName) {
+            Storage::disk('public')->delete('cart/' . $imageName);
+        }
+        foreach ($models as $modelName) {
+            Storage::disk('public')->delete('model/' . $modelName);
+        }
+        
         $cart->products()->detach($product);
 
         return Redirect::route('cart.index');
