@@ -47,7 +47,7 @@ class ProductController extends Controller
         $lineItems = [];
         foreach ($products as $product) {
             $total_price += $product->price;
-            $lineItems[] =[
+            $lineItems[] = [
                 'price_data' => [
                     'currency' => 'usd',
                     'product_data' => [
@@ -103,7 +103,8 @@ class ProductController extends Controller
                 $order->save();
             }
 
-            return view('product . checkout - success', compact('customer'));
+            return Inertia::render('CheckoutSuccess');
+
         } catch (\Exception $e) {
             throw new NotFoundHttpException();
         }
@@ -111,7 +112,7 @@ class ProductController extends Controller
 
     public function cancel()
     {
-
+        return Inertia::render('CheckoutCancel');
     }
 
     public function webhook()

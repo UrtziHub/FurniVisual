@@ -123,9 +123,9 @@ Route::get('/a', function () {
 
 // Checkout page
 Route::post('/checkout', [ProductController::class, 'checkout'])->name('checkout');
-//Route::match(['get', 'post'], '/checkout', [ProductController::class, 'checkout'])->name('checkout');
 Route::get('/success', [ProductController::class, 'success'])->name('checkout.success');
 Route::get('/cancel', [ProductController::class, 'cancel'])->name('checkout.cancel');
+Route::post('/webhook', [ProductController::class, 'webhook'])->name('checkout.webhook');
 
 /*Route::get('/charge', function () {
     return view('charge');
