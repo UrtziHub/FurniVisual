@@ -56,7 +56,7 @@ class CartController extends Controller
             'deadline' => 'nullable|date',
             'perspective' => 'required|integer',
             'products_number' => 'required|integer',
-            'information' => 'string',
+            'information' => 'nullable|string',
         ]);
 
         $user = auth()->user();
@@ -171,7 +171,7 @@ class CartController extends Controller
             Storage::disk('public')->delete('cart/' . $imageName);
         }
         foreach ($models as $modelName) {
-            Storage::disk('public')->delete('models/' . $modelName);
+            Storage::disk('public')->delete('model/' . $modelName);
         }
         
         $cart->products()->detach($product);
