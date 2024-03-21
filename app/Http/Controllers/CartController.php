@@ -166,18 +166,22 @@ class CartController extends Controller
         $images = json_decode($images, true);
         $models = json_decode($models, true);
 
-        // Elimina los archivos de imagen del servidor
-        foreach ($images as $imageName) {
-            Storage::disk('public')->delete('cart/' . $imageName);
-        }
-        foreach ($models as $modelName) {
-            Storage::disk('public')->delete('model/' . $modelName);
+        if ($images) {
+            // Elimina los archivos de imagen del servidor
+            foreach ($images as $imageName) {
+                Storage::disk('public')->delete('cart/' . $imageName);
+            }
         }
 
+        if ($models) {
+            // Elimina los archivos de modelo del servidor
+            foreach ($models as $modelName) {
+                Storage::disk('public')->delete('model/' . $modelName);
+            }
+        }
+        
         $cart->products()->detach($product);
 
         return Redirect::route('cart.index');
     }
-
-
 }

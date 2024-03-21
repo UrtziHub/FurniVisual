@@ -112,6 +112,8 @@ class OrderController extends Controller
 
     public function webhook()
     {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
         // This is your Stripe CLI webhook secret for testing your endpoint locally.
         $endpoint_secret = env('STRIPE_WEBHOOK_SECRET');
 
@@ -142,7 +144,7 @@ class OrderController extends Controller
                 if ($order && $order->status === 'unpaid') {
                     $user = auth()->user();
                     $cart = $user->carts->where('active', true)->first();
-                    
+
                     $order->status = 'paid';
                     $order->save();
                     $cart->active = false;
