@@ -60,7 +60,7 @@ export default function Cart({ auth, cart, total }) {
                             className="bg-black text-white font-bold px-10 py-2 rounded-xl"
                         >
                         </Link>*/}
-                        <Link href={route('checkout',total)} className="bg-black text-white font-bold px-10 py-2 rounded-xl">
+                        <Link href={route('checkout')} method="POST" className="bg-black text-white font-bold px-10 py-2 rounded-xl">
                             Proceed to checkout
                         </Link>
                     </div>

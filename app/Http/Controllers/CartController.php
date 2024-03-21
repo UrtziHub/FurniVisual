@@ -173,9 +173,11 @@ class CartController extends Controller
         foreach ($models as $modelName) {
             Storage::disk('public')->delete('model/' . $modelName);
         }
-        
+
         $cart->products()->detach($product);
 
         return Redirect::route('cart.index');
     }
+
+
 }

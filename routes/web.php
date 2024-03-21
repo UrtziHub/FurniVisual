@@ -10,14 +10,17 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\Cart;
 use App\Mail\Ejemplo;
 use App\Models\Category;
+use App\Models\Order;
 use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Laravel\Cashier\Cashier;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,5 +146,68 @@ Route::get('/email/verification-notification', function (Request $request) {
 
     return back()->with('message','Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+// Checkout page
+Route::post('/checkout', [ProductController::class, 'checkout'])->name('checkout');
+Route::get('/success', [ProductController::class, 'success'])->name('checkout.success');
+Route::get('/cancel', [ProductController::class, 'cancel'])->name('checkout.cancel');
+Route::post('/webhook', [ProductController::class, 'webhook'])->name('checkout.webhook');
+
+/*Route::get('/charge', function () {
+    return view('charge');
+});*/
+
+/*Route::get('/checkout', function (Request $request) {
+    $stripePriceId = 'price_1OwOIrRpxT4HivI8Jc7AhMdw';
+
+    $quantity = 1;
+
+    return $request->user()->checkout([$stripePriceId => $quantity], [
+        'success_url' => route('checkout-success'),
+        'cancel_url' => route('checkout-cancel'),
+    ]);
+})->name('checkout');
+
+Route::get('/checkout/success', function (Request $request) {
+    $sessionId = $request->get('session_id');
+
+    if ($sessionId === null) {
+        return;
+    }
+
+    $session = Cashier::stripe()->checkout->sessions->retrieve($sessionId);
+
+    if ($session->payment_status !== 'paid') {
+        return;
+    }
+
+    $orderId = $session['metadata']['order_id'] ?? null;
+
+    $order = Order::findOrFail($orderId);
+
+    $order->update(['status' => 'completed']);
+
+    return view('checkout-success', ['order' => $order]);
+})->name('checkout-success');
+
+Route::get('checkout.cancel')->name('checkout-cancel');
+
+Route::get('/cart/{cart}/checkout', function (Request $request, Cart $cart) {
+    $order = Order::create([
+        'cart_id' => $cart->id,
+        'price_ids' => $cart->price_ids,
+        'status' => 'incomplete',
+    ]);
+
+    return $request->user()->checkout($order->price_ids, [
+        'success_url' => route('checkout-success') . '?session_id={CHECKOUT_SESSION_ID}',
+        'cancel_url' => route('checkout-cancel'),
+        'metadata' => ['order_id' => $order->id],
+    ]);
+})->name('checkout');
+
+Route::get('/billing-portal', function (Request $request) {
+    return $request->user()->redirectToBillingPortal(route('billing'));
+});*/
 
 require __DIR__ . '/auth.php';
