@@ -48,6 +48,16 @@ return new class extends Migration {
             'email_verified_at' => now(),
             'password' => Hash::make('user'),
         ]);
+
+        User::create([
+            'name' => 'Customer',
+            'last_name' => 'Customer',
+            'website' => 'example.com',
+            'phone' => 123456787,
+            'email' => 'customer@example.org',
+            'email_verified_at' => now(),
+            'password' => Hash::make('customer'),
+        ]);
     }
 
     /**
