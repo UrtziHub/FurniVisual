@@ -128,7 +128,7 @@ class OrderController extends Controller
             return response('', 400);
         }
 
-// Handle the event
+        // Handle the event
         switch ($event->type) {
             case 'checkout.session.completed':
                 $session = $event->data->object;

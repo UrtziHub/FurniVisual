@@ -124,13 +124,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
     Route::delete('/cart/product/{product}', [CartController::class, 'destroyProduct'])->name('cart.destroy.product');
-
-    // Checkout page
-    Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-    Route::get('/success', [OrderController::class, 'success'])->name('checkout.success');
-    Route::get('/cancel', [OrderController::class, 'cancel'])->name('checkout.cancel');
-    Route::post('/webhook', [OrderController::class, 'webhook'])->name('checkout.webhook');
 });
+// Checkout page
+Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::get('/success', [OrderController::class, 'success'])->name('checkout.success');
+Route::get('/cancel', [OrderController::class, 'cancel'])->name('checkout.cancel');
+Route::post('/webhook', [OrderController::class, 'webhook'])->name('checkout.webhook');
 
 Route::get('/mailtest', function () {
     Mail::to('ulusarretaga22wg@ikzubirimanteo.com')->send(new Ejemplo('Urtzi'));
