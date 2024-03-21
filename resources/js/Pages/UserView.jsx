@@ -27,7 +27,7 @@ export default function UserView({auth, users}) {
                     <UserTable
                         auth={auth}
                         data={users}
-                        thead={["rol", "name", "email", "phone"]}
+                        thead={["admin", "name", "email", "phone"]}
                     ></UserTable>
                 </section>
             </div>

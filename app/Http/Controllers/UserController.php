@@ -92,12 +92,15 @@ class UserController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $user = User::find($request->id);
+        $request->validate([
+            'user' => 'required',
+            'is_admin' => 'required|boolean',
+        ]);
+
+        $user = User::findOrFail($request->user['id']);
         $user->is_admin = $request->is_admin;
         $user->save();
 
-        //return Redirect::back();
-
-        return response()->json(['success' => 'Status change successfully.']);
+        return back()->with('message' , 'User status updated successfully');
     }
 }

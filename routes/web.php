@@ -59,7 +59,7 @@ Route::get('/about', function () {
 
 // UserView page
 Route::get('/user-management', [UserController::class, 'index'])->name('user.index');
-Route::post('/user/changeStatus', [UserController::class, 'changeStatus']);
+Route::post('/user/change-status', [UserController::class, 'changeStatus'])->name('changeStatus');
 
 // Catalogue page
 Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
