@@ -11,7 +11,7 @@ import {IoCart, IoExit, IoMail} from "react-icons/io5";
 
 export default function Dashboard(props) {
     return (
-        <PageLayout user={props.auth.user} errors={props.errors}>
+        <PageLayout user={props.auth.user} errors={props.errors} headTitle={"Regulations"}>
             <section className="mx-8 md:mx-32 lg:mx-52 xl:mx-80">
                 <Head>
                     <title>Terms of Service - Furni Visual</title>

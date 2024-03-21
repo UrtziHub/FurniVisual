@@ -48,7 +48,7 @@ export default function Show({auth, product}) {
         post(route("cart.store"));
     };
     return (
-        <PageLayout user={auth.user}>
+        <PageLayout user={auth.user} headTitle={"Show"}>
             <section className="flex flex-col lg:flex-row py-8 lg:px-32 px-8 bg-gray-100">
                 <div className="flex-1 bg-white p-4">
                     <Carousel

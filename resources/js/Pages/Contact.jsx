@@ -9,7 +9,7 @@ import {MdEmail} from "react-icons/md";
 export default function Catalogue({auth, categories}) {
     console.log(categories);
     return (
-        <PageLayout user={auth.user} className="bg-slate-100">
+        <PageLayout user={auth.user} headTitle={"Constact"} className="bg-slate-100">
             <section
                 style={{
                     backgroundImage: "url('/images/categories/fireplaces.jpg')",
@@ -66,7 +66,7 @@ export default function Catalogue({auth, categories}) {
                         width="600"
                         height="450"
                         className="rounded-lg border-2 border-gray-200"
-                        allowfullscreen=""
+                        allowFullScreen
                         loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"
                     ></iframe>

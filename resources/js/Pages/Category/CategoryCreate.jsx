@@ -33,7 +33,7 @@ export default function CategoryCreate({auth}) {
     };
 
     return (
-        <PageLayout user={auth.user} className="bg-slate-100">
+        <PageLayout user={auth.user} className="bg-slate-100" headTitle={"Category Create"}>
             <div className="mx-4 xl:mx-64 py-4">
                 <form onSubmit={handleSubmit} className="bg-white rounded-md px-6 py-4 shadow-xl">
                     <h1 className="font-bold text-xl mb-2">Add New Category</h1>

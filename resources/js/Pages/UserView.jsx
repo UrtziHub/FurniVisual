@@ -7,7 +7,7 @@ export default function UserView({auth, users}) {
 
     if (!users || users.length === 0) {
         return (
-            <PageLayout user={auth.user} className="bg-slate-100">
+            <PageLayout user={auth.user} className="bg-slate-100" headTitle={"User View"}>
                 <div className="mx-4 xl:mx-64 py-4">
                     <p>No users found.</p>
                 </div>
@@ -16,7 +16,7 @@ export default function UserView({auth, users}) {
     }
 
     return (
-        <PageLayout user={auth.user} className="bg-slate-100">
+        <PageLayout user={auth.user} className="bg-slate-100" headTitle={"User View"}>
             <div className="mx-4 xl:mx-64 py-4">
                 <div className="text-9xl font-black font-mono text-center">
                     <span className="bg-clip-text text-transparent bg-center bg-[url('/images/catalogue.webp')]">

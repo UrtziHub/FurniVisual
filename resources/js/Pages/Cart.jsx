@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/react";
 
 export default function Cart({ auth, cart, total }) {
     return (
-        <PageLayout user={auth.user}>
+        <PageLayout user={auth.user} headTitle={"Cart"}>
             <div className="flex flex-col md:flex-row bg-gray-100 p-10 gap-2">
                 <div className="rounded flex flex-1 flex-col gap-2">
                     {cart.products.length > 0 ? (

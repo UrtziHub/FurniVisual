@@ -48,7 +48,7 @@ export default function ProductEdit({auth, product, categories}) {
     };
 
     return (
-        <PageLayout user={auth.user} className="bg-slate-100">
+        <PageLayout user={auth.user} className="bg-slate-100" headTitle={"Product Edit"}>
             <div className="mx-4 xl:mx-64 py-4">
                 <form
                     onSubmit={handleSubmit}

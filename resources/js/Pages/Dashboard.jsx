@@ -35,8 +35,7 @@ export default function Dashboard({auth, errors}) {
 
     return (
         <>
-            <PageLayout user={auth.user} errors={errors}>
-                <Head title="Dashboard"/>
+            <PageLayout user={auth.user} errors={errors} headTitle={"Dashboard"}>
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-4 py-10">
                     {cards.map((card, index) => (
                         <DashboardCard key={index} {...card} />

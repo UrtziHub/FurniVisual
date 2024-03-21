@@ -2,7 +2,7 @@ import PageLayout from "@/Layouts/PageLayout";
 
 export default function About({auth}) {
     return (
-        <PageLayout user={auth.user}>
+        <PageLayout user={auth.user} headTitle={"About"}>
             <h1 className="text-4xl sm:text-6xl font-bold mb-8 text-center mt-8 sm:mt-32">About Us</h1>
             <div className="flex flex-col items-center gap-8 sm:gap-20 mx-4 sm:mx-20 md:mx-8">
                 <div className="flex flex-col md:flex-row mx-4 sm:mx-8 rounded-lg bg-gray-100 ">

@@ -7,7 +7,7 @@ export default function Product({auth, products}) {
 
     if (!products || products.length === 0) {
         return (
-            <PageLayout user={auth.user} className="bg-slate-100">
+            <PageLayout user={auth.user} className="bg-slate-100" headTitle={"Product"}>
                 <div className="mx-4 xl:mx-64 py-4">
                     <p>No products found.</p>
                 </div>
@@ -16,7 +16,7 @@ export default function Product({auth, products}) {
     }
 
     return (
-        <PageLayout user={auth.user} className="bg-slate-100">
+        <PageLayout user={auth.user} className="bg-slate-100" headTitle={"Product"}>
             <div className="mx-4 xl:mx-64 py-4">
                 <div className="text-9xl font-black font-mono text-center">
                     <span className="bg-clip-text text-transparent bg-center bg-[url('/images/catalogue.webp')]">

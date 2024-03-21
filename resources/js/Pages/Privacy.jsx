@@ -11,11 +11,8 @@ import {IoCart, IoExit, IoMail} from "react-icons/io5";
 
 export default function Dashboard(props) {
     return (
-        <PageLayout user={props.auth.user} errors={props.errors}>
+        <PageLayout user={props.auth.user} errors={props.errors} headTitle={"Privacy Policy"}>
             <section className="mx-8 md:mx-32 lg:mx-52 xl:mx-80">
-                <Head>
-                    <title>Privacy Policy - Furni Visual</title>
-                </Head>
                 <div className="mx-auto max-w-6xl p-6 bg-white rounded-md shadow-md">
                     <h1 className="text-3xl font-semibold mb-4 text-center">
                         Privacy Policy
