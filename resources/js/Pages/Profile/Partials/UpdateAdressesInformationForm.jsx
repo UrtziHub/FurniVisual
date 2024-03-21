@@ -76,6 +76,7 @@ export default function UpdateProfileInformation({mustVerifyEmail, status, class
                         onChange={(e) => setData('companyName', e.target.value)}
                         isFocused
                         autoComplete="companyName"
+                        required
                     />
 
                     <InputError className="mt-2" message={errors.companyName}/>
@@ -91,6 +92,7 @@ export default function UpdateProfileInformation({mustVerifyEmail, status, class
                         onChange={(e) => setData('tax', e.target.value)}
                         isFocused
                         autoComplete="tax"
+                        required
                     />
 
                     <InputError className="mt-2" message={errors.tax}/>
@@ -106,6 +108,7 @@ export default function UpdateProfileInformation({mustVerifyEmail, status, class
                         onChange={(e) => setData('country', e.target.value)}
                         isFocused
                         autoComplete="country"
+                        required
                     />
 
                     <InputError className="mt-2" message={errors.country}/>
@@ -125,7 +128,6 @@ export default function UpdateProfileInformation({mustVerifyEmail, status, class
 
                     <InputError className="mt-2" message={errors.street}/>
                 </div>
-
                 <div>
                     <InputLabel htmlFor="town" value="Town / City"/>
 
