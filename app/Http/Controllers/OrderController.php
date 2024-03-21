@@ -95,7 +95,9 @@ class OrderController extends Controller
                 $order->save();
             }
 
-            return Inertia::render('CheckoutSuccess');
+            return view('order.checkout-success', compact('customer'));
+
+            //return Inertia::render('CheckoutSuccess');
 
         } catch (\Exception $e) {
             throw new NotFoundHttpException();
