@@ -45,6 +45,7 @@ class ProductController extends Controller
             'category' => 'required',
         ]);
 
+        // Save the image and gallery
         $productFileName = '';
         $galleryFileNames = [];
 

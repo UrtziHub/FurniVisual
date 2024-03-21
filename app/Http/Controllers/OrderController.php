@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,6 +16,21 @@ class OrderController extends Controller
     public function index()
     {
         //
+    }
+
+    public function checkout()
+    {
+        $cart = auth()->user()->carts->where('active', true)->first();
+
+        if (!$cart) {
+            return "No active cart found.";
+        }
+        $total = 0;
+        $products = $cart->products;
+        foreach ($cart->products as $product) {
+            $total += $product->price;
+        }
+        return $total .'$ - Product amount: '. $products->count();
     }
 
     /**
