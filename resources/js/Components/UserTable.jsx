@@ -18,7 +18,7 @@ const UserTable = ({ auth, data, thead, success }) => {
 
     const handleToggleChange = (item) => {
         const newIsAdmin = !item.is_admin;
-        router.post(route("changeStatus", { user: item }), { is_admin: newIsAdmin }, { preserveScroll: true })
+        router.post(route("changeStatus", { user: item, is_admin: newIsAdmin }), { preserveScroll: true })
     };
 
     return (

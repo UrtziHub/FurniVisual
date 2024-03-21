@@ -24,6 +24,7 @@ class OrderController extends Controller
 
     public function checkout()
     {
+        //Stripe checkout
         $user = auth()->user();
         $cart = $user->carts->where('active', true)->first();
 
@@ -76,15 +77,18 @@ class OrderController extends Controller
 
     public function success(Request $request)
     {
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        $user = auth()->user();
+        $cart = $user->carts->where('active', true)->first();
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
         $sessionId = $request->get('session_id');
 
         try {
-            $session = \Stripe\Checkout\Session::retrieve($sessionId);
+            $session = $stripe->checkout->sessions->retrieve($sessionId);
+
             if (!$session) {
                 throw new NotFoundHttpException;
             }
-            $customer = \Stripe\Customer::retrieve($session->customer);
+            //$customer = $stripe->customers->retrieve($session->customer);
 
             $order = Order::where('session_id', $session->id)->first();
             if (!$order) {
@@ -95,7 +99,13 @@ class OrderController extends Controller
                 $order->save();
             }
 
-            return Inertia::render('CheckoutSuccess');
+            $cart->active = false;
+            $activeCart = Cart::create(['active' => true,]);
+            $cart->save();
+            $activeCart->save();
+            $user->carts()->attach($activeCart);
+
+            return Inertia::render('CheckoutSuccess'); //, compact('customer'));
 
         } catch (\Exception $e) {
             throw new NotFoundHttpException();
@@ -118,7 +128,9 @@ class OrderController extends Controller
 
         try {
             $event = \Stripe\Webhook::constructEvent(
-                $payload, $sig_header, $endpoint_secret
+                $payload,
+                $sig_header,
+                $endpoint_secret
             );
         } catch (\UnexpectedValueException $e) {
             // Invalid payload
@@ -140,7 +152,7 @@ class OrderController extends Controller
                     // Send email to customer
                 }
 
-            // ... handle other event types
+                // ... handle other event types
             default:
                 echo 'Received unknown event type ' . $event->type;
         }

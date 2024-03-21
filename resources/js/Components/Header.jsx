@@ -184,31 +184,31 @@ const Header = ({ user }) => {
                                     </span>
                                 </div>
                                 <div className="flex flex-col text-xl">
-                                    <Dropdown.Link
+                                    <Link
                                         className="px-4 py-2 text-gray-600 text-2xl font-semibold hover:bg-gray-300 rounded transition ease-in-out duration-300"
                                         href={route("cart.index")}
                                     >
                                         Cart
-                                    </Dropdown.Link>
-                                    <Dropdown.Link
+                                    </Link>
+                                    <Link
                                         href={route("profile.edit")}
                                         className="px-4 py-2 hover:bg-gray-300 text-gray-600 text-2xl font-semibold rounded transition ease-in-out duration-300"
                                     >
                                         Profile
-                                    </Dropdown.Link>
-                                    <Dropdown.Link
+                                    </Link>
+                                    <Link
                                         href={route("dashboard")}
                                         className="px-4 py-2 hover:bg-gray-300 text-gray-600 text-2xl font-semibold rounded transition ease-in-out duration-300"
                                     >
                                         Dashboard
-                                    </Dropdown.Link>
-                                    <Dropdown.Link
+                                    </Link>
+                                    <Link
                                         href={route("logout")}
                                         method="post"
                                         as="button"
                                     >
                                         Logout
-                                    </Dropdown.Link>
+                                    </Link>
                                 </div>
                             </div>
                         ) : (
