@@ -104,7 +104,11 @@ class OrderController extends Controller
 
     public function cancel()
     {
-        return Inertia::render('CheckoutCancel');
+        $order = Order::where('session_id', 'cs_test_a13CUC8i8vHMgNjUUZJLj9K3aAKMnWN1rpHGjvefzYGz87hlZddfHud0oK')->first();
+        echo '<pre>';
+        var_dump($order);
+        echo '</pre>';
+        //return Inertia::render('CheckoutCancel');
     }
 
     public function webhook()
