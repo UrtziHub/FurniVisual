@@ -78,8 +78,6 @@ class OrderController extends Controller
 
     public function success(Request $request)
     {
-        $user = auth()->user();
-        $cart = $user->carts->where('active', true)->first();
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
         $sessionId = $request->get('session_id');
 
@@ -99,12 +97,6 @@ class OrderController extends Controller
                 $order->status = 'paid';
                 $order->save();
             }
-
-            $cart->active = false;
-            $activeCart = Cart::create(['active' => true,]);
-            $cart->save();
-            $activeCart->save();
-            $user->carts()->attach($activeCart);
 
             return Inertia::render('CheckoutSuccess'); //, compact('customer'));
 
@@ -148,8 +140,16 @@ class OrderController extends Controller
 
                 $order = Order::where('session_id', $session->id)->first();
                 if ($order && $order->status === 'unpaid') {
+                    $user = auth()->user();
+                    $cart = $user->carts->where('active', true)->first();
+                    
                     $order->status = 'paid';
                     $order->save();
+                    $cart->active = false;
+                    $activeCart = Cart::create(['active' => true,]);
+                    $cart->save();
+                    $activeCart->save();
+                    $user->carts()->attach($activeCart);
                     // Send email to customer
                 }
 
