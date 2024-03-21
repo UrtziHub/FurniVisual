@@ -124,15 +124,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
     Route::delete('/cart/product/{product}', [CartController::class, 'destroyProduct'])->name('cart.destroy.product');
-    //Checkout
-    Route::get('/chechout', [OrderController::class, 'checkout'])->name('checkout');
+
+    // Checkout page
+    Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+    Route::get('/success', [OrderController::class, 'success'])->name('checkout.success');
+    Route::get('/cancel', [OrderController::class, 'cancel'])->name('checkout.cancel');
+    Route::post('/webhook', [OrderController::class, 'webhook'])->name('checkout.webhook');
 });
 
 Route::get('/mailtest', function () {
     Mail::to('ulusarretaga22wg@ikzubirimanteo.com')->send(new Ejemplo('Urtzi'));
 });
 
-//Email verification 
+//Email verification
 Route::get('/email/verify', function () {
     return Inertia::render('Auth/VerifyEmail');
 })->middleware('auth')->name('verification.notice');
@@ -144,70 +148,8 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::get('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
 
-    return back()->with('message','Verification link sent!');
+    return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-// Checkout page
-Route::post('/checkout', [ProductController::class, 'checkout'])->name('checkout');
-Route::get('/success', [ProductController::class, 'success'])->name('checkout.success');
-Route::get('/cancel', [ProductController::class, 'cancel'])->name('checkout.cancel');
-Route::post('/webhook', [ProductController::class, 'webhook'])->name('checkout.webhook');
-
-/*Route::get('/charge', function () {
-    return view('charge');
-});*/
-
-/*Route::get('/checkout', function (Request $request) {
-    $stripePriceId = 'price_1OwOIrRpxT4HivI8Jc7AhMdw';
-
-    $quantity = 1;
-
-    return $request->user()->checkout([$stripePriceId => $quantity], [
-        'success_url' => route('checkout-success'),
-        'cancel_url' => route('checkout-cancel'),
-    ]);
-})->name('checkout');
-
-Route::get('/checkout/success', function (Request $request) {
-    $sessionId = $request->get('session_id');
-
-    if ($sessionId === null) {
-        return;
-    }
-
-    $session = Cashier::stripe()->checkout->sessions->retrieve($sessionId);
-
-    if ($session->payment_status !== 'paid') {
-        return;
-    }
-
-    $orderId = $session['metadata']['order_id'] ?? null;
-
-    $order = Order::findOrFail($orderId);
-
-    $order->update(['status' => 'completed']);
-
-    return view('checkout-success', ['order' => $order]);
-})->name('checkout-success');
-
-Route::get('checkout.cancel')->name('checkout-cancel');
-
-Route::get('/cart/{cart}/checkout', function (Request $request, Cart $cart) {
-    $order = Order::create([
-        'cart_id' => $cart->id,
-        'price_ids' => $cart->price_ids,
-        'status' => 'incomplete',
-    ]);
-
-    return $request->user()->checkout($order->price_ids, [
-        'success_url' => route('checkout-success') . '?session_id={CHECKOUT_SESSION_ID}',
-        'cancel_url' => route('checkout-cancel'),
-        'metadata' => ['order_id' => $order->id],
-    ]);
-})->name('checkout');
-
-Route::get('/billing-portal', function (Request $request) {
-    return $request->user()->redirectToBillingPortal(route('billing'));
-});*/
 
 require __DIR__ . '/auth.php';
