@@ -12,26 +12,39 @@ export default function Footer() {
             <div className="flex justify-center w-full gap-10">
                 <ul className="space-y-2 &>[]">
                     <h1 className="text-lg font-bold underline-offset-2 underline">
-                        Home
-                    </h1>
-                    <li>
-                        <Link href={route("catalogue")} as="button">
+                        <Link className={"text-lg font-bold underline-offset-2 underline"} href={route("catalogue")}
+                              as="button">
                             Catalogue
                         </Link>
-                    </li>
+                    </h1>
                     <li>
-                        <Link href={route("cart.index")} as="button">
-                            Cart
+                        <Link href={route("categoryProduct", 1)} as="button">
+                            Center Tables
                         </Link>
                     </li>
                     <li>
-                        <Link href={route("login")} as="button">
-                            Login
-                        </Link>{" "}
+                        <Link href={route("categoryProduct", 3)} as="button">
+                            Fireplaces
+                        </Link>
                     </li>
                     <li>
-                        <Link href={route("register")} as="button">
-                            Register
+                        <Link href={route("categoryProduct", 6)} as="button">
+                            Interiors
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={route("categoryProduct", 4)} as="button">
+                            Kitchens
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={route("categoryProduct", 5)} as="button">
+                            Leisure Furniture
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={route("categoryProduct", 2)} as="button">
+                            Tables and Chairs
                         </Link>
                     </li>
                 </ul>
@@ -40,12 +53,9 @@ export default function Footer() {
                         Company
                     </h1>
                     <li>
-                        <Link href={route("regulations")} as="button">
-                            Regulations
+                        <Link href={route("about")} as="button">
+                            About Us
                         </Link>
-                    </li>
-                    <li>
-                        <Link href="/">Shop</Link>
                     </li>
                     <li>
                         <Link href={route("how-order")} as="button">
@@ -55,6 +65,11 @@ export default function Footer() {
                     <li>
                         <Link href={route("privacy")} as="button">
                             Privacy Policy
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={route("regulations")} as="button">
+                            Regulations
                         </Link>
                     </li>
                 </ul>
@@ -80,10 +95,11 @@ export default function Footer() {
                 <hr className="w-96 h-px my-8 bg-neutral-300 border-0 "/>
                 <span className="absolute px-3 font-medium -translate-x-1/2 left-1/2">
                     <div className="flex bg-white px-2 gap-3 text-2xl">
-                        <FaInstagram href="https://www.instagram.com/erynek3d/" className="hover:text-fuchsia-400 cursor-pointer transition duration-300 ease-in-out" />
-                        <FaYoutube className="hover:text-red-600 cursor-pointer transition duration-300 ease-in-out" />
-                        <FaFacebook className="hover:text-blue-700 cursor-pointer transition duration-300 ease-in-out" />
-                        <FaTwitter className="hover:text-blue-400 cursor-pointer transition duration-300 ease-in-out" />
+                        <FaInstagram href="https://www.instagram.com/erynek3d/"
+                                     className="hover:text-fuchsia-400 cursor-pointer transition duration-300 ease-in-out"/>
+                        <FaYoutube className="hover:text-red-600 cursor-pointer transition duration-300 ease-in-out"/>
+                        <FaFacebook className="hover:text-blue-700 cursor-pointer transition duration-300 ease-in-out"/>
+                        <FaTwitter className="hover:text-blue-400 cursor-pointer transition duration-300 ease-in-out"/>
                     </div>
                 </span>
             </div>
