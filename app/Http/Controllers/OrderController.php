@@ -95,9 +95,7 @@ class OrderController extends Controller
                 $order->save();
             }
 
-            return view('order.checkout-success', compact('customer'));
-
-            //return Inertia::render('CheckoutSuccess');
+            return Inertia::render('CheckoutSuccess');
 
         } catch (\Exception $e) {
             throw new NotFoundHttpException();
@@ -106,11 +104,7 @@ class OrderController extends Controller
 
     public function cancel()
     {
-        $order = Order::where('session_id', 'cs_test_a13CUC8i8vHMgNjUUZJLj9K3aAKMnWN1rpHGjvefzYGz87hlZddfHud0oK')->first();
-        echo '<pre>';
-        var_dump($order);
-        echo '</pre>';
-        //return Inertia::render('CheckoutCancel');
+        return Inertia::render('CheckoutCancel');
     }
 
     public function webhook()
@@ -134,7 +128,7 @@ class OrderController extends Controller
             return response('', 400);
         }
 
-// Handle the event
+        // Handle the event
         switch ($event->type) {
             case 'checkout.session.completed':
                 $session = $event->data->object;
