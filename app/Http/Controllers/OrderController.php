@@ -159,7 +159,6 @@ class OrderController extends Controller
                 echo 'Received unknown event type ' . $event->type;
         }
 
-
         return response('');
     }
 
