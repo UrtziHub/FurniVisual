@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -37,13 +38,9 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreCategoryRequest $request): RedirectResponse
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'image' => 'required',
-        ]);
+        $request->validated();
 
         $categoryFileName = ''; // Initialize categoryFileName variable
 
@@ -83,14 +80,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(StoreCategoryRequest $request, Category $category)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'image' => 'required',
-        ]);
-
+        $request->validated();
 
         $categoryFileName = ''; // Initialize categoryFileName variable
 

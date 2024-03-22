@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCartRequest;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -45,19 +46,9 @@ class CartController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCartRequest $request)
     {
-        $this->validate($request, [
-            'product_id' => 'required',
-            'images' => 'required|array|max:5',
-            'images.*' => 'image|max:2048',
-            'model' => 'nullable|array|max:5',
-            'model.*' => 'mimes:jpeg,png,jpg,gif|max:2048',
-            'deadline' => 'nullable|date',
-            'perspective' => 'required|integer',
-            'products_number' => 'required|integer',
-            'information' => 'nullable|string',
-        ]);
+        $request->validated();
 
         $user = auth()->user();
 
@@ -85,6 +76,7 @@ class CartController extends Controller
                 $imagesJsonNames[] = $imageFileName;
             }
         }
+
         $modelJsonNames = [];
         if ($request->hasFile('model')) {
             foreach ($request->file('model') as $modelFile) {
@@ -179,7 +171,7 @@ class CartController extends Controller
                 Storage::disk('public')->delete('model/' . $modelName);
             }
         }
-        
+
         $cart->products()->detach($product);
 
         return Redirect::route('cart.index');

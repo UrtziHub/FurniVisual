@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreReviewRequest;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -34,14 +35,9 @@ class ReviewController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreReviewRequest $request)
     {
-        $this->validate($request, [
-            'comment' => 'required|string|max:500',
-            'rate' => 'required|integer|min:1|max:5',
-            'product_id' => 'required|exists:products,id',
-            'user_id' => 'required|exists:users,id',
-        ]);
+        $request->validated();
 
         $review = Review::create([
             'comment' => request('comment'),
