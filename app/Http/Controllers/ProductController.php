@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -29,9 +30,12 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product): Response
+    public function show(Product $product)
     {
         $product->load('category');
-        return Inertia::render('Product/Show', compact('product'));
+        $reviews = Review::where('product_id', $product->id)->get();
+        $reviews->load('user');
+
+        return Inertia::render('Product/Show', compact('product', 'reviews'));
     }
 }

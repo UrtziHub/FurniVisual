@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ReviewController extends Controller
 {
@@ -31,11 +32,27 @@ class ReviewController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'comment' => 'required|string|max:500',
+            'rate' => 'required|integer|min:1|max:5',
+            'product_id' => 'required|exists:products,id',
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        $review = Review::create([
+            'comment' => request('comment'),
+            'rate' => request('rate'),
+            'product_id' => request('product_id'),
+            'user_id' => request('user_id'),
+        ]);
+
+        $review->save();
+
+        return back();
     }
 
     /**

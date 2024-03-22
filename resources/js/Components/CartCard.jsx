@@ -3,7 +3,6 @@ import {IoTrashOutline} from "react-icons/io5";
 
 export default function CartCard({product}) {
     const {delete: handleDelete} = useForm();
-    console.log(product.pivot);
 
     return (
         <div className="flex items-center gap-4 p-4 bg-white rounded shadow-lg">

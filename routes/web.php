@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Models\Cart;
 use App\Mail\Ejemplo;
@@ -149,5 +150,7 @@ Route::get('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+//  Review
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 require __DIR__ . '/auth.php';
