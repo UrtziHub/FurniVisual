@@ -96,7 +96,7 @@ class OrderController extends Controller
             if (!$order) {
                 throw new NotFoundHttpException();
             }
-            return Inertia::render('CheckoutSuccess'); //, compact('customer'));
+            return Inertia::render('CheckoutSuccess', compact('order')); //, compact('customer'));
 
         } catch (\Exception $e) {
             throw new NotFoundHttpException();
