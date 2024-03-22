@@ -3,6 +3,7 @@ import {IoTrashOutline} from "react-icons/io5";
 
 export default function CartCard({product}) {
     const {delete: handleDelete} = useForm();
+    console.log(product.pivot);
 
     return (
         <div className="flex items-center gap-4 p-4 bg-white rounded shadow-lg">
@@ -21,7 +22,7 @@ export default function CartCard({product}) {
                     Enter number of visualizations: {product.pivot.perspective}
                 </h1>
                 <h1>
-                    I have my own 3D model: {product.pivot.model ? "YES" : "NO"}
+                    I have my own 3D model: {product.pivot.model ? "NO" : "YES"}
                 </h1>
             </div>
             <div
