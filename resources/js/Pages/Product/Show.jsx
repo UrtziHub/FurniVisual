@@ -5,16 +5,17 @@ import StarRating from "@/Components/Rate";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import PageLayout from "@/Layouts/PageLayout";
-import {useForm} from "@inertiajs/react";
-import {useEffect, useState} from "react";
-import {IoCalendarOutline} from "react-icons/io5";
-import {Carousel} from "react-responsive-carousel";
+import { useForm } from "@inertiajs/react";
+import { useEffect, useState } from "react";
+import { IoCalendarOutline } from "react-icons/io5";
+import { Carousel } from "react-responsive-carousel";
+import Modal from "react-modal";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-export default function Show({auth, product}) {
+export default function Show({ auth, product }) {
     const [hasModel, setHasModel] = useState(false);
 
-    const {data, setData, post, processing, errors} = useForm({
+    const { data, setData, post, processing, errors } = useForm({
         product_id: product.id,
         images: [],
         products_number: 1,
@@ -41,6 +42,18 @@ export default function Show({auth, product}) {
         };
         updateModel();
     }, [hasModel]);
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const openModal = (image) => {
+        setSelectedImage(image);
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
 
     const submit = (e) => {
         e.preventDefault();
@@ -207,7 +220,7 @@ export default function Show({auth, product}) {
                                     htmlFor="deadline"
                                     className="text-gray-600"
                                 >
-                                    <IoCalendarOutline className="text-xl"/>
+                                    <IoCalendarOutline className="text-xl" />
                                 </label>
                                 <TextInput
                                     type="date"
@@ -246,40 +259,72 @@ export default function Show({auth, product}) {
                         </div>
                         <p>Category: {product.category.name}</p>
                         <div className="flex justify-center">
-                            <button
-                                className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl text-center">
+                            <button className="bg-black font-bold flex items-center gap-2 text-white px-8 py-2 rounded-xl text-center">
                                 Add to cart
                             </button>
                         </div>
                     </form>
                 </div>
             </section>
-            <section className="lg:px-32 px-8 bg-white">
-                <div>
-                    <h1>Description</h1>
-                    <hr />
-                    <h1>{product.full_description}</h1>
+            <section className="lg:px-32 px-8 bg-white py-8 flex">
+                <div className="w-1/2 pr-4">
+                    <h2 className="text-2xl font-bold mb-2">Description</h2>
+                    <hr className="mb-4" />
+                    <p className="text-lg">{product.full_description}</p>
+                    <h2 className="text-2xl font-bold mb-2">Gallery</h2>
+                    <div className="flex flex-wrap">
+                        {product.gallery.map((image, index) => (
+                            <div key={index} className="w-1/2 p-2">
+                                <img
+                                    src={`/storage/products/${image}`}
+                                    alt={`product-${index}`}
+                                    className="rounded-md w-full object-cover cursor-pointer"
+                                    onClick={() =>
+                                        openModal(`/storage/products/${image}`)
+                                    }
+                                />
+                            </div>
+                        ))}
+                    </div>
                 </div>
-                <div>
-                    <h1>Reviews</h1>
-                    <hr />
+                <div className="w-1/2 pl-4">
+                    <h2 className="text-2xl font-bold mb-2">Reviews</h2>
+                    <hr className="mb-4" />
                     <form action="" className="flex flex-col gap-4">
                         <div>
-                            <h1>Review for the product: {product.name}</h1>
+                            <h3 className="text-xl font-semibold">
+                                Review for the product: {product.name}
+                            </h3>
                         </div>
                         <div>
                             <TextArea
                                 placeholder="Enter the comment"
-                                className="w-full"
+                                className="w-full p-2 border rounded"
                             />
                         </div>
                         <div>
                             <StarRating totalStars={5} />
                         </div>
-                        <MainButton>Send message</MainButton>
+                        <MainButton className="py-2 px-4 rounded text-white font-bold">
+                            Send message
+                        </MainButton>
                     </form>
                 </div>
             </section>
+            <div className="items-center justify-center text-center border-0">
+                <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="Example Modal"
+                    className="h-screen w-1/2 flex items-center justify-center mx-auto border-0"
+                >
+                    <img
+                        src={selectedImage}
+                        alt="Selected"
+                        className="w-full h-auto"
+                    />
+                </Modal>
+            </div>
         </PageLayout>
     );
 }

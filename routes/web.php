@@ -57,10 +57,6 @@ Route::get('/about', function () {
     return Inertia::render('About');
 })->name('about');
 
-// UserView page
-Route::get('/user-management', [UserController::class, 'index'])->name('user.index');
-Route::post('/user/change-status', [UserController::class, 'changeStatus'])->name('changeStatus');
-
 // Catalogue page
 Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
 
@@ -78,6 +74,9 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/product/edit/{product}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
     Route::post('/admin/product/{product}', [AdminProductController::class, 'update'])->name('admin.product.update');
     Route::delete('/admin/product/{product}', [AdminProductController::class, 'destroy'])->name('admin.product.destroy');
+    // UserView page
+    Route::get('/admin/user-management', [UserController::class, 'index'])->name('user.index');
+    Route::post('/admin/user/change-status', [UserController::class, 'changeStatus'])->name('changeStatus');
 });
 
 // Category page
