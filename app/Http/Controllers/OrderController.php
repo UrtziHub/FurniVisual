@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
+use Psy\Readline\Hoa\Console;
 use Stripe\Stripe;
 use Stripe\StripeClient;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -29,8 +32,8 @@ class OrderController extends Controller
         $user = auth()->user();
         $cart = $user->carts->where('active', true)->first();
 
-        if (!$cart) {
-            return "No active cart found.";
+        if (!$cart || count($cart->products) === 0) {
+            return back();
         }
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -93,11 +96,6 @@ class OrderController extends Controller
             if (!$order) {
                 throw new NotFoundHttpException();
             }
-            if ($order->status === 'unpaid') {
-                $order->status = 'paid';
-                $order->save();
-            }
-
             return Inertia::render('CheckoutSuccess'); //, compact('customer'));
 
         } catch (\Exception $e) {
@@ -142,23 +140,25 @@ class OrderController extends Controller
 
                 $order = Order::where('session_id', $session->id)->first();
                 if ($order && $order->status === 'unpaid') {
-                    $user = auth()->user();
-                    $cart = $user->carts->where('active', true)->first();
-
                     $order->status = 'paid';
                     $order->save();
+
+                    $user = User::find($order->user_id);
+                    $cart = $user->carts->where('active', true)->first();
+
                     $cart->active = false;
                     $activeCart = Cart::create(['active' => true,]);
-                    $cart->save();
                     $activeCart->save();
                     $user->carts()->attach($activeCart);
+                    $cart->save();
                     // Send email to customer
                 }
 
-                // ... handle other event types
+            // ... handle other event types
             default:
                 echo 'Received unknown event type ' . $event->type;
         }
+
 
         return response('');
     }

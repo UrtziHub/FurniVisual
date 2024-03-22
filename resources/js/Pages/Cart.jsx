@@ -27,7 +27,7 @@ export default function Cart({ auth, cart, total }) {
                         </div>
                     )}
                 </div>
-                <div className="bg-white p-4 flex flex-col shadow-lg rounded">
+                {cart.products.length > 0 && <div className="bg-white p-4 flex flex-col shadow-lg rounded">
                     <h1 className="text-2xl font-bold mb-2 underline">
                         Summary
                     </h1>
@@ -64,7 +64,7 @@ export default function Cart({ auth, cart, total }) {
                             Proceed to checkout
                         </Link>
                     </div>
-                </div>
+                </div>}
             </div>
         </PageLayout>
     );
