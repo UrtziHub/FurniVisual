@@ -1,7 +1,5 @@
 import CantidadSelector from "@/Components/CantidadSelector";
 import InputError from "@/Components/InputError";
-import MainButton from "@/Components/MainButton";
-import StarRating from "@/Components/Rate";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import PageLayout from "@/Layouts/PageLayout";
@@ -11,6 +9,7 @@ import { IoCalendarOutline } from "react-icons/io5";
 import { Carousel } from "react-responsive-carousel";
 import Modal from "react-modal";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import ReviewForm from "@/Components/ReviewForm";
 
 export default function Show({ auth, product }) {
     const [hasModel, setHasModel] = useState(false);
@@ -290,25 +289,9 @@ export default function Show({ auth, product }) {
                 <div className="w-1/2 pl-4">
                     <h2 className="text-2xl font-bold mb-2">Reviews</h2>
                     <hr className="mb-4" />
-                    <form action="" className="flex flex-col gap-4">
-                        <div>
-                            <h3 className="text-xl font-semibold">
-                                Review for the product: {product.name}
-                            </h3>
-                        </div>
-                        <div>
-                            <TextArea
-                                placeholder="Enter the comment"
-                                className="w-full p-2 border rounded"
-                            />
-                        </div>
-                        <div>
-                            <StarRating totalStars={5} />
-                        </div>
-                        <MainButton className="py-2 px-4 rounded text-white font-bold">
-                            Send message
-                        </MainButton>
-                    </form>
+                    <ReviewForm 
+                    product={product} 
+                    user={auth.user}/>
                 </div>
             </section>
             <div className="items-center justify-center text-center border-0">
