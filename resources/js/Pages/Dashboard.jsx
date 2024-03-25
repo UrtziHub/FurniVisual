@@ -24,7 +24,11 @@ export default function Dashboard({auth, errors}) {
             icon: is_admin ? <BiSolidCategory {...commonProps} /> : <IoCart {...commonProps} />,
             text: is_admin ? "User" : "Cart"
         },
-        {href: route("dashboard"), icon: <FaRoad {...commonProps} />, text: "Addresses"},
+        {
+            href: is_admin ? route("orders.index") : route("dashboard"),
+            icon: is_admin ? <FaRoad {...commonProps} /> : <FaRoad {...commonProps} />,
+            text: is_admin ? "Orders" : "Adresses"
+        },
         {
             href: is_admin ? route("admin.product.index") : route("dashboard"),
             icon: is_admin ? <IoBag {...commonProps} /> : <FaCreditCard {...commonProps} />,

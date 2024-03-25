@@ -7,7 +7,7 @@ export default function CartCard({product}) {
     return (
         <div className="flex items-center gap-4 p-4 bg-white rounded shadow-lg">
             <div className="w-48">
-                <img src={product.image} alt="" className="rounded-md"/>
+                <img src={`/storage/products/${product.image}`} alt="" className="rounded-md"/>
             </div>
             <div className="flex-1">
                 <h1 className="text-2xl">{product.name}</h1>

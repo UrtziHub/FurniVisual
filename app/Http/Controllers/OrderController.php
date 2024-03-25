@@ -23,7 +23,19 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Order/Order', [
+            'orders' => Order::all(),
+        ]);
+    }
+
+    public function view(Order $order)
+    {
+        $order = Order::find($order->id);
+        $cart = $order->cart;
+        $users = $order->users;	
+        $products = $cart->load('products');
+        
+        return Inertia::render('Order/OrderView', compact('order', 'cart', 'products', 'users'));
     }
 
     public function checkout()

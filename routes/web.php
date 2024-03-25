@@ -78,6 +78,10 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     // UserView page
     Route::get('/admin/user-management', [UserController::class, 'index'])->name('user.index');
     Route::post('/admin/user/change-status', [UserController::class, 'changeStatus'])->name('changeStatus');
+
+    // Order Management page
+    Route::get('/admin/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/admin/orders/{order}', [OrderController::class, 'view'])->name('orders.view');
 });
 
 // Category page
