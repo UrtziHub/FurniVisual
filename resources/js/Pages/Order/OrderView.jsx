@@ -2,7 +2,7 @@ import React from "react";
 import PageLayout from "@/Layouts/PageLayout";
 import ViewCard from "@/Components/ViewCard";
 
-const OrderDetailsPage = ({ auth, order, cart, users}) => {
+const OrderDetailsPage = ({ auth, order, cart, }) => {
     console.log(cart);    
     return (
         <PageLayout
@@ -22,7 +22,6 @@ const OrderDetailsPage = ({ auth, order, cart, users}) => {
                             <span className="font-semibold">
                                 Customer Name:
                             </span>{" "}
-                            {users.name}
                         </div>
                         <div className="mb-4">
                             <span className="font-semibold">Mail:</span>{" "}
@@ -61,7 +60,7 @@ const OrderDetailsPage = ({ auth, order, cart, users}) => {
                 </div>
 
                 {/* Botones de Estado del Pedido */}
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 justify-center p-4 bg-white-500">
                     <button className="status-button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Pendiente
                     </button>

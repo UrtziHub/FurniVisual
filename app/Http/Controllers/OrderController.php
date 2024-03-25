@@ -32,10 +32,9 @@ class OrderController extends Controller
     {
         $order = Order::find($order->id);
         $cart = $order->cart;
-        $users = $order->users;	
         $products = $cart->load('products');
         
-        return Inertia::render('Order/OrderView', compact('order', 'cart', 'products', 'users'));
+        return Inertia::render('Order/OrderView', compact('order', 'cart', 'products'));
     }
 
     public function checkout()
