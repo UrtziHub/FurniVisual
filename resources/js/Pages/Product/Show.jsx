@@ -10,6 +10,7 @@ import {Carousel} from "react-responsive-carousel";
 import Modal from "react-modal";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ReviewForm from "@/Components/ReviewForm";
+import Rate from "@/Components/Rate";
 
 export default function Show({auth, product, reviews}) {
     console.log(reviews);
@@ -266,8 +267,8 @@ export default function Show({auth, product, reviews}) {
                     </form>
                 </div>
             </section>
-            <section className="lg:px-32 px-8 bg-white py-8 flex">
-                <div className="w-1/2 pr-4">
+            <section className="lg:px-32 px-8 bg-white py-8 flex md:flex-row flex-col items-center border-b-4">
+                <div className="px-4">
                     <h2 className="text-2xl font-bold mb-2">Description</h2>
                     <hr className="mb-4"/>
                     <p className="text-lg">{product.full_description}</p>
@@ -287,7 +288,7 @@ export default function Show({auth, product, reviews}) {
                         ))}
                     </div>
                 </div>
-                <div className="w-1/2 pl-4">
+                <div className="px-4 pt-10">
                     <h2 className="text-2xl font-bold mb-2">Make a review</h2>
                     <hr className="mb-4"/>
                     <ReviewForm
@@ -301,9 +302,10 @@ export default function Show({auth, product, reviews}) {
                     <hr className="mb-4"/>
                     {reviews.map((review, index) => (
                         <div key={index} className="border-b border-gray-300 py-4">
-                            <h3 className="text-lg font-bold">{review.user.name}</h3>
-                            <p>{review.comment}</p>
-                            <p>{review.rate}</p>
+                            <h3 className="text-xl ">{review.user.name}</h3>
+                            <h3 className="text-gray-600 ">{new Date(review.user.created_at).toLocaleDateString()}</h3>
+                            <Rate initialValue={review.rate} disabled></Rate>
+                            <p className=" text-lg">{review.comment}</p>
                         </div>
                     ))}
                 </section>

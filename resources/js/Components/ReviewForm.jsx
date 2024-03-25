@@ -6,7 +6,7 @@ import Rate from "@/Components/Rate";
 
 
 export default function ReviewForm({product,user}) {
-    const { data, setData, post, processing, errors }  = useForm({
+    const { data, setData, post, processing, errors, reset }  = useForm({
         product_id: product.id,
         user_id: user.id,
         comment: "",
@@ -20,8 +20,8 @@ export default function ReviewForm({product,user}) {
     }
     const submit = (e) => {
         e.preventDefault();
-        console.log(data);
-        post(route("reviews.store"));
+        //console.log(data);
+        post(route("reviews.store"), { preserveScroll: true, onSuccess: () => reset('comment')});
     };
     return (
         <form onSubmit={submit} className="flex flex-col gap-4">
@@ -38,10 +38,11 @@ export default function ReviewForm({product,user}) {
                     value={data.comment}
                     onChange={handleOnChange}
                 />
-                <InputError/>
+                <InputError message={errors.comment}/>
             </div>
             <div>
-                <Rate totalStars={5} name="rate" onChange={handleRate}/>
+                <Rate totalStars={5} initialValue={3} name="rate" onChange={handleRate} className="text-2xl"/>
+                <InputError message={errors.rate}/>
             </div>
             <div>
                 <MainButton type="submit" disabled={processing} className="py-2 px-4 rounded text-white font-bold">
