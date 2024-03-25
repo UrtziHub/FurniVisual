@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 
-const StarRating = ({ totalStars,onChange }) => {
-  const [rating, setRating] = useState(3);
+export default function Rate ({ totalStars,initialValue,onChange }) {
+  const [rating, setRating] = useState(initialValue);
 
+  totalStars = Math.round(totalStars)
   const handleClick = (index) => {
-    const rate = index + 1
-    setRating(rate);
-    onChange(rate);
+    if (!disabled) {
+      const rate = index + 1;
+      setRating(rate);
+      if (onChange) onChange(rate);
+    }
   };
 
   return (
@@ -27,5 +30,3 @@ const StarRating = ({ totalStars,onChange }) => {
     </div>
   );
 };
-
-export default StarRating;

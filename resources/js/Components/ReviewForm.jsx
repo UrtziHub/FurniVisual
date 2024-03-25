@@ -1,8 +1,8 @@
 import MainButton from "@/Components/MainButton";
-import StarRating from "@/Components/Rate";
 import InputError from "@/Components/InputError";
 import TextArea from "./TextArea";
 import { useForm } from "@inertiajs/react";
+import Rate from "@/Components/Rate";
 
 
 export default function ReviewForm({product,user}) {
@@ -41,7 +41,7 @@ export default function ReviewForm({product,user}) {
                 <InputError/>
             </div>
             <div>
-                <StarRating totalStars={5} name="rate" onChange={handleRate}/>
+                <Rate totalStars={5} name="rate" onChange={handleRate}/>
             </div>
             <div>
                 <MainButton type="submit" disabled={processing} className="py-2 px-4 rounded text-white font-bold">
