@@ -13,7 +13,7 @@ class StoreCartRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,8 +28,8 @@ class StoreCartRequest extends FormRequest
             'images' => 'required|array|max:5',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'model' => 'nullable|array|max:5',
-            //'model.*' => 'mimes:jpeg,png,jpg,gif|max:2048',
-            'model.*' => 'mimes:stl,obj,fbx,dae,3ds,x3d,blend,ply|max:1048576',
+            'model.*' => 'mimes:jpeg,png,jpg,gif|max:2048',
+            //'model.*' => 'mimes:stl,obj,fbx,dae,3ds,x3d,blend,ply|max:1048576',
             'deadline' => 'nullable|date',
             'perspective' => 'required|integer',
             'products_number' => 'required|integer',

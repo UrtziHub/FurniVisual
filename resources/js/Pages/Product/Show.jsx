@@ -57,7 +57,6 @@ export default function Show({auth, product, reviews}) {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(data);
         post(route("cart.store"));
     };
     return (

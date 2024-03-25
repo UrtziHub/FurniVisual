@@ -97,6 +97,8 @@ class CartController extends Controller
             'information' => $request->input('information'),
         ]);
 
+        $cart->save();
+
         return Redirect::route('cart.index');
     }
 
