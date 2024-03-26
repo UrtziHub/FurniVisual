@@ -1,5 +1,4 @@
 import PageLayout from "@/Layouts/PageLayout";
-import {Link} from "@inertiajs/react";
 import "../../css/scroll.css"
 import UserTable from "@/Components/UserTable";
 

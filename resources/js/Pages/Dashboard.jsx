@@ -1,6 +1,5 @@
 import PageLayout from "@/Layouts/PageLayout";
-import {Head} from "@inertiajs/react";
-import {FaUserAlt, FaRoad, FaCreditCard, FaUserEdit, FaClipboardList } from "react-icons/fa";
+import {FaUserAlt, FaRoad, FaCreditCard, FaUserEdit, FaClipboardList} from "react-icons/fa";
 import {IoCart, IoExit, IoMail, IoBag} from "react-icons/io5";
 import {BiSolidCategory} from "react-icons/bi";
 import DashboardCard from "@/Components/DashboardCard";

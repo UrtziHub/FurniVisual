@@ -1,12 +1,12 @@
 import MainButton from "@/Components/MainButton";
 import InputError from "@/Components/InputError";
 import TextArea from "./TextArea";
-import { useForm } from "@inertiajs/react";
+import {useForm} from "@inertiajs/react";
 import Rate from "@/Components/Rate";
 
 
-export default function ReviewForm({product,user}) {
-    const { data, setData, post, processing, errors, reset }  = useForm({
+export default function ReviewForm({product, user}) {
+    const {data, setData, post, processing, errors, reset} = useForm({
         product_id: product.id,
         user_id: user.id,
         comment: "",
@@ -15,13 +15,13 @@ export default function ReviewForm({product,user}) {
     const handleOnChange = (event) => {
         setData(event.target.name, event.target.value);
     };
-    const handleRate = (rate) =>{
-        setData('rate',rate)
+    const handleRate = (rate) => {
+        setData('rate', rate)
     }
     const submit = (e) => {
         e.preventDefault();
         //console.log(data);
-        post(route("reviews.store"), { preserveScroll: true, onSuccess: () => reset('comment')});
+        post(route("reviews.store"), {preserveScroll: true, onSuccess: () => reset('comment')});
     };
     return (
         <form onSubmit={submit} className="flex flex-col gap-4">

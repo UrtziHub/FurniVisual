@@ -1,13 +1,5 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import PageLayout from "@/Layouts/PageLayout";
-import {Head, Link} from "@inertiajs/react";
-import {
-    FaUserAlt,
-    FaRoad,
-    FaCreditCard,
-    FaShoppingCart,
-} from "react-icons/fa";
-import {IoCart, IoExit, IoMail} from "react-icons/io5";
+import {Head} from "@inertiajs/react";
 
 export default function Dashboard(props) {
     return (

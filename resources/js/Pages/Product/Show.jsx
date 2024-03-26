@@ -1,4 +1,4 @@
-import CantidadSelector from "@/Components/CantidadSelector";
+import QuantitySelector from "@/Components/QuantitySelector";
 import InputError from "@/Components/InputError";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
@@ -128,13 +128,13 @@ export default function Show({auth, product, reviews}) {
                                 <span className="text-red-500"> *</span>
                             </h1>
 
-                            <CantidadSelector
+                            <QuantitySelector
                                 value={data.products_number}
                                 cantidadInicial={1}
                                 onCantidadChange={(number) =>
                                     setData("products_number", number)
                                 }
-                            ></CantidadSelector>
+                            ></QuantitySelector>
                             <InputError
                                 message={errors.products_number}
                                 className="mt-2"
@@ -150,14 +150,14 @@ export default function Show({auth, product, reviews}) {
                                 Enter number of perspectives:
                                 <span className="text-red-500"> *</span>
                             </h1>
-                            <CantidadSelector
+                            <QuantitySelector
                                 value={data.perspective}
                                 cantidadInicial={1}
                                 maxCantidad={product.gallery.length}
                                 onCantidadChange={(number) =>
                                     setData("perspective", number)
                                 }
-                            ></CantidadSelector>
+                            ></QuantitySelector>
                             <InputError
                                 message={errors.perspective}
                                 className="mt-2"

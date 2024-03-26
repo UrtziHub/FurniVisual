@@ -69,7 +69,7 @@ const CategoryTable = ({data, thead}) => {
                         <tr
                             key={item.id}
                             className={`divide-x border-b hover:bg-gray-50 ${
-                                item.id % 2 == 0
+                                item.id % 2 === 0
                                     ? "bg-gray-100"
                                     : "bg-white"
                             }`}

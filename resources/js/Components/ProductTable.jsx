@@ -10,7 +10,6 @@ const ProductTable = ({data, thead}) => {
         setSearch(e.target.value);
     };
     const handleCheckboxChange = (e) => {
-
         // Handle checkbox changes
     };
 

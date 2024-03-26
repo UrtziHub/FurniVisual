@@ -12,34 +12,35 @@ import {
 
 import NavLink from "./NavLink";
 import Dropdown from "./Dropdown";
-import { useState } from "react";
-import { Link } from "@inertiajs/react";
+import {useState} from "react";
+import {Link} from "@inertiajs/react";
 import NavLinkHamburger from "./NavLinkHamburger";
 
 const navlinks = [
     {
-        icon: <IoHome className="text-4xl" />,
+        icon: <IoHome className="text-4xl"/>,
         text: "Home",
         href: "home",
     },
     {
-        icon: <IoImage className="text-4xl" />,
+        icon: <IoImage className="text-4xl"/>,
         text: "Catalogue",
         href: "catalogue",
     },
     {
-        icon: <IoInformationCircleSharp className="text-4xl" />,
+        icon: <IoInformationCircleSharp className="text-4xl"/>,
         text: "About us",
         href: "about",
     },
 ];
 
-const Header = ({ user }) => {
+const Header = ({user}) => {
     const [openNabBar, SetOpenNabBar] = useState(false);
     return (
         <>
             <header className="bg-white w-full  fixed top-0 z-50">
-                <div className="flex justify-between items-center border-b border-gray-200 py-2 px-8 md:px-16 xl:px-32 2xl:px-64 min-h-[92px]">
+                <div
+                    className="flex justify-between items-center border-b border-gray-200 py-2 px-8 md:px-16 xl:px-32 2xl:px-64 min-h-[92px]">
                     <div className="flex-1 md:me-10">
                         <Link className="w-64" href={route("home")}>
                             <img
@@ -108,7 +109,7 @@ const Header = ({ user }) => {
                                         href={route("login")}
                                         className="flex items-center gap-2 text-lg text-gray-500 font-semibold bg-gray-100 rounded-full px-6 py-1 border hover:border-black duration-500 hover:text-black whitespace-nowrap ms-10"
                                     >
-                                        <IoPerson />
+                                        <IoPerson/>
                                         Sing in
                                     </Link>
                                 </li>
@@ -116,7 +117,7 @@ const Header = ({ user }) => {
                             <li>
                                 <NavLink
                                     icon={
-                                        <IoCart className="text-3xl hover:text-black transition-colors duration-300" />
+                                        <IoCart className="text-3xl hover:text-black transition-colors duration-300"/>
                                     }
                                     href={route("cart.index")}
                                 ></NavLink>
@@ -217,7 +218,7 @@ const Header = ({ user }) => {
                                     href={route("login")}
                                     className="flex items-center justify-center gap-2 font-semibold bg-black text-white rounded-full px-6 py-2 text-xl"
                                 >
-                                    <IoPerson />
+                                    <IoPerson/>
                                     Sing in
                                 </Link>
                             </div>

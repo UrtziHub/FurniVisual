@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
+import {useEffect, useState} from "react";
+import {FaStar} from "react-icons/fa";
 
 export default function Rate({
-    totalStars = 5,
-    initialValue,
-    onChange,
-    disabled = false,
-    className = ''
-}) {
+                                 totalStars = 5,
+                                 initialValue,
+                                 onChange,
+                                 disabled = false,
+                                 className = ''
+                             }) {
     const [rating, setRating] = useState(initialValue);
     totalStars = Math.round(totalStars);
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function Rate({
                             disabled ? "" : "cursor-pointer"
                         } inline-block ${
                             filled ? "text-yellow-400" : "text-gray-400"
-                        } `+ className}
+                        } ` + className}
                         onClick={() => handleClick(index)}
                     />
                 );

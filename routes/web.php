@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CatalogueController;
 use App\Http\Controllers\CategoryController;
@@ -12,17 +11,12 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
-use App\Models\Cart;
 use App\Mail\Ejemplo;
-use App\Models\Category;
-use App\Models\Order;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Laravel\Cashier\Cashier;
 
 /*
 |--------------------------------------------------------------------------

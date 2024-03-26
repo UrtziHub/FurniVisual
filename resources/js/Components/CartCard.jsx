@@ -26,7 +26,6 @@ export default function CartCard({product}) {
             </div>
             <div
                 className="flex items-center gap-1 bg-red-500 p-2 rounded-xl text-white font-bold cursor-pointer hover:bg-red-600">
-                {/* <h1>{product.price}</h1> */}
                 <IoTrashOutline className="font-black text-xl"/>
                 <button
                     onClick={() =>

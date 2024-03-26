@@ -1,8 +1,8 @@
 import CartCard from "@/Components/CartCard";
 import PageLayout from "@/Layouts/PageLayout";
-import { Link } from "@inertiajs/react";
+import {Link} from "@inertiajs/react";
 
-export default function Cart({ auth, cart, total }) {
+export default function Cart({auth, cart, total}) {
     return (
         <PageLayout user={auth.user} headTitle={"Cart"}>
             <div className="flex flex-col md:flex-row bg-gray-100 p-10 gap-2">
@@ -55,7 +55,8 @@ export default function Cart({ auth, cart, total }) {
                                 <h1>{total}</h1>
                             </div>
                         </div>
-                        <Link href={route('checkout')} method="POST" className="bg-black text-white font-bold px-10 py-2 rounded-xl">
+                        <Link href={route('checkout')} method="POST"
+                              className="bg-black text-white font-bold px-10 py-2 rounded-xl">
                             Proceed to checkout
                         </Link>
                     </div>
