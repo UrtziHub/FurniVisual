@@ -1,23 +1,46 @@
 import React from "react";
 import PageLayout from "@/Layouts/PageLayout";
 import ViewCard from "@/Components/ViewCard";
+import { Link, router, useForm } from "@inertiajs/react";
 
 const OrderDetailsPage = ({ auth, order, cart }) => {
-    console.log(cart);    
+    const { data, setData, put, processing, errors } = useForm({
+        status: order.status,
+    });
+    const handleStatusChange = (e) => {
+        setData("status", e.target.value);
+        put(route("orders.updateStatus", order));
+    };
+
+    const statusColor = (status) => {
+        switch (status) {
+            case "pending":
+                return "bg-blue-500";
+            case "processing":
+                return "bg-orange-500";
+            case "completed":
+                return "bg-green-500";
+            case "canceled":
+                return "bg-red-500";
+            default:
+                return "bg-gray-500";
+        }
+    };
+
     return (
         <PageLayout
             user={auth.user}
             className="bg-slate-100"
             headTitle={"Orders"}
         >
-            <div className="mx-2 xl:mx-64 py-8">
+            <div className="container mx-auto py-8 px-4 md:px-0">
                 <h1 className="text-3xl font-semibold mb-8">
                     {order.order_number} - Order Info
                 </h1>
 
                 {/* Información del Pedido */}
-                <div className="bg-white shadow-md rounded-lg p-6 mb-8 flex justify-around">
-                    <div className="flex flex-col justify-center">
+                <div className="bg-white shadow-md rounded-lg p-6 mb-8 md:flex justify-between">
+                    <div className="mb-4 md:mb-0 md:w-1/2">
                         <div className="mb-4">
                             <span className="font-semibold">
                                 Customer Name:
@@ -38,17 +61,16 @@ const OrderDetailsPage = ({ auth, order, cart }) => {
                         </div>
                         <div className="mb-4">
                             <span className="font-semibold">
-                                Ccustomer comments:
+                                Customer comments:
                             </span>{" "}
                             {order.notes}
                         </div>
-                        <div className="mb-4">
-                            <span className="font-semibold">Status:</span>{" "}
+                        <div className={` mx-auto text-center ${statusColor(order.status)} text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mr-2`}>
                             {order.status}
                         </div>
                     </div>
-                    <div>
-                        <div className="rounded flex flex-1 flex-col gap-2">
+                    <div className="md:w-1/2">
+                        <div className="rounded flex flex-col gap-2">
                             {cart.products.map((product) => (
                                 <ViewCard
                                     key={product.id}
@@ -61,19 +83,47 @@ const OrderDetailsPage = ({ auth, order, cart }) => {
                 </div>
 
                 {/* Botones de Estado del Pedido */}
-                <div className="flex items-center space-x-4 justify-center p-4 bg-white-500">
-                    <button className="status-button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                <div className="flex flex-wrap justify-center p-4 bg-white">
+                    <Link
+                        href={route("orders.updateStatus", {
+                            order,
+                            status: "pending",
+                        })}
+                        method="put"
+                        className="status-button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mr-2"
+                    >
                         Pendiente
-                    </button>
-                    <button className="status-button bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    </Link>
+                    <Link
+                        href={route("orders.updateStatus", {
+                            order,
+                            status: "processing",
+                        })}
+                        method="put"
+                        className="status-button bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mr-2"
+                    >
                         En Proceso
-                    </button>
-                    <button className="status-button bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    </Link>
+                    <Link
+                        href={route("orders.updateStatus", {
+                            order,
+                            status: "completed",
+                        })}
+                        method="put"
+                        className="status-button bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mr-2"
+                    >
                         Enviado
-                    </button>
-                    <button className="status-button bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    </Link>
+                    <Link
+                        href={route("orders.updateStatus", {
+                            order,
+                            status: "canceled",
+                        })}
+                        method="put"
+                        className="status-button bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mr-2"
+                    >
                         Cancelado
-                    </button>
+                    </Link>
                 </div>
             </div>
         </PageLayout>

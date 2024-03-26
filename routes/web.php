@@ -82,6 +82,7 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     // Order Management page
     Route::get('/admin/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/admin/orders/{order}', [OrderController::class, 'view'])->name('orders.view');
+    Route::put('/admin/orders/{order}', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 });
 
 // Category page

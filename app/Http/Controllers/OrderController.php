@@ -240,4 +240,17 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function updateStatus(Request $request, Order $order)
+    {
+        $request->validate([
+            'status' => 'required|max:255',
+        ]);
+
+        $order->status = $request->status;
+        $order->save();
+
+        return redirect()->back();
+    }
+
 }

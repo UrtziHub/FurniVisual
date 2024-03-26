@@ -1,6 +1,6 @@
 import PageLayout from "@/Layouts/PageLayout";
 import {Head} from "@inertiajs/react";
-import {FaUserAlt, FaRoad, FaCreditCard} from "react-icons/fa";
+import {FaUserAlt, FaRoad, FaCreditCard, FaUserEdit, FaClipboardList } from "react-icons/fa";
 import {IoCart, IoExit, IoMail, IoBag} from "react-icons/io5";
 import {BiSolidCategory} from "react-icons/bi";
 import DashboardCard from "@/Components/DashboardCard";
@@ -21,12 +21,12 @@ export default function Dashboard({auth, errors}) {
         },
         {
             href: is_admin ? route("user.index") : route("cart.index"),
-            icon: is_admin ? <BiSolidCategory {...commonProps} /> : <IoCart {...commonProps} />,
+            icon: is_admin ? <FaUserEdit  {...commonProps} /> : <IoCart {...commonProps} />,
             text: is_admin ? "User" : "Cart"
         },
         {
             href: is_admin ? route("orders.index") : route("dashboard"),
-            icon: is_admin ? <FaRoad {...commonProps} /> : <FaRoad {...commonProps} />,
+            icon: is_admin ? <FaClipboardList  {...commonProps} /> : <FaRoad {...commonProps} />,
             text: is_admin ? "Orders" : "Adresses"
         },
         {
