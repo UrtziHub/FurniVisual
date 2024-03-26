@@ -86,6 +86,9 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::delete('/admin/category/{category}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
 });
 
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [OrderController::class, 'view'])->name('orders.view');
+
 // Group of auth verified middleware
 Route::middleware(['auth', 'verified'])->group(function () {
     //Cart page
