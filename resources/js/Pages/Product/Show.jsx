@@ -71,6 +71,13 @@ export default function Show({auth, product, reviews}) {
                         showIndicators={false}
                         swipeable={true}
                     >
+                        <div>
+                                <img
+                                    src={`/storage/products/${product.image}`}
+                                    alt={`product-${product.name}`}
+                                    className="rounded-md"
+                                />
+                            </div>
                         {product.gallery.map((image, index) => (
                             <div key={index}>
                                 <img
@@ -267,8 +274,8 @@ export default function Show({auth, product, reviews}) {
                     </form>
                 </div>
             </section>
-            <section className="lg:px-32 px-8 bg-white py-8 flex md:flex-row flex-col items-center border-b-4">
-                <div className="px-4">
+            <section className="lg:px-32 px-8 bg-white py-8 flex lg:flex-row flex-col items-start border-b-4 justify-center">
+                <div className="">
                     <h2 className="text-2xl font-bold mb-2">Description</h2>
                     <hr className="mb-4"/>
                     <p className="text-lg">{product.full_description}</p>
@@ -288,7 +295,7 @@ export default function Show({auth, product, reviews}) {
                         ))}
                     </div>
                 </div>
-                <div className="px-4 pt-10">
+                <div className="px-4 md:pt-0 pt-10 ">
                     <h2 className="text-2xl font-bold mb-2">Make a review</h2>
                     <hr className="mb-4"/>
                     <ReviewForm
