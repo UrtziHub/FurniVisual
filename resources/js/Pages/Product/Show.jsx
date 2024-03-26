@@ -130,8 +130,8 @@ export default function Show({auth, product, reviews}) {
 
                             <QuantitySelector
                                 value={data.products_number}
-                                cantidadInicial={1}
-                                onCantidadChange={(number) =>
+                                initialQuantity={1}
+                                onQuantityChange={(number) =>
                                     setData("products_number", number)
                                 }
                             ></QuantitySelector>
@@ -152,9 +152,9 @@ export default function Show({auth, product, reviews}) {
                             </h1>
                             <QuantitySelector
                                 value={data.perspective}
-                                cantidadInicial={1}
-                                maxCantidad={product.gallery.length}
-                                onCantidadChange={(number) =>
+                                initialQuantity={1}
+                                maxQuantity={product.gallery.length}
+                                onQuantityChange={(number) =>
                                     setData("perspective", number)
                                 }
                             ></QuantitySelector>

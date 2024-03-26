@@ -10,8 +10,11 @@ export default function QuantitySelector({
     // State variable for the quantity. It is initialized with the initialQuantity or 1 if initialQuantity is not provided.
     const [quantity, setQuantity] = useState(initialQuantity || 1);
 
-    // Handler for decreasing the quantity. It prevents the default event action, then checks if the quantity is greater
-    // than 1. If it is, it decreases the quantity by 1 and calls the onQuantityChange function with the new quantity.
+    /**
+     * Reduces the quantity by 1, but only if the current quantity is more than 1.
+     *
+     * @param e
+     */
     const decreaseQuantity = (e) => {
         e.preventDefault();
         if (quantity > 1) {
@@ -20,10 +23,11 @@ export default function QuantitySelector({
         }
     };
 
-    // Handler for changing the quantity. It gets the input value and converts it to a number. If the input value is a
-    // number, and it is less than or equal to the maxQuantity, it sets the quantity to the input value. If the input
-    // value is greater than the maxQuantity, it sets the quantity to the maxQuantity. In both cases, it then calls the
-    // onQuantityChange function with the new quantity.
+    /**
+     * Adjusts the quantity based on the user's input in the input field. It first gets the input value, then parses it.
+     *
+     * @param e
+     */
     const handleInputChange = (e) => {
         const inputValue = e.target.value;
         const numericValue = parseInt(inputValue, 10);
@@ -39,9 +43,11 @@ export default function QuantitySelector({
         }
     };
 
-    // Handler for increasing the quantity. It prevents the default event action, then checks if the quantity is less
-    // than the maxQuantity. If it is, it increases the quantity by 1 and calls the onQuantityChange function with the
-    // new quantity.
+    /**
+     * Increments the quantity by 1, but only if the current quantity is less than the maximum quantity (maxQuantity).
+     *
+     * @param e
+     */
     const increaseQuantity = (e) => {
         e.preventDefault();
         if (quantity < maxQuantity) {
