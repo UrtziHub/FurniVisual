@@ -35,12 +35,7 @@ use Laravel\Cashier\Cashier;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Inertia::render('Welcome');
 })->name('home');
 
 Route::get('/dashboard', function () {
@@ -83,13 +78,8 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/admin/orders/{order}', [OrderController::class, 'view'])->name('orders.view');
     Route::put('/admin/orders/{order}', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
-});
 
-// Category page
-Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
-
-// Category page for admins
-Route::middleware(['auth', 'is_admin'])->group(function () {
+    //Categories
     Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category.index');
     Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
     Route::post('/admin/category', [CategoryController::class, 'store'])->name('admin.category.store');
@@ -97,6 +87,20 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::put('/admin/category/{category}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::delete('/admin/category/{category}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
 });
+
+// Group of auth verified middleware
+Route::middleware(['auth', 'verified'])->group(function () {
+    //Cart page
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::delete('/cart/product/{product}', [CartController::class, 'destroyProduct'])->name('cart.destroy.product');
+
+    //  Review
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+});
+
+// Category page
+Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
 
 // How to order page
 Route::get('/how-order', function () {
@@ -123,13 +127,6 @@ Route::get('/editAdresses', function () {
     return Inertia::render('Profile/EditAdresses');
 })->name('editAdresses');
 
-// Group of auth verified middleware
-Route::middleware(['auth', 'verified'])->group(function () {
-    //Cart page
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
-    Route::delete('/cart/product/{product}', [CartController::class, 'destroyProduct'])->name('cart.destroy.product');
-});
 // Checkout page
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::get('/success', [OrderController::class, 'success'])->name('checkout.success');
@@ -146,16 +143,11 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-
     return redirect('home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 Route::get('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
-
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
-//  Review
-Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 require __DIR__ . '/auth.php';
