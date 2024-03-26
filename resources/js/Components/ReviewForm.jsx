@@ -8,7 +8,6 @@ import Rate from "@/Components/Rate";
 export default function ReviewForm({product,user}) {
     const { data, setData, post, processing, errors, reset }  = useForm({
         product_id: product.id,
-        user_id: user.id,
         comment: "",
         rate: ""
     })

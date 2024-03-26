@@ -27,7 +27,6 @@ class StoreReviewRequest extends FormRequest
             'comment' => 'required|string|max:500',
             'rate' => 'required|integer|min:1|max:5',
             'product_id' => 'required|exists:products,id',
-            'user_id' => 'required|exists:users,id',
         ];
     }
 }

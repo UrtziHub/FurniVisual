@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReviewRequest;
 use App\Models\Review;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -38,12 +39,12 @@ class ReviewController extends Controller
     public function store(StoreReviewRequest $request)
     {
         $request->validated();
-
+        
         $review = Review::create([
             'comment' => request('comment'),
             'rate' => request('rate'),
             'product_id' => request('product_id'),
-            'user_id' => request('user_id'),
+            'user_id' => auth()->user()->id,
         ]);
 
         $review->save();
