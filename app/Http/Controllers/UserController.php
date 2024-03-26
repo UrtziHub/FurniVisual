@@ -97,10 +97,9 @@ class UserController extends Controller
     /**
      * Change the trash status of a user.
      *
-     * This function validates the request data, ensuring that a 'user' and 'trashed' field are present.
-     * The 'trashed' field must be a boolean. It then finds the user with the given ID, including users
-     * that have been soft deleted. If the 'trashed' field is true, the user is deleted (soft deleted).
-     * If it is false, the user is restored. The function then redirects back to the previous page with a success message.
+     * It finds the user with the given ID, including users that have been soft deleted.
+     * If the 'trashed' field is true, the user is deleted (soft deleted).
+     * If it is false, the user is restored.
      *
      * @param \Illuminate\Http\Request $request The request object, containing the 'user' and 'trashed' data.
      * @return \Illuminate\Http\RedirectResponse Redirects back to the previous page.
