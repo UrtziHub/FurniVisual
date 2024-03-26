@@ -2,7 +2,6 @@ import PageLayout from "@/Layouts/PageLayout";
 import {Link} from "@inertiajs/react";
 
 export default function Catalogue({auth, categories}) {
-    console.log(categories);
     return (
         <PageLayout user={auth.user} headTitle={"Catalogue"} className="bg-slate-100">
             <section
@@ -19,7 +18,7 @@ export default function Catalogue({auth, categories}) {
                     proposals that will perfectly meet your expectations.
                 </p>
             </section>
-            <section className=" mx-4 my-7 xl:mx-64 py-4 grid gap-10 md:grid-cols-2 grid-cols-1 md:text-nowrap">
+            <section className="mx-4 my-7 xl:mx-64 py-4 grid gap-10 md:grid-cols-2 grid-cols-1 md:text-nowrap">
                 {categories.map((category, index) => (
                     <Link
                         key={index}

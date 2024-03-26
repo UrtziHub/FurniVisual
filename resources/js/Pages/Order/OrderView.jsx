@@ -2,7 +2,7 @@ import React from "react";
 import PageLayout from "@/Layouts/PageLayout";
 import ViewCard from "@/Components/ViewCard";
 
-const OrderDetailsPage = ({ auth, order, cart, }) => {
+const OrderDetailsPage = ({ auth, order, cart }) => {
     console.log(cart);    
     return (
         <PageLayout
@@ -10,7 +10,7 @@ const OrderDetailsPage = ({ auth, order, cart, }) => {
             className="bg-slate-100"
             headTitle={"Orders"}
         >
-            <div className="container mx-auto py-8">
+            <div className="mx-2 xl:mx-64 py-8">
                 <h1 className="text-3xl font-semibold mb-8">
                     {order.order_number} - Order Info
                 </h1>
@@ -21,7 +21,8 @@ const OrderDetailsPage = ({ auth, order, cart, }) => {
                         <div className="mb-4">
                             <span className="font-semibold">
                                 Customer Name:
-                            </span>{" "}
+                            </span>
+                            {order.user.name}
                         </div>
                         <div className="mb-4">
                             <span className="font-semibold">Mail:</span>{" "}

@@ -31,6 +31,7 @@ class OrderController extends Controller
     public function view(Order $order)
     {
         $order = Order::find($order->id);
+        $order->load('user');
         $cart = $order->cart;
         $products = $cart->load('products');
         
