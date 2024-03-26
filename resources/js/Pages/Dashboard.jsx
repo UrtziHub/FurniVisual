@@ -27,7 +27,7 @@ export default function Dashboard({auth, errors}) {
         {
             href: is_admin ? route("orders.index") : route("dashboard"),
             icon: is_admin ? <FaClipboardList  {...commonProps} /> : <FaRoad {...commonProps} />,
-            text: is_admin ? "Orders" : "Adresses"
+            text: is_admin ? "Orders" : "Addresses"
         },
         {
             href: is_admin ? route("admin.product.index") : route("dashboard"),
