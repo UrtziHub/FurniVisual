@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -49,5 +50,22 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function attempt(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        $user = User::where('email', $credentials['email'])->first();
+
+        if ($user && $user->trashed) {
+            return response()->json(['error' => 'Your account has been trashed.'], 401);
+        }
+
+        if (!Auth::attempt($credentials)) {
+            return response()->json(['error' => 'Invalid credentials.'], 401);
+        }
+
+        return response()->json(['message' => 'Logged in successfully.']);
     }
 }

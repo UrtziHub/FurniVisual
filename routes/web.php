@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CatalogueController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryProductController;
@@ -47,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/login', [AuthenticatedSessionController::class, 'attempt'])->name('login');
 
 // About us page
 Route::get('/about', function () {
@@ -122,7 +125,7 @@ Route::get('/regulations', function () {
     return Inertia::render('Regulations');
 })->name('regulations');
 
-// Adresses page
+// Addresses page
 Route::get('/editAdresses', function () {
     return Inertia::render('Profile/EditAdresses');
 })->name('editAdresses');
