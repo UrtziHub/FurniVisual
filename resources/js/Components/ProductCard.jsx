@@ -8,7 +8,7 @@ export default function ProductCard({product}) {
         <Link
             href={route("product.show", product)}
             key={product.id}
-            className="relative bg-white p-2 rounded shadow-lg border hover:bg-neutral-50 transition-colors ease-in-out duration-300"
+            className="relative bg-white p-2 rounded shadow-lg border hover:bg-neutral-50 transition-colors ease-in-out duration-300 flex flex-col"
         >
             <div className="relative">
                 <IoHeartOutline className="absolute text-white text-xl top-2 left-2"/>
@@ -21,10 +21,10 @@ export default function ProductCard({product}) {
                     />
                 </div>
             </div>
-            <div className="py-4 px-2 flex flex-col gap-3">
+            <div className="py-4 px-2 flex flex-col gap-3 flex-1">
                 <h1 className="text-xl font-bold">{product.name}</h1>
                 <p>{product.short_description}</p>
-                <div className="flex justify-between">
+                <div className="flex justify-between flex-grow items-end">
                     <div className="flex gap-1 items-center">
                         <p className="bg-yellow-300 font-bold p-1 rounded-lg">
                             {product.averageRate > 0 ? product.averageRate : '0.0'}

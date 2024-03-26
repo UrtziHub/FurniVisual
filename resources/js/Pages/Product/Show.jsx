@@ -297,7 +297,7 @@ export default function Show({auth, product, reviews}) {
                         ))}
                     </div>
                 </div>
-                <div className="px-4 md:pt-0 pt-10 ">
+                <div className="px-4 md:pt-0 pt-10 w-full">
                     <h2 className="text-2xl font-bold mb-2">Make a review</h2>
                     <hr className="mb-4"/>
                     <ReviewForm
