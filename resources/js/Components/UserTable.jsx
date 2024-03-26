@@ -18,7 +18,11 @@ const UserTable = ({auth, data, thead, success}) => {
 
     const handleToggleChange = (item) => {
         const newIsAdmin = !item.is_admin;
-        router.post(route("changeStatus", { user: item, is_admin: newIsAdmin }), { preserveScroll: true })
+        router.post(route("changeStatus", {user: item, is_admin: newIsAdmin}), {preserveScroll: true})
+    };
+
+    const handleToggleChangeStatus = (item, deleted) => {
+        router.post(route("changeTrashStatus", {user: item, trashed: deleted}), {preserveScroll: true})
     };
 
     return (
@@ -34,7 +38,6 @@ const UserTable = ({auth, data, thead, success}) => {
                     </button>
                 </div>
                 {/* Search input */}
-
                 <TextInput
                     type="text"
                     value={search}
@@ -87,6 +90,7 @@ const UserTable = ({auth, data, thead, success}) => {
                                         <Toggle
                                             initialChecked={item.is_admin}
                                             value={item}
+                                            textArray={['Admin']}
                                             onChange={() =>
                                                 handleToggleChange(item)
                                             }
@@ -102,6 +106,20 @@ const UserTable = ({auth, data, thead, success}) => {
                             </td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {item.phone}
+                            </td>
+                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                <div className="flex gap-4 font-bold">
+                                    {auth.user.id !== item.id && (
+                                        <Toggle
+                                            initialChecked={!item.deleted_at}
+                                            value={!item.deleted_at}
+                                            textArray={['Status']}
+                                            onChange={() =>
+                                                handleToggleChangeStatus(item, !item.deleted_at)
+                                            }
+                                        ></Toggle>
+                                    )}
+                                </div>
                             </td>
                         </tr>
                     ))}

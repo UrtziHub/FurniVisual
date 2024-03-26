@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CatalogueController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryProductController;
@@ -53,6 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::post('/login', [AuthenticatedSessionController::class, 'attempt'])->name('login');
+
 // About us page
 Route::get('/about', function () {
     return Inertia::render('About');
@@ -76,13 +79,9 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::post('/admin/product/{product}', [AdminProductController::class, 'update'])->name('admin.product.update');
     Route::delete('/admin/product/{product}', [AdminProductController::class, 'destroy'])->name('admin.product.destroy');
     // UserView page
-    Route::get('/admin/user-management', [UserController::class, 'index'])->name('user.index');
-    Route::post('/admin/user/change-status', [UserController::class, 'changeStatus'])->name('changeStatus');
-
-    // Order Management page
-    Route::get('/admin/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::get('/admin/orders/{order}', [OrderController::class, 'view'])->name('orders.view');
-    Route::put('/admin/orders/{order}', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::get('/admin/user-management', [UserController::class, 'index'])->name('user.index')->withTrashed();
+    Route::post('/admin/user/change-status', [UserController::class, 'changeStatus'])->name('changeStatus')->withTrashed();
+    Route::post('/admin/user/change-trash-status', [UserController::class, 'changeTrashStatus'])->name('changeTrashStatus')->withTrashed();
 });
 
 // Category page
@@ -118,7 +117,7 @@ Route::get('/regulations', function () {
     return Inertia::render('Regulations');
 })->name('regulations');
 
-// Adresses page
+// Addresses page
 Route::get('/editAdresses', function () {
     return Inertia::render('Profile/EditAdresses');
 })->name('editAdresses');
