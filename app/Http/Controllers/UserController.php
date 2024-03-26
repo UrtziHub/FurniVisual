@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -15,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id')->skip(1)->take(PHP_INT_MAX)->get();
+        $users = User::withTrashed()->orderBy('id')->skip(1)->take(PHP_INT_MAX)->get();
+
 
         return Inertia::render('UserView', compact('users'));
     }
@@ -83,11 +85,30 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return Redirect::back();
+    }
+
+    public function changeTrashStatus(Request $request)
+    {
+        $request->validate([
+            'user' => 'required',
+            'trashed' => 'required|boolean',
+        ]);
+
+        $user = User::withTrashed()->findOrFail($request->user['id']);
+        if ($request->trashed) {
+            $user->delete();
+        } else {
+            $user->restore();
+        }
+
+        return back()->with('message', 'User trash status updated successfully');
     }
 
     public function changeStatus(Request $request)
@@ -97,10 +118,10 @@ class UserController extends Controller
             'is_admin' => 'required|boolean',
         ]);
 
-        $user = User::findOrFail($request->user['id']);
+        $user = User::withTrashed()->findOrFail($request->user['id']);
         $user->is_admin = $request->is_admin;
         $user->save();
 
-        return back()->with('message' , 'User status updated successfully');
+        return back()->with('message', 'User status updated successfully');
     }
 }
