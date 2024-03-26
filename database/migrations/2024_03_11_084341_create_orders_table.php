@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->integer('phone');
             $table->string('email');
             $table->text('notes')->nullable();
-            $table->string('status');
+            $table->enum('status', ['pending', 'processing', 'completed', 'canceled'])->default('pending');
             $table->decimal('total_price', 6, 2);
             $table->string('session_id');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');

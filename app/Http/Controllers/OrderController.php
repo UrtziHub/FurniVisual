@@ -13,6 +13,7 @@ use Psy\Readline\Hoa\Console;
 use Stripe\Stripe;
 use Stripe\StripeClient;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use function Symfony\Component\String\s;
 
 class OrderController extends Controller
 {
@@ -77,7 +78,7 @@ class OrderController extends Controller
         $order = new Order();
         $order->user_id = $user->id;
         $order->cart_id = $cart->id;
-        $order->status = 'unpaid';
+        $order->status = 'pending';
         $order->order_number = 'ORD - ' . strtoupper(str_pad(dechex(mt_rand()), 8, '0', STR_PAD_LEFT));
         $order->tax_number = rand(100000, 999999);
         $order->zip = rand(10000, 99999);
