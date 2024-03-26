@@ -85,7 +85,7 @@ class OrderController extends Controller
         $order = new Order();
         $order->user_id = $user->id;
         $order->cart_id = $cart->id;
-        $order->status = 'pending';
+        $order->status = 'unpaid';
         $order->order_number = 'ORD - ' . strtoupper(str_pad(dechex(mt_rand()), 8, '0', STR_PAD_LEFT));
         $order->tax_number = rand(100000, 999999);
         $order->zip = rand(10000, 99999);
@@ -175,7 +175,7 @@ class OrderController extends Controller
 
                 $order = Order::where('session_id', $session->id)->first();
                 if ($order && $order->status === 'unpaid') {
-                    $order->status = 'paid';
+                    $order->status = 'pending';
                     $order->save();
 
                     $user = User::find($order->user_id);
