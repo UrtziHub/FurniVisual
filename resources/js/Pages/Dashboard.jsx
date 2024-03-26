@@ -14,7 +14,7 @@ export default function Dashboard({auth, errors}) {
     const cards = [
         {href: route("profile.edit"), icon: <FaUserAlt {...commonProps} />, text: "Profile"},
         {
-            href: is_admin ? route("admin.category.index") : route("dashboard"),
+            href: is_admin ? route("admin.category.index") : route("orders.index"),
             icon: is_admin ? <BiSolidCategory {...commonProps} /> : <IoMail {...commonProps} />,
             text: is_admin ? "Categories" : "Orders"
         },
