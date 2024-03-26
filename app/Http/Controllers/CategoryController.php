@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -54,7 +55,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return Redirect::route('category.index');
+        return Redirect::route('admin.category.index');
     }
 
     /**
@@ -94,7 +95,7 @@ class CategoryController extends Controller
             'image' => $categoryFileName,
         ]);
 
-        return redirect(route('category.index'));
+        return Redirect::route('admin.category.index');
     }
 
     /**
@@ -104,13 +105,10 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        //Eliminar imagen relacionada
-        /*$categoryFileName = $category->image;
-        $categoryFile = public_path('storage/categories/' . $categoryFileName);
-        if (file_exists($categoryFile
-        )) {
-            unlink($categoryFile);
-        }*/
+        // Deletes the linked image
+        if ($category->image) {
+            Storage::disk('public')->delete('categories/' . $category->image);
+        }
 
         return Redirect::back();
     }
