@@ -59,9 +59,6 @@ Route::get('/category-product/{category}', [CategoryProductController::class, 'i
 // Product page for users
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
-// Category page
-Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
-
 // Orders page
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/orders/{order}', [OrderController::class, 'view'])->name('orders.view');
