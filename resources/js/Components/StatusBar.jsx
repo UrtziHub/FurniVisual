@@ -1,5 +1,4 @@
 const StatusBar = ({currentStatus}) => {
-    console.log(currentStatus);
     const statuses = ["pending", "processing", "completed"];
     const getClass = (status,index) =>{
         let baseClass = "w-1/3 flex items-center justify-center h-20 border-r-2 transition-all"

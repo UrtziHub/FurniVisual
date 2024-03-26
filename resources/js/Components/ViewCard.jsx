@@ -45,10 +45,10 @@ export default function CartCard({product}) {
                                 });
                             }
                         } catch (error) {
-                            console.log(
-                                "Failed to parse product.pivot.images:",
-                                product.pivot.images
-                            );
+                            // console.log(
+                            //     "Failed to parse product.pivot.images:",
+                            //     product.pivot.images
+                            // );
                         }
                     }}
                 >

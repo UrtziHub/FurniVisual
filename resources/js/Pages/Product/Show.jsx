@@ -13,7 +13,6 @@ import ReviewForm from "@/Components/ReviewForm";
 import Rate from "@/Components/Rate";
 
 export default function Show({auth, product, reviews}) {
-    console.log(reviews);
     const [hasModel, setHasModel] = useState(false);
 
     const {data, setData, post, processing, errors} = useForm({

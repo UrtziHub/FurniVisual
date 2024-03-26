@@ -15,8 +15,6 @@ export default function ProductEdit({auth, product, categories}) {
         category: product.category_id,
     });
 
-    console.log(product.gallery);
-
     const handleChange = (e) => {
         const {name, value} = e.target;
         setData((prevData) => ({

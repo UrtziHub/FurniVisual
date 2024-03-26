@@ -7,7 +7,6 @@ import {FaLocationDot, FaPhoneVolume} from "react-icons/fa6";
 import {MdEmail} from "react-icons/md";
 
 export default function Catalogue({auth, categories}) {
-    console.log(categories);
     return (
         <PageLayout user={auth.user} headTitle={"Constact"} className="bg-slate-100">
             <section
