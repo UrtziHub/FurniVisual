@@ -1,10 +1,9 @@
 import PageLayout from "@/Layouts/PageLayout";
 import {Link} from "@inertiajs/react";
-import "../../../css/scroll.css"
 import CategoryTable from "@/Components/CategoryTable";
+import "../../../css/scroll.css"
 
 export default function Category({auth, categories}) {
-
     if (!categories || categories.length === 0) {
         return (
             <PageLayout user={auth.user} className="bg-slate-100" headTitle={"Category"}>
@@ -14,6 +13,7 @@ export default function Category({auth, categories}) {
             </PageLayout>
         );
     }
+
     return (
         <PageLayout user={auth.user} className="bg-slate-100" headTitle={"Category"}>
             <div className="mx-4 xl:mx-64 py-4">

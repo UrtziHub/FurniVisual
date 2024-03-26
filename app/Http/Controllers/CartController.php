@@ -6,7 +6,6 @@ use App\Http\Requests\StoreCartRequest;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -16,7 +15,10 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Inertia\Response
+     * This function retrieves the currently authenticated user and their active shopping cart.
+     * It then loads the products related to the shopping cart into memory to avoid additional database queries.
+     * It calculates the total price of the products in the cart by iterating over each product and adding its price to the total.
+     * Finally, it returns a view named 'Cart' using the Inertia package, with the shopping cart and the total price as data.
      */
     public function index()
     {
@@ -24,6 +26,7 @@ class CartController extends Controller
         $cart = $user->carts->where('active', true)->first();
         $cart->load('products');
         $total = 0;
+
         foreach ($cart->products as $product) {
             $total += $product->price;
         }
@@ -33,7 +36,6 @@ class CartController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -52,7 +54,7 @@ class CartController extends Controller
 
         $user = auth()->user();
 
-        // Obtén o crea un carrito activo para el usuario
+        // Gets or creates an active cart for the user
         $cart = $user->carts->where('active', true)->first();
         if (!$cart) {
             $cart = $user->carts->create(['active' => true]);
@@ -63,15 +65,16 @@ class CartController extends Controller
         $existingProduct = $cart->products()->where('product_id', $product->id)->first();
 
         if ($existingProduct) {
-            return "This product already exist pls edit or create a new one";
+            return "This product already exist please edit or create a new one";
             // Cuando exista el producto en el carrito hacer algo
         }
+
         //Create Json for the database
         $imagesJsonNames = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $imageFileName = $user->id . '-' . $imageFile->hashName();
-                // Guarda la imagen en el sistema de archivos
+                // Save the image in the file system
                 $imageFile->storeAs('cart', $imageFileName, 'public');
                 $imagesJsonNames[] = $imageFileName;
             }
@@ -81,13 +84,13 @@ class CartController extends Controller
         if ($request->hasFile('model')) {
             foreach ($request->file('model') as $modelFile) {
                 $modelFileName = $user->id . '-' . $modelFile->hashName();
-                // Guarda el modelo en el sistema de archivos
+                // Save the model in the file system
                 $modelFile->storeAs('model', $modelFileName, 'public');
                 $modelJsonNames[] = $modelFileName;
             }
         }
 
-        // Adjunta el producto al carrito con los datos proporcionados
+        // Add the product to the cart with the provided data
         $cart->products()->attach($product->id, [
             'products_number' => $request->input('products_number'),
             'perspective' => $request->input('perspective'),
@@ -140,35 +143,48 @@ class CartController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\Cart $cart
-     * @return \Illuminate\Http\Response
+     * @return Cart
      */
     public function destroy(Cart $cart)
     {
         return $cart;
     }
 
+    /**
+     * Remove the specified product from the cart.
+     *
+     * This function retrieves the currently authenticated user and their active shopping cart.
+     * It then gets the images and models associated with the product in the cart.
+     * The function decodes the filenames of the images and models.
+     * If there are any images, it deletes the image files from the server.
+     * If there are any models, it deletes the model files from the server.
+     * Finally, it detaches the product from the cart and redirects the user to the cart index page.
+     *
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroyProduct(Product $product)
     {
         $user = auth()->user();
         $cart = $user->carts->where('active', true)->first();
 
-        // Obtén las imágenes y los modelos asociados al producto
+        // Gets the images and models associated with the product
         $images = $cart->products()->where('product_id', $product->id)->pluck('images')->first();
         $models = $cart->products()->where('product_id', $product->id)->pluck('model')->first();
 
-        // Decodifica los nombres de archivo de las imágenes y los modelos
+        // Decodes the filenames of the images and models
         $images = json_decode($images, true);
         $models = json_decode($models, true);
 
         if ($images) {
-            // Elimina los archivos de imagen del servidor
+            // Delete the image files from the server
             foreach ($images as $imageName) {
                 Storage::disk('public')->delete('cart/' . $imageName);
             }
         }
 
         if ($models) {
-            // Elimina los archivos de modelo del servidor
+            // Delete the model files from the server
             foreach ($models as $modelName) {
                 Storage::disk('public')->delete('model/' . $modelName);
             }

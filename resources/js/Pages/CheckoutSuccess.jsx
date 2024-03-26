@@ -29,7 +29,7 @@ export default function CheckoutSuccess({ auth, order }) {
                                   {new Date(
                                     order.created_at
                                 ).toLocaleDateString()}
-                            
+
                         </li>
                         <li>
                             <strong>Total Amount: </strong> {order.total_price}€
@@ -58,8 +58,7 @@ export default function CheckoutSuccess({ auth, order }) {
                         </li>
                     </ul>
                     <p className="mt-4">
-                        We sincerely appreciate your trust in [Your Company
-                        Name]. We will strive to exceed your expectations at
+                        We sincerely appreciate your trust in Erynek3D. We will strive to exceed your expectations at
                         every step of the purchasing process.
                     </p>
                     <p>Thank you for choosing us as your trusted provider.</p>

@@ -7,6 +7,11 @@ use Inertia\Inertia;
 
 class CatalogueController extends Controller
 {
+    /**
+     * Display the catalogue page.
+     *
+     * @return \Inertia\Response
+     */
     public function index()
     {
         $categories = Category::all();

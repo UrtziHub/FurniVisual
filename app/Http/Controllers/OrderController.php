@@ -6,21 +6,17 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
-use Psy\Readline\Hoa\Console;
 use Stripe\Stripe;
 use Stripe\StripeClient;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use function Symfony\Component\String\s;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function index()
     {
@@ -29,16 +25,27 @@ class OrderController extends Controller
         ]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Inertia\Response
+     */
     public function view(Order $order)
     {
         $order = Order::find($order->id);
         $order->load('user');
         $cart = $order->cart;
         $products = $cart->load('products');
-        
+
         return Inertia::render('Order/OrderView', compact('order', 'cart', 'products'));
     }
 
+    /**
+     * Handle successful checkout.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Inertia\Response
+     */
     public function checkout()
     {
         //Stripe checkout
@@ -78,7 +85,7 @@ class OrderController extends Controller
         $order = new Order();
         $order->user_id = $user->id;
         $order->cart_id = $cart->id;
-        $order->status = 'pending';
+        $order->status = 'unpaid';
         $order->order_number = 'ORD - ' . strtoupper(str_pad(dechex(mt_rand()), 8, '0', STR_PAD_LEFT));
         $order->tax_number = rand(100000, 999999);
         $order->zip = rand(10000, 99999);
@@ -88,10 +95,15 @@ class OrderController extends Controller
         $order->session_id = $session->id;
         $order->save();
 
-        // En lugar de devolver una respuesta JSON, devolvemos una respuesta de Inertia
         return Inertia::render('Checkout', ['checkoutUrl' => $session->url]);
     }
 
+    /**
+     * Handle successful checkout.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Inertia\Response
+     */
     public function success(Request $request)
     {
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
@@ -116,11 +128,21 @@ class OrderController extends Controller
         }
     }
 
+    /**
+     * Handle cancelled checkout.
+     *
+     * @return \Inertia\Response
+     */
     public function cancel()
     {
         return Inertia::render('CheckoutCancel');
     }
 
+    /**
+     * Handle Stripe webhooks.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function webhook()
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -153,7 +175,7 @@ class OrderController extends Controller
 
                 $order = Order::where('session_id', $session->id)->first();
                 if ($order && $order->status === 'unpaid') {
-                    $order->status = 'paid';
+                    $order->status = 'pending';
                     $order->save();
 
                     $user = User::find($order->user_id);
@@ -241,6 +263,13 @@ class OrderController extends Controller
         //
     }
 
+    /**
+     * Update the status of an order.
+     *
+     * @param Request $request
+     * @param Order $order
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateStatus(Request $request, Order $order)
     {
         $request->validate([

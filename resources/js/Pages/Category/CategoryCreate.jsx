@@ -1,8 +1,8 @@
 import PageLayout from "@/Layouts/PageLayout";
 import {useForm} from "@inertiajs/react";
 import TextInput from "@/Components/TextInput";
-import InputError from "@/Components/InputError";
 import TextArea from "@/Components/TextArea";
+import InputError from "@/Components/InputError";
 
 export default function CategoryCreate({auth}) {
     const {data, setData, post, processing, errors} = useForm({

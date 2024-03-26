@@ -1,4 +1,4 @@
-import CantidadSelector from "@/Components/CantidadSelector";
+import QuantitySelector from "@/Components/QuantitySelector";
 import InputError from "@/Components/InputError";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
@@ -33,9 +33,11 @@ export default function Show({auth, product, reviews}) {
     const handleImagesChange = (event) => {
         setData("images", Array.from(event.target.files));
     };
+
     const handleModelChange = (event) => {
         setData("model", Array.from(event.target.files));
     };
+
     //Para cuando el usuario cambie el valor del modelo
     useEffect(() => {
         const updateModel = async () => {
@@ -72,12 +74,12 @@ export default function Show({auth, product, reviews}) {
                         swipeable={true}
                     >
                         <div>
-                                <img
-                                    src={`/storage/products/${product.image}`}
-                                    alt={`product-${product.name}`}
-                                    className="rounded-md"
-                                />
-                            </div>
+                            <img
+                                src={`/storage/products/${product.image}`}
+                                alt={`product-${product.name}`}
+                                className="rounded-md"
+                            />
+                        </div>
                         {product.gallery.map((image, index) => (
                             <div key={index}>
                                 <img
@@ -112,8 +114,7 @@ export default function Show({auth, product, reviews}) {
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
                                 file:bg-black file:text-white
-                                hover:file:bg-neutral-800 file:cursor-pointer
-                                "
+                                hover:file:bg-neutral-800 file:cursor-pointer"
                                 multiple={true}
                             />
                             <InputError
@@ -127,13 +128,13 @@ export default function Show({auth, product, reviews}) {
                                 <span className="text-red-500"> *</span>
                             </h1>
 
-                            <CantidadSelector
+                            <QuantitySelector
                                 value={data.products_number}
                                 cantidadInicial={1}
                                 onCantidadChange={(number) =>
                                     setData("products_number", number)
                                 }
-                            ></CantidadSelector>
+                            ></QuantitySelector>
                             <InputError
                                 message={errors.products_number}
                                 className="mt-2"
@@ -146,17 +147,17 @@ export default function Show({auth, product, reviews}) {
                         </div>
                         <div className="mb-4">
                             <h1 className="font-bold">
-                                Enter number of prespectives:
+                                Enter number of perspectives:
                                 <span className="text-red-500"> *</span>
                             </h1>
-                            <CantidadSelector
+                            <QuantitySelector
                                 value={data.perspective}
                                 cantidadInicial={1}
                                 maxCantidad={product.gallery.length}
                                 onCantidadChange={(number) =>
                                     setData("perspective", number)
                                 }
-                            ></CantidadSelector>
+                            ></QuantitySelector>
                             <InputError
                                 message={errors.perspective}
                                 className="mt-2"
@@ -274,7 +275,8 @@ export default function Show({auth, product, reviews}) {
                     </form>
                 </div>
             </section>
-            <section className="lg:px-32 px-8 bg-white py-8 flex lg:flex-row flex-col items-start border-b-4 justify-center">
+            <section
+                className="lg:px-32 px-8 bg-white py-8 flex lg:flex-row flex-col items-start border-b-4 justify-center">
                 <div className="">
                     <h2 className="text-2xl font-bold mb-2">Description</h2>
                     <hr className="mb-4"/>

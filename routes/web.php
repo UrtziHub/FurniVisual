@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CatalogueController;
 use App\Http\Controllers\CategoryController;
@@ -12,17 +11,12 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
-use App\Models\Cart;
 use App\Mail\Ejemplo;
-use App\Models\Category;
-use App\Models\Order;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Laravel\Cashier\Cashier;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,8 +68,9 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::post('/admin/product/{product}', [AdminProductController::class, 'update'])->name('admin.product.update');
     Route::delete('/admin/product/{product}', [AdminProductController::class, 'destroy'])->name('admin.product.destroy');
     // UserView page
-    Route::get('/admin/user-management', [UserController::class, 'index'])->name('user.index');
-    Route::post('/admin/user/change-status', [UserController::class, 'changeStatus'])->name('changeStatus');
+    Route::get('/admin/user-management', [UserController::class, 'index'])->name('user.index')->withTrashed();
+    Route::post('/admin/user/change-status', [UserController::class, 'changeStatus'])->name('changeStatus')->withTrashed();
+    Route::post('/admin/user/change-trashed-status', [UserController::class, 'changeTrashStatus'])->name('changeTrashStatus')->withTrashed();
 
     // Order Management page
     Route::get('/admin/orders', [OrderController::class, 'index'])->name('orders.index');
