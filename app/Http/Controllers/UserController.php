@@ -94,6 +94,17 @@ class UserController extends Controller
         return Redirect::back();
     }
 
+    /**
+     * Change the trash status of a user.
+     *
+     * This function validates the request data, ensuring that a 'user' and 'trashed' field are present.
+     * The 'trashed' field must be a boolean. It then finds the user with the given ID, including users
+     * that have been soft deleted. If the 'trashed' field is true, the user is deleted (soft deleted).
+     * If it is false, the user is restored. The function then redirects back to the previous page with a success message.
+     *
+     * @param \Illuminate\Http\Request $request The request object, containing the 'user' and 'trashed' data.
+     * @return \Illuminate\Http\RedirectResponse Redirects back to the previous page.
+     */
     public function changeTrashStatus(Request $request)
     {
         $request->validate([
@@ -111,6 +122,17 @@ class UserController extends Controller
         return back()->with('message', 'User trash status updated successfully');
     }
 
+    /**
+     * Change the admin status of a user.
+     *
+     * This function validates the request data, ensuring that a 'user' and 'is_admin' field are present.
+     * The 'is_admin' field must be a boolean. It then finds the user with the given ID, including users
+     * that have been soft deleted. It sets the 'is_admin' field of the user to the value of the 'is_admin'
+     * field in the request. The function then redirects back to the previous page with a success message.
+     *
+     * @param \Illuminate\Http\Request $request The request object, containing the 'user' and 'is_admin' data.
+     * @return \Illuminate\Http\RedirectResponse Redirects back to the previous page.
+     */
     public function changeStatus(Request $request)
     {
         $request->validate([

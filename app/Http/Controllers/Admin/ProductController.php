@@ -14,6 +14,9 @@ use Inertia\Response;
 
 class ProductController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): Response
     {
         $products = Product::with('category')->get();
@@ -49,6 +52,12 @@ class ProductController extends Controller
         $productFileName = '';
         $galleryFileNames = [];
 
+        /**
+         * Checks if the HTTP request has a file named 'image'.
+         * If it does, the file is retrieved from the request, a unique filename is generated using a hash of the file,
+         * and the file is stored in the 'products' directory of the 'public' disk.
+         * The filename on the server will be the unique filename generated.
+         */
         if ($request->hasFile('image')) {
             $productFile = $request->file('image');
             $productFileName = $productFile->hashName();
@@ -74,7 +83,7 @@ class ProductController extends Controller
             'category_id' => request('category'),
         ]);
 
-        //Save the data
+        // Save the data
         $product->save();
 
         return Redirect::route('admin.product.index');
@@ -155,11 +164,11 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        //Eliminar imagen relacionada
+        // Deletes de linked image
         if ($product->image) {
             Storage::disk('public')->delete('products/' . $product->image);
         }
-        // Eliminar imágenes de la galería
+        // Deletes de linked gallery images
         foreach ($product->gallery as $galleryImage) {
             Storage::disk('public')->delete('products/' . $galleryImage);
         }

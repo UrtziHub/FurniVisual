@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReviewRequest;
 use App\Models\Review;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class ReviewController extends Controller
 {
