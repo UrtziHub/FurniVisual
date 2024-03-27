@@ -24,7 +24,6 @@ export default function Order({auth, orders}) {
                 </div>
                 <section id="myScrollableSection">
                     <OrdersTable
-                        key={user.id}
                         data={orders}
                         thead={["number", "status", "price", "email", "created_at", "actions"]}
                     ></OrdersTable>

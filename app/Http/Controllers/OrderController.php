@@ -23,14 +23,15 @@ class OrderController extends Controller
         return Inertia::render('Order/Order', [
             'orders' => Order::all(),
         ]);
-    } 
-    
+    }
+
     public function indexUser(User $user)
     {
+        $user = auth()->user();
         $orders = Order::where("user_id", $user->id)->get();
 
         return Inertia::render('Order/Order', compact('orders'));
-    } 
+    }
 
     /**
      * Display a listing of the resource.
