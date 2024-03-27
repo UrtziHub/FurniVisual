@@ -23,7 +23,14 @@ class OrderController extends Controller
         return Inertia::render('Order/Order', [
             'orders' => Order::all(),
         ]);
-    }
+    } 
+    
+    public function indexUser(User $user)
+    {
+        $orders = Order::where("user_id", $user->id)->get();
+
+        return Inertia::render('Order/Order', compact('orders'));
+    } 
 
     /**
      * Display a listing of the resource.
@@ -89,8 +96,8 @@ class OrderController extends Controller
         $order->order_number = 'ORD - ' . strtoupper(str_pad(dechex(mt_rand()), 8, '0', STR_PAD_LEFT));
         $order->tax_number = rand(100000, 999999);
         $order->zip = rand(10000, 99999);
-        $order->phone = '1234567890';
-        $order->email = 'admin@example . org';
+        $order->phone = $user -> phone;
+        $order->email = $user -> email;
         $order->total_price = $total_price;
         $order->session_id = $session->id;
         $order->save();

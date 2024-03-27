@@ -3,6 +3,7 @@ import "../../../css/scroll.css"
 import OrdersTable from "@/Components/OrdersTable";
 
 export default function Order({auth, orders}) {
+    console.log(orders);
 
     if (!orders || orders.length === 0) {
         return (
@@ -23,6 +24,7 @@ export default function Order({auth, orders}) {
                 </div>
                 <section id="myScrollableSection">
                     <OrdersTable
+                        key={user.id}
                         data={orders}
                         thead={["number", "status", "price", "email", "created_at", "actions"]}
                     ></OrdersTable>
