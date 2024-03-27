@@ -33,7 +33,7 @@ export default function Dashboard({auth, errors}) {
             icon: is_admin ? <IoBag {...commonProps} /> : <FaCreditCard {...commonProps} />,
             text: is_admin ? "Products" : "Pays"
         },
-        {href: route("logout"), icon: <IoExit {...commonProps} />, text: "Log out"}
+        {href: route("logout"), method: "post", icon: <IoExit {...commonProps} />, text: "Log out"}
     ];
 
     return (

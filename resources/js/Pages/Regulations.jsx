@@ -10,22 +10,8 @@ export default function Dashboard(props) {
                 </Head>
                 <div className="mx-auto max-w-6xl p-6 bg-white rounded-md shadow-md">
                     <h1 className="text-3xl font-semibold mb-4 text-center">
-                        Privacy Policy
-                    </h1>
-                    <p>
-                        The Privacy Policy below defines the rules for saving
-                        and accessing data on User Devices using the Service for
-                        the purpose of providing electronic services by the
-                        Administrator and the rules for collecting and
-                        processing personal data of Users, which they have
-                        provided personally and voluntarily through the tools
-                        available in the Service.
-                    </p>
-                    <p>
-                        The Privacy Policy below is an integral part of the
-                        Website Regulations, which sets out the rules, rights
-                        and obligations of Users using the Service.
-                    </p>
+                    Terms of Service - Furni Visual                    </h1>
+                
                     <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
                         I. General Definitions
                     </h2>
