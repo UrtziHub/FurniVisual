@@ -59,8 +59,13 @@ Route::get('/category-product/{category}', [CategoryProductController::class, 'i
 // Product page for users
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
-// Product page for admins
+// Orders page
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::get('/orders/{order}', [OrderController::class, 'view'])->name('orders.view');
+
+// Page for admins
 Route::middleware(['auth', 'is_admin'])->group(function () {
+    // Product page
     Route::get('/admin/product', [AdminProductController::class, 'index'])->name('admin.product.index');
     Route::get('/admin/product/create', [AdminProductController::class, 'create'])->name('admin.product.create');
     Route::post('/admin/product', [AdminProductController::class, 'store'])->name('admin.product.store');
@@ -99,8 +104,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 });
 
-// Category page
-Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
 
 // How to order page
 Route::get('/how-order', function () {

@@ -32,6 +32,17 @@ class OrderController extends Controller
         return Inertia::render('Order/Order', compact('orders'));
     } 
 
+    public function indexUser()
+    {
+        // Obtiene el usuario que ha iniciado sesión
+        $user = User::find(auth()->user()->id);
+    
+        // Renderiza la vista 'Order/Order' y pasa las órdenes del usuario
+        return Inertia::render('Order/Order', [
+            'orders' => $user->orders,
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -196,7 +207,7 @@ class OrderController extends Controller
                     // Send email to customer
                 }
 
-            // ... handle other event types
+                // ... handle other event types
             default:
                 echo 'Received unknown event type ' . $event->type;
         }
@@ -288,5 +299,4 @@ class OrderController extends Controller
 
         return redirect()->back();
     }
-
 }

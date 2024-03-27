@@ -164,11 +164,11 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        // Deletes de linked image
+        // Deletes the linked image
         if ($product->image) {
             Storage::disk('public')->delete('products/' . $product->image);
         }
-        // Deletes de linked gallery images
+        // Deletes the linked gallery images
         foreach ($product->gallery as $galleryImage) {
             Storage::disk('public')->delete('products/' . $galleryImage);
         }
