@@ -12,7 +12,7 @@ export default function StatusButtons({ order }) {
                 method="put"
                 className="status-button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mr-2"
             >
-                Pendiente
+                   Pending
             </Link>
             <Link
                 href={route("orders.updateStatus", {
@@ -22,7 +22,7 @@ export default function StatusButtons({ order }) {
                 method="put"
                 className="status-button bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mr-2"
             >
-                En Proceso
+                Processing
             </Link>
             <Link
                 href={route("orders.updateStatus", {
@@ -32,7 +32,7 @@ export default function StatusButtons({ order }) {
                 method="put"
                 className="status-button bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mr-2"
             >
-                Enviado
+                Completed
             </Link>
             <Link
                 href={route("orders.updateStatus", {
@@ -42,7 +42,7 @@ export default function StatusButtons({ order }) {
                 method="put"
                 className="status-button bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mr-2"
             >
-                Cancelado
+                Cancel
             </Link>
         </div>
     );
