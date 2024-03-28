@@ -28,8 +28,9 @@ class OrderController extends Controller
     public function indexUser(User $user)
     {
         $user = auth()->user();
+
         $orders = Order::where("user_id", $user->id)->get();
-        
+
         return Inertia::render('Order/Order', compact('orders'));
     }
 
@@ -40,6 +41,11 @@ class OrderController extends Controller
      */
     public function view(Order $order)
     {
+        // Solo permitir que el usuario autenticado vea su propia orden
+        if (auth()->id() !== $order->user_id) {
+            return redirect()->route('orders.indexUser');
+        }
+
         $order = Order::find($order->id);
         $order->load('user');
         $cart = $order->cart;
