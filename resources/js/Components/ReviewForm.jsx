@@ -38,9 +38,9 @@ export default function ReviewForm({product, user}) {
                     onChange={handleOnChange}
                 />
                 <InputError message={errors.comment}/>
-            </div>
+            </div>  
             <div>
-                <Rate totalStars={5} initialValue={3} name="rate" onChange={handleRate} className="text-2xl"/>
+                <Rate totalStars={5} initialValue={0} name="rate" onChange={handleRate} className="text-2xl"/>
                 <InputError message={errors.rate}/>
             </div>
             <div>
