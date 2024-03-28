@@ -80,21 +80,11 @@ class CartController extends Controller
             }
         }
 
-        $modelJsonNames = [];
-        if ($request->hasFile('model')) {
-            foreach ($request->file('model') as $modelFile) {
-                $modelFileName = $user->id . '-' . $modelFile->hashName();
-                // Save the model in the file system
-                $modelFile->storeAs('model', $modelFileName, 'public');
-                $modelJsonNames[] = $modelFileName;
-            }
-        }
-
         // Add the product to the cart with the provided data
         $cart->products()->attach($product->id, [
             'products_number' => $request->input('products_number'),
             'perspective' => $request->input('perspective'),
-            'model' => json_encode($modelJsonNames),
+            'model' => $request->input('model'),
             'deadline' => $request->input('deadline'),
             'images' => json_encode($imagesJsonNames),
             'information' => $request->input('information'),

@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->json('images');
             $table->integer('products_number');
             $table->integer('perspective');
-            $table->json('model')->nullable();
+            $table->boolean('model')->default(false);
             $table->date('deadline')->nullable();
             $table->string('information')->nullable();
             $table->foreignId('cart_id')->constrained()->onDelete('cascade');
