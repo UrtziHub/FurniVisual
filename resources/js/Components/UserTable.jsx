@@ -50,7 +50,7 @@ const UserTable = ({auth, data, thead, success}) => {
                 id="myScrollableSection"
                 className="relative overflow-x-auto shadow-md rounded-lg border h-[600px]"
             >
-                <table className="w-full text-sm text-left text-gray-500">
+                <table className="w-full text-sm text-left text-gray-500 table-fixed">
                     {/* Table header */}
                     <thead className="text-xs uppercase bg-black text-white sticky top-0">
                     <tr>
