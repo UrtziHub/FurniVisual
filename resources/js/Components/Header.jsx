@@ -12,29 +12,29 @@ import {
 
 import NavLink from "./NavLink";
 import Dropdown from "./Dropdown";
-import {useState} from "react";
-import {Link} from "@inertiajs/react";
+import { useState } from "react";
+import { Link } from "@inertiajs/react";
 import NavLinkHamburger from "./NavLinkHamburger";
 
 const navlinks = [
     {
-        icon: <IoHome className="text-4xl"/>,
+        icon: <IoHome className="text-4xl" />,
         text: "Home",
         href: "home",
     },
     {
-        icon: <IoImage className="text-4xl"/>,
+        icon: <IoImage className="text-4xl" />,
         text: "Catalogue",
         href: "catalogue",
     },
     {
-        icon: <IoInformationCircleSharp className="text-4xl"/>,
+        icon: <IoInformationCircleSharp className="text-4xl" />,
         text: "About us",
         href: "about",
     },
 ];
 
-const Header = ({user}) => {
+const Header = ({ user }) => {
     const [openNabBar, SetOpenNabBar] = useState(false);
     return (
         <>
@@ -109,45 +109,47 @@ const Header = ({user}) => {
                                         href={route("login")}
                                         className="flex items-center gap-2 text-lg text-gray-500 font-semibold bg-gray-100 rounded-full px-6 py-1 border hover:border-black duration-500 hover:text-black whitespace-nowrap ms-10"
                                     >
-                                        <IoPerson/>
+                                        <IoPerson />
                                         Sing in
                                     </Link>
                                 </li>
                             )}
-                            <li>
+                            <li className="relative">
                                 <NavLink
                                     icon={
-                                        <IoCart className="text-3xl hover:text-black transition-colors duration-300"/>
+                                        <>
+                                            <IoCart className="text-3xl hover:text-black transition-colors duration-300" />
+                                            {2 > 0 && (
+                                                <span className="absolute bottom-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">{2}</span>
+                                            )}
+                                        </>
                                     }
                                     href={route("cart.index")}
                                 ></NavLink>
                             </li>
+
                         </ul>
                     </div>
                     <div
                         onClick={() => {
                             SetOpenNabBar((previousState) => !previousState);
                         }}
-                        className={`flex lg:hidden text-4xl transition-transform duration-300 ease-in-out ${
-                            openNabBar ? "rotate-180" : ""
-                        }`}
+                        className={`flex lg:hidden text-4xl transition-transform duration-300 ease-in-out ${openNabBar ? "rotate-180" : ""
+                            }`}
                     >
                         <IoReorderThreeOutline
-                            className={`hover:bg-gray-200 cursor-pointer rounded transition-colors duration-300 ease-in-out ${
-                                !openNabBar ? "inline-flex" : "hidden"
-                            }`}
+                            className={`hover:bg-gray-200 cursor-pointer rounded transition-colors duration-300 ease-in-out ${!openNabBar ? "inline-flex" : "hidden"
+                                }`}
                         />
                         <IoClose
-                            className={`hover:bg-gray-200 cursor-pointer rounded transition-colors duration-300 ease-in-out ${
-                                !openNabBar ? "hidden" : "inline-flex"
-                            }`}
+                            className={`hover:bg-gray-200 cursor-pointer rounded transition-colors duration-300 ease-in-out ${!openNabBar ? "hidden" : "inline-flex"
+                                }`}
                         />
                     </div>
                 </div>
                 <div
-                    className={` ${
-                        openNabBar ? "flex" : "hidden"
-                    } flex-col py-2 px-10 border-b-2`}
+                    className={` ${openNabBar ? "flex" : "hidden"
+                        } flex-col py-2 px-10 border-b-2`}
                 >
                     <div className="border-b-2 pb-2 ">
                         <ul className="flex flex-col">
@@ -218,7 +220,7 @@ const Header = ({user}) => {
                                     href={route("login")}
                                     className="flex items-center justify-center gap-2 font-semibold bg-black text-white rounded-full px-6 py-2 text-xl"
                                 >
-                                    <IoPerson/>
+                                    <IoPerson />
                                     Sing in
                                 </Link>
                             </div>
@@ -228,13 +230,12 @@ const Header = ({user}) => {
             </header>
             {/* SEPARATION !!! */}
             <div
-                className={`${
-                    openNabBar
-                        ? user
-                            ? "mt-[528px]"
-                            : "mt-[320px]"
-                        : "mt-[92px]"
-                }`}
+                className={`${openNabBar
+                    ? user
+                        ? "mt-[528px]"
+                        : "mt-[320px]"
+                    : "mt-[92px]"
+                    }`}
             ></div>
         </>
     );
