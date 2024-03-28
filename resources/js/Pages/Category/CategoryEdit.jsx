@@ -5,7 +5,7 @@ import TextArea from "@/Components/TextArea";
 import InputError from "@/Components/InputError";
 
 export default function CategoryEdit({auth, category}) {
-    const {data, setData, put, processing, errors} = useForm({
+    const {data, setData, post, processing, errors} = useForm({
         name: category.name,
         description: category.description,
         image: category.image
@@ -29,7 +29,7 @@ export default function CategoryEdit({auth, category}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        put(route("admin.category.update", category));
+        post(route("admin.category.update", category));
     };
 
     return (
@@ -48,7 +48,6 @@ export default function CategoryEdit({auth, category}) {
                             value={data.name}
                             onChange={handleChange}
                             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            required
                         />
                         <InputError message={errors.name} className="mt-2"/>
                     </div>
@@ -63,7 +62,6 @@ export default function CategoryEdit({auth, category}) {
                             onChange={handleChange}
                             rows="4"
                             className="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            required
                         ></TextArea>
                         <InputError message={errors.description} className="mt-2"/>
                     </div>
@@ -77,7 +75,7 @@ export default function CategoryEdit({auth, category}) {
                             </label>
                             <img
                                 src={`/storage/categories/${category.image}`}
-                                alt={'product-' + category.id}
+                                alt={'category-' + category.id}
                                 width={200}
                                 height={100}
                             />

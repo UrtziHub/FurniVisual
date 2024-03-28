@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -77,11 +78,20 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCategoryRequest $request, Category $category)
+    public function update(Request $request, Category $category)
     {
-        $request->validated();
+        $rules = [
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:500',
+        ];
 
-        $categoryFileName = ''; // Initialize categoryFileName variable
+        if ($request->hasFile('image')) {
+            $rules['image'] = 'image|mimes:jpeg,png,jpg,gif|max:2048';
+        }
+
+        $this->validate($request, $rules);
+
+        $categoryFileName = $category->image; // Initialize categoryFileName variable
 
         if ($request->hasFile('image')) {
             $categoryFile = $request->file('image');
@@ -103,6 +113,14 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        // Get all products associated with the category
+        $products = $category->products;
+
+        // Delete all products
+        foreach ($products as $product) {
+            $product->delete();
+        }
+
         $category->delete();
 
         // Deletes the linked image

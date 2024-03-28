@@ -86,7 +86,7 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
     Route::post('/admin/category', [CategoryController::class, 'store'])->name('admin.category.store');
     Route::get('/admin/category/edit/{category}', [CategoryController::class, 'edit'])->name('admin.category.edit');
-    Route::put('/admin/category/{category}', [CategoryController::class, 'update'])->name('admin.category.update');
+    Route::post('/admin/category/{category}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::delete('/admin/category/{category}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
 });
 
