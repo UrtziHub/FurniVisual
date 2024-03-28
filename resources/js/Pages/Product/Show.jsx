@@ -189,30 +189,7 @@ export default function Show({auth, product, reviews}) {
                                 message={errors.model}
                                 className="mt-2"
                             />
-                            {hasModel !== null && hasModel === true && (
-                                <div>
-                                    <label
-                                        htmlFor="fileInput"
-                                        className="block uppercase text-base mt-2"
-                                    >
-                                        Upload File:
-                                    </label>
-                                    <input
-                                        type="file"
-                                        id="model"
-                                        name="model"
-                                        onChange={handleModelChange}
-                                        multiple
-                                        className="block w-full text-sm text-slate-500
-                                        file:mr-4 file:py-2 file:px-4
-                                        file:rounded-full file:border-0
-                                        file:text-sm file:font-semibold
-                                        file:bg-black file:text-white
-                                        hover:file:bg-neutral-800 file:cursor-pointer
-                                        "
-                                    />
-                                </div>
-                            )}
+
                             <p className="text-base text-gray-600">
                                 Mark YES if you have your own 3D model of the
                                 product, mark NO if you do not have a 3D model.
