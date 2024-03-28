@@ -51,7 +51,7 @@ export default function Dashboard({auth, errors}) {
                     >
                         <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
                             <h2 className="text-2xl font-bold mb-2">
-                                <IoCart className="inline-block text-3xl mb-4 scale-150"/>
+                                <IoExit className="inline-block text-3xl mb-4 scale-150"/>
                             </h2>
                             Log Out
                         </div>

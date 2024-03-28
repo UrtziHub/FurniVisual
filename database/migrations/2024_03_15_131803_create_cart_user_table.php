@@ -25,6 +25,9 @@ return new class extends Migration {
 
         $cart2 = Cart::create(['active' => true]);
         $cart2->users()->attach(2);
+
+        $cart2 = Cart::create(['active' => true]);
+        $cart2->users()->attach(3);
     }
 
     /**

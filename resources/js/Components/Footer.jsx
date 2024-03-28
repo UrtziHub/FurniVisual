@@ -9,7 +9,7 @@ export default function Footer() {
                 <h1 className="bg-black text-white p-2 rounded-s-md">Furni</h1>
                 <h1 className="bg-slate-100 p-2 rounded-e-md">Visual</h1>
             </div>
-            
+
             <div className="flex justify-center w-full gap-10">
                 <ul className="space-y-2 &>[]">
                     <h1 className="text-lg font-bold underline-offset-2 underline">
@@ -70,7 +70,7 @@ export default function Footer() {
                     </li>
                     <li>
                         <Link href={route("regulations")} as="button">
-                            Regulations
+                            Terms of Service
                         </Link>
                     </li>
                 </ul>
