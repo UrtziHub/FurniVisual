@@ -18,7 +18,7 @@ class ReviewFactory extends Factory
     {
         return [
             'comment' => $this->faker->text(50),
-            'rate' => $this->faker->randomFloat(2, 0, 5),
+            'rate' => $this->faker->numberBetween(0, 5),
         ];
     }
 }
