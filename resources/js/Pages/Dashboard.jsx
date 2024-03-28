@@ -3,6 +3,7 @@ import {FaUserAlt, FaRoad, FaCreditCard, FaUserEdit, FaClipboardList} from "reac
 import {IoCart, IoExit, IoMail, IoBag} from "react-icons/io5";
 import {BiSolidCategory} from "react-icons/bi";
 import DashboardCard from "@/Components/DashboardCard";
+import {Link} from "@inertiajs/react";
 
 export default function Dashboard({auth, errors}) {
     const {is_admin} = auth.user;
@@ -33,7 +34,6 @@ export default function Dashboard({auth, errors}) {
             icon: is_admin ? <IoBag {...commonProps} /> : <FaCreditCard {...commonProps} />,
             text: is_admin ? "Products" : "Pays"
         },
-        {href: route("logout"), method: "post", icon: <IoExit {...commonProps} />, text: "Log out"}
     ];
 
     return (
@@ -43,6 +43,19 @@ export default function Dashboard({auth, errors}) {
                     {cards.map((card, index) => (
                         <DashboardCard key={index} {...card} />
                     ))}
+                    <Link
+                        href={route("logout")}
+                        method="post"
+                        as="button"
+                        className="text-center p-4 transform transition duration-500 hover:scale-110"
+                    >
+                        <div className="bg-gray-100 rounded-lg shadow-lg p-6 block">
+                            <h2 className="text-2xl font-bold mb-2">
+                                <IoCart className="inline-block text-3xl mb-4 scale-150"/>
+                            </h2>
+                            Log Out
+                        </div>
+                    </Link>
                 </section>
             </PageLayout>
         </>
