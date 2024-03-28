@@ -184,8 +184,6 @@ export default function Show({auth, product, reviews}) {
                                     onChange={() => setHasModel(false)}
                                 />
                                 no
-                        <label htmlFor="modelNo">No</label>
-
                             </div>
                             <InputError
                                 message={errors.model}
