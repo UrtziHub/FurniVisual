@@ -9,6 +9,7 @@ export default function Footer() {
                 <h1 className="bg-black text-white p-2 rounded-s-md">Furni</h1>
                 <h1 className="bg-slate-100 p-2 rounded-e-md">Visual</h1>
             </div>
+            
             <div className="flex justify-center w-full gap-10">
                 <ul className="space-y-2 &>[]">
                     <h1 className="text-lg font-bold underline-offset-2 underline">
@@ -95,11 +96,18 @@ export default function Footer() {
                 <hr className="w-96 h-px my-8 bg-neutral-300 border-0 "/>
                 <span className="absolute px-3 font-medium -translate-x-1/2 left-1/2">
                     <div className="flex bg-white px-2 gap-3 text-2xl">
-                        <FaInstagram href="https://www.instagram.com/erynek3d/"
-                                     className="hover:text-fuchsia-400 cursor-pointer transition duration-300 ease-in-out"/>
-                        <FaYoutube className="hover:text-red-600 cursor-pointer transition duration-300 ease-in-out"/>
-                        <FaFacebook className="hover:text-blue-700 cursor-pointer transition duration-300 ease-in-out"/>
-                        <FaTwitter className="hover:text-blue-400 cursor-pointer transition duration-300 ease-in-out"/>
+                        <a href="https://www.instagram.com/erynek3d/" target="_blank" rel="noopener noreferrer">
+                            <FaInstagram className="hover:text-fuchsia-400 cursor-pointer transition duration-300 ease-in-out"/>
+                        </a>
+                        <a href="https://www.youtube.com/@erynek3d/videos" target="_blank" rel="noopener noreferrer">
+                            <FaYoutube className="hover:text-red-600 cursor-pointer transition duration-300 ease-in-out"/>
+                        </a>
+                        <a href="https://www.facebook.com/Erynek3D" target="_blank" rel="noopener noreferrer">
+                            <FaFacebook className="hover:text-blue-700 cursor-pointer transition duration-300 ease-in-out"/>
+                        </a>
+                        <a href="https://twitter.com/Erynek3D" target="_blank" rel="noopener noreferrer">
+                            <FaTwitter className="hover:text-blue-400 cursor-pointer transition duration-300 ease-in-out"/>
+                        </a>
                     </div>
                 </span>
             </div>

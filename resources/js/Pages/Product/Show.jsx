@@ -168,7 +168,7 @@ export default function Show({auth, product, reviews}) {
                         <div className="mb-4">
                             <h1 className="font-bold">3D Model:</h1>
                             <div className="flex items-center gap-2 uppercase text-base">
-                                <input
+                            <input
                                     type="radio"
                                     name="radio"
                                     id=""
@@ -184,6 +184,8 @@ export default function Show({auth, product, reviews}) {
                                     onChange={() => setHasModel(false)}
                                 />
                                 no
+                        <label htmlFor="modelNo">No</label>
+
                             </div>
                             <InputError
                                 message={errors.model}
